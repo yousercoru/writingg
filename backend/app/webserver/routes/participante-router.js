@@ -6,7 +6,7 @@ const checkAccountSession = require("../controllers/account/check-account-sessio
 const checkEscritorRol = require("../controllers/account/check-escritor-rol");
 const getConcursos = require("../controllers/concurso/get-concursos");
 const getConcurso = require("../controllers/concurso/get-concurso");
-const addParticipanteToConcurso = require("../controllers/participante/add-into-concurso");
+const addParticipanteToConcurso = require("../controllers/participante/add-participante-concurso");
 
 const router = express.Router();
 

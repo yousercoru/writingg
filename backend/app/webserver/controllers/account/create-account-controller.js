@@ -13,9 +13,9 @@ async function sendWelcomeEmail(email) {
   const msg = {
     to: email,
     from: 'writingg@yopmail.com',
-    subject: 'Welcome to notesapp :)',
-    text: `Welcome ${username} to notesapp, enjoy creating your notes!`,
-    html: `<strong>Welcome ${username} to notesapp, enjoy creating your notes!</strong>`,
+    subject: 'Bienvenido a Writingg :)',
+    text: `Bienvenido ${username} a Writingg, la plataforma de concursos literarios donde escritores y organizadores conectan.`,
+    html: `<strong>Bienvenido ${username} a Writingg, la plataforma de concursos literarios donde escritores y organizadores conectan.</strong>`,
   };
 
   const data = await sendgridMail.send(msg);

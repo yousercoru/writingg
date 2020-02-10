@@ -9,6 +9,7 @@ const {
   accountRouter,
   authRouter,
   concursoRouter,
+  participanteRouter
 //   tagRouter,
 //   userRouter,
 } = require('./routes');
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use('/api', accountRouter);
 app.use('/api', authRouter);
 app.use('/api', concursoRouter);
+app.use('/api', participanteRouter);
 // app.use('/api', tagRouter);
 // app.use('/api', userRouter);
 

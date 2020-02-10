@@ -20,6 +20,7 @@ async function getConcurso(req, res, next) {
 const { idconcursos } = req.params;
 //const { idusers } = req.claims;
 
+console.log(idconcursos)
 const payload = {
 idconcursos
 //idusers

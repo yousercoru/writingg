@@ -15,8 +15,13 @@
 
 ##### CONCURSO
 - Create concurso
+- Delete concurso
 - Get concursos
 - Get concurso
+
+##### CONCURSO
+- Add participante into concurso
+
 
 #### ROUTES
 - Account router

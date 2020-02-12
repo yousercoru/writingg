@@ -8,6 +8,7 @@ const createConcurso = require("../controllers/concurso/create-concurso");
 const deleteConcurso = require("../controllers/concurso/delete-concurso");
 const getConcursos = require("../controllers/concurso/get-concursos");
 const getConcurso = require("../controllers/concurso/get-concurso");
+const getConcursantesConcurso = require("../controllers/concurso/get-concursantes-concurso");
 
 const router = express.Router();
 
@@ -24,6 +25,11 @@ router.delete(
   checkAccountSession,
   checkOrganizadorRol,
   deleteConcurso
+);
+router.get(
+  "/concursos/:idconcursos/concursantes",
+  checkAccountSession,
+  getConcursantesConcurso
 );
 
 module.exports = router;

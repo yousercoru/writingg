@@ -61,6 +61,23 @@ console.log(idconcursos);
       return res.status(404).send();
     }
 
+    try {
+      const connection = await mysqlPool.getConnection();
+      const getWorkerQuery = `SELECT users_idusers
+        FROM users_has_concursos 
+        WHERE concursos_idconcursos = ?`;
+      const [results] = await connection.execute(getWorkerQuery, [idconcursos]);
+      connection.release();
+      if (results.length !== 0) {
+        return res.status(403).send();
+      }
+    } catch (e) {
+      console.error(e);
+      res.status(500).send({
+        message: e.message
+      });
+    }
+
     /**
      * Exercise 1
      *  Delete tag from a note

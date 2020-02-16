@@ -14,11 +14,6 @@ async function validate(payload) {
       .min(1)
       .max(255)
       .required(),
-    // categoria: Joi.string()
-    //   .trim()
-    //   .min(1)
-    //   .max(255)
-    //   .required(),
     bases: Joi.string()
       .trim()
       .min(1)
@@ -39,6 +34,11 @@ async function validate(payload) {
       .min(1)
       .max(45)
       .required(),
+    categoria: Joi.string()
+      .trim()
+      .min(1)
+      .max(45)
+      .required()
   });
 
   Joi.assert(payload, schema);
@@ -59,7 +59,13 @@ async function createConcurso(req, res, next) {
     .toISOString()
     .substring(0, 19)
     .replace("T", " ");
-  const { nombreConcurso, bases, fechaVencimiento, primerPremio, fechaPremiados} = concursoData;
+  const {
+    nombreConcurso,
+    bases,
+    fechaVencimiento,
+    primerPremio,
+    fechaPremiados
+  } = concursoData;
 //   const { nombreConcurso, categoria, bases, fechaVencimiento, primerPremio, fechaPremiados} = concursoData;
 
 
@@ -68,7 +74,7 @@ async function createConcurso(req, res, next) {
     idconcursos,
     users_idusers: userId,
     nombreConcurso,
-    // categoria,
+    categoria,
     bases,
     fechaVencimiento,
     primerPremio,

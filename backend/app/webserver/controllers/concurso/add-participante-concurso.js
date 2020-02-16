@@ -19,9 +19,9 @@ async function validate(payload) {
 async function getConcurso(idconcursos) {
   const connection = await mysqlPool.getConnection();
   const getConcursoQuery = `SELECT idconcursos, users_idusers,
-  categoria_idcategoria, nombreConcurso, bases, fechaVencimiento,
+  nombreConcurso, bases, fechaVencimiento,
   primerPremio, segundoPremio, tercerPremio, fechaPremiados,
-  cartel, bases_pdf,
+  cartel, bases_pdf, categoria,
   created_At, updated_At, deleted_At 
   FROM concursos
     WHERE idconcursos = ?

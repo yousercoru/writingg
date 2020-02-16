@@ -88,8 +88,8 @@ async function getConcursosParticipante(req, res, next) {
   let connection;
   try {
     connection = await mysqlPool.getConnection();
-    const sqlQuery = `SELECT c.nombreConcurso, c.primerPremio, c.fechaVencimiento, c.fechaPremiados,
-     c.bases, uc.created_at, ratingParticipante, ratingOrganizador, uc.deleted_at, obra
+    const sqlQuery = `SELECT c.nombreConcurso, c.categoria, c.primerPremio, c.fechaVencimiento, c.fechaPremiados,
+     c.bases, uc.created_at, uc.ratingParticipante, uc.ratingOrganizador, uc.deleted_at, uc.obra
       FROM users_has_concursos uc
       LEFT JOIN concursos c
         ON c.idconcursos = uc.concursos_idconcursos   

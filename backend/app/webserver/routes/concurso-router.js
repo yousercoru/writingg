@@ -26,9 +26,10 @@ const uploadDoc = require("../controllers/concurso/upload-doc");
 
 router.post("/concursos", checkAccountSession, checkOrganizadorRol, createConcurso);
 router.get("/concursos", getConcursos);
+router.get("/:categoria", getConcursosByCategoria);
 router.get("/concursos/:idconcursos", getConcurso);
+// router.get("/:categoria/concursos", getConcursosByCategoria);
 router.delete("/concursos/:idconcursos", checkAccountSession, checkOrganizadorRol, deleteConcurso);
-router.get("/concursos/:categoria", getConcursosByCategoria);
 router.get("/participante/concursos", checkAccountSession, checkEscritorRol, getConcursosParticipante);
 router.get("/organizador/concursos", checkAccountSession, checkOrganizadorRol, getConcursosOrganizador);
 router.post("/concursos/:idconcursos", checkAccountSession, checkEscritorRol, addParticipanteToConcurso);

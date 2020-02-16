@@ -65,7 +65,8 @@ console.log(idconcursos);
       const connection = await mysqlPool.getConnection();
       const getWorkerQuery = `SELECT users_idusers
         FROM users_has_concursos 
-        WHERE concursos_idconcursos = ?`;
+        WHERE concursos_idconcursos = ?
+        AND deleted_at IS NULL `;
       const [results] = await connection.execute(getWorkerQuery, [idconcursos]);
       connection.release();
       if (results.length !== 0) {

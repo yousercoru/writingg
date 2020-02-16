@@ -94,7 +94,8 @@ async function getConcursosParticipante(req, res, next) {
       LEFT JOIN concursos c
         ON c.idconcursos = uc.concursos_idconcursos   
         WHERE
-        uc.users_idusers = ?`;
+        uc.users_idusers = ?
+        AND uc.deleted_at IS NULL`;
 
     const [rows] = await connection.execute(sqlQuery, [users_idusers]);
     connection.release();

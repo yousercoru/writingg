@@ -3,10 +3,9 @@
 const mysqlPool = require("../../../database/mysql-pool");
 
 async function getConcursosByCategoria(req, res, next) {
-  const categoria = { ...req.body };
+  const { categoria } = req.params;
   const byCategoria = categoria.categoria;
 
-  // 2. Select all tags
   try {
     const connection = await mysqlPool.getConnection();
     const sqlQuery = `SELECT * FROM concursos

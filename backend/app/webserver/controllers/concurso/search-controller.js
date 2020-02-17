@@ -3,7 +3,9 @@
 const mysqlPool = require("../../../database/mysql-pool");
 
 async function searchConcursos(req, res, next) {
-  const { nombreConcurso, nombre, bases } = req.params;
+  const { nombreConcurso } = req.params;
+  // const { nombreConcurso, nombre, bases } = req.params;
+
 
   try {
     const connection = await mysqlPool.getConnection();
@@ -12,11 +14,12 @@ async function searchConcursos(req, res, next) {
         JOIN users u
         ON u.idusers = c.users_idusers
         WHERE c.deleted_at IS NULL
-        AND c.nombreConcurso LIKE ?;
-        OR u.nombre LIKE ?
-        OR c.bases LIKE ?`;
+        AND c.nombreConcurso LIKE ?`;
+        // OR u.nombre LIKE ?
+        // OR c.bases LIKE ?`;
         
-    const [rows] = await connection.execute(sqlQuery, [nombreConcurso, nombre, bases]);
+    const [rows] = await connection.execute(sqlQuery, [nombreConcurso]);
+    // const [rows] = await connection.execute(sqlQuery, [nombreConcurso, nombre, bases]);
     connection.release();
   
     // preparar respuesta

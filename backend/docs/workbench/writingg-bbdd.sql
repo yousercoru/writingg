@@ -8,7 +8,16 @@ SELECT c.nombreConcurso, c.categoria, u.nombre, c.primerPremio, c.fechaVencimien
 	FROM concursos c
 	JOIN users u
 	ON u.idusers = c.users_idusers
-	WHERE c.nombreConcurso LIKE "%literario%"
-	OR u.nombre LIKE "%Ayuntamiento%"
-    OR c.bases LIKE "%lorem%";
+    WHERE c.deleted_at IS NULL
+	AND c.nombreConcurso LIKE "%literario%"
+	OR u.nombre LIKE "%literario%"
+    OR c.bases LIKE "%literario%";
+    
+SELECT c.nombreConcurso, c.categoria, u.nombre, c.primerPremio, c.fechaVencimiento, c.fechaPremiados
+	FROM concursos c
+	JOIN users u
+	ON u.idusers = c.users_idusers
+    WHERE c.nombreConcurso LIKE "%literario%"
+	OR u.nombre LIKE "%literario%"
+    OR c.bases LIKE "%literario%";
 

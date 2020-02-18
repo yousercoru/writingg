@@ -3,8 +3,10 @@
 const mysqlPool = require("../../../database/mysql-pool");
 
 async function searchConcursos(req, res, next) {
-  const { nombreConcurso } = req.params;
+  // console.log('test', req.headers, req.query);
+  const nombreConcursoFiltro = `%${req.query.nombreConcurso}%`;
   // const { nombreConcurso, nombre, bases } = req.params;
+  // console.log(nombreConcursoFiltro);
 
 
   try {
@@ -18,14 +20,18 @@ async function searchConcursos(req, res, next) {
         // OR u.nombre LIKE ?
         // OR c.bases LIKE ?`;
         
-    const [rows] = await connection.execute(sqlQuery, [nombreConcurso]);
+    const [rows] = await connection.execute(sqlQuery, [nombreConcursoFiltro]);
     // const [rows] = await connection.execute(sqlQuery, [nombreConcurso, nombre, bases]);
     connection.release();
+    console.log(sqlQuery);
   
     // preparar respuesta
     const searchResult = rows.map(concurso => {
       return {
-        ...concurso
+        ...concurso,
+        primerPremio: parseInt(primerPremio),
+        // fechaVencimiento: ,
+        // fechaPremiados: ,
       };
     });
 

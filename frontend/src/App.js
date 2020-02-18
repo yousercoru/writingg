@@ -1,8 +1,8 @@
 import React from "react";
 
 //components
-import Header from "./components/headerComponent/header";
-import Footer from "./components/footerComponent/footer";
+import Header from "./components/header";
+import Footer from "./components/footer";
 import Homepage from "./pages/homePage";
 
 // includes
@@ -16,6 +16,7 @@ export default function App() {
        - Configurar mis rutas y Providers 
        - Podria añadir componentes comunes de mi aplicación con <Header /> o <Footer /> 
       */}
+      {/* <Header/> */}
       <Header/>
       <Homepage/>
       <Footer/>

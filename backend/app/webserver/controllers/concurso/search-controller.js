@@ -29,7 +29,7 @@ async function searchConcursos(req, res, next) {
     const searchResult = rows.map(concurso => {
       return {
         ...concurso,
-        primerPremio: parseInt(primerPremio),
+        // primerPremio: parseInt(primerPremio),
         // fechaVencimiento: ,
         // fechaPremiados: ,
       };

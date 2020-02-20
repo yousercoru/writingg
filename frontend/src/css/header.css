@@ -1,0 +1,33 @@
+@import './buttons.css';
+
+header {
+    position: fixed;
+    top: 0px;
+    display: flex;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+    align-items: center;
+    justify-content: space-around;
+    width: 100%;
+    /* padding: 20px; */
+    height: 12vh;
+    background-color: var(--bright);
+}
+
+nav {
+    display: flex;
+    /* flex-direction: row; */
+    justify-content: space-around;
+    font-family: var(--font-primary);
+    color: var(--txtBlack);
+    /* text-transform: none; */
+    /* text-decoration: none; */
+    /* align-items: flex-end; */
+    /* padding-bottom: 10px; */
+}
+
+.h-categoria {
+    /* margin: 20px; */
+    padding: 30px;
+}
+

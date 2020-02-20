@@ -1,0 +1,73 @@
+:root {
+  /* COLORES */
+  --primary: #212429;
+  --secondary: #4361D7;
+
+  /* Texto */
+  --txtBlack: #212429;
+  --txtBlackMedium: #1D1B38;
+  --txtBlueGrey: #545873;
+  --txtBlue: #4361D7;
+  --txtBlueLight: #6E86ED;
+  --textGreen: #64C3AB;
+  --txtGreenLight: #66CC99;
+  --txtLightGrey: #F5F7FA;
+
+  /* Botones */
+  --btnBlackMedium: #1D1B38;
+  --btnDarkBlue: #373753;
+  --btnBlue: #4361D7;
+  --btnBlueLight: #6E86ED;
+  --btnGreenMedium: #66CC99;
+  --btnGreen: #64C3AB;
+
+  /* Fondos */
+  --white: #FFFFFF;
+  --lightGrey: #F5F7FA;
+  --blackMedium: #1D1B38;
+
+
+  /* Custom colors */
+  --cRed: #F03063;
+  --cOrange: #FD7847;
+  --cYellow: #FED56A;
+  --cYellowLight: #FEDE88;
+  --cGreen: #64C3AB;
+  --cGreenBright: #85F1B8;
+  --cMediumDarkBlue: #494E6A;
+  --cSkyBlue: #63C0F9;
+  --cPurple: #6B31ED;
+  --cPurpleMedium: #895EF7;
+  --cPurpleBright: #AA8CF8;
+  --cElectricPink: #FC22B1;
+
+  /* Otros */
+  --separator: #1b1b1b;
+  --medium: #999999;
+  --dark: #000;
+  --bright: #fff;
+  --ko: #F03063;
+  --ok: #64C3AB;
+
+  
+
+  /* fonts */
+  --font-primary: "Nunito", "Arial", "Helvetica", sans-serif;
+  --font-secondary: "Helvetica", sans-serif;
+  /* --font-special: "Press Start 2P"; */
+
+  /* font-sizes */
+  --font-xs: 0.6rem;
+  --font-sm: 0.8rem;
+  --font-m: 1rem;
+  --font-l: 1.2rem;
+  --font-xl: 1.6rem;
+  --font-xxl: 3rem;
+
+  /* spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 3rem;
+}

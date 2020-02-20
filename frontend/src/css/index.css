@@ -1,6 +1,131 @@
-@import './my-feature.css';
+@import url('https://fonts.googleapis.com/css?family=Nunito:300,400,600&display=swap');
+
+@import './theme.css';
+@import './buttons.css';
+@import './forms.css';
+@import './utils.css';
+@import './header.css';
+/* @import './tag-list.css'; */
+/* @import './note.css'; */
+/* @import './dashboard.css'; */
+/* @import './note-list.css'; */
+/* @import './dialog.css'; */
+/* @import './tags-input.css'; */
 
 /* PONER los estilos comunes */
-html, body {
 
+html {
+  box-sizing: border-box;
+  height: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+  margin: 0;
+  padding: 0;
+  font-size: 100%;
+}
+
+body,
+#root {
+  margin-top: 1px;
+  font-family: var(--font-primary);
+  height: 100%;
+  background: linear-gradient(to bottom, var(--lightGrey) 80%, var(--cGreen));
+  color: var(--primary);
+  line-height: 1.8em;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.gutter-horizontal {
+  cursor: ew-resize;
+}
+
+h1{
+  /* text-transform: uppercase; */
+  font-family: var(--font-primary);
+  color: var(--textGreen);
+}
+
+h2,
+h3,
+h4,
+h5,
+h6 {
+  /* text-transform: uppercase; */
+  font-family: var(--font-primary);
+  color: var(--primary);
+}
+
+h1 {
+  font-size: var(--font-xxl);
+}
+
+h2 {
+  font-size: var(--font-xl);
+}
+
+h3 {
+  font-size: var(--font-l);
+}
+
+h4 {
+  font-size: var(--font-m);
+}
+
+h5 {
+  font-size: var(--font-sm);
+}
+
+h6 {
+  font-size: var(--font-xs);
+}
+
+p {
+  font-size: var(--font-sm);
+}
+
+a {
+  font-family: var(--font-primary);
+  color: var(--txtBlueGrey);
+  text-transform: none;
+  text-decoration: none;
+}
+
+a:hover {
+  /* opacity: 0.7; */
+  /* border-bottom: 2px solid var(--secondary); */
+  color: var(--textGreen);
+  text-decoration: none;
+}
+
+a:active {
+  /* opacity: 1; */
+  /* border-bottom: 2px solid var(--secondary); */
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+ul > li {
+  cursor: pointer;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+}
+::-webkit-scrollbar-track {
+  background: var(--dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--primary);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--bright);
 }

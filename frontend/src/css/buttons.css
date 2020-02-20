@@ -1,0 +1,111 @@
+.btn {
+  font-family: var(--font-primary);
+  transition: all 0.2s;
+  /* min-width: 120px; */
+  width: 100%;
+  padding: 10px 20px;
+  font-size: 1rem;
+  background: var(--btnBlueLight);
+  text-transform: none;
+  color: var(--bright);
+  outline: none;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 100%;
+}
+
+.btn:hover {
+  background: var(--btnBlue);
+  color: var(--txtLightGrey);
+  font-weight: bold;
+}
+
+.btn.bright {
+  background-color: var(--bright);
+  color: var(--dark);
+}
+
+.btn.error {
+  background-color: var(--ko);
+}
+
+.btn.error:hover {
+  color: var(--bright);
+}
+
+.btn[disabled] {
+  opacity: 0.5;
+  background: var(--secondary);
+  color: var(--bright);
+  font-size: 1rem !important;
+  transition: none;
+  font-weight: normal;
+  outline: none;
+  border: none;
+}
+
+/* Header buttons */
+.h-btn-1 {
+  font-family: var(--font-primary);
+  font-size: var(--font-sm);
+  transition: all 0.2s;
+  color: var(--bright);
+  margin: 10px;
+  padding: 5px;
+  background: var(--btnGreen);
+  text-transform: none;
+  outline: none;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 100%;
+}
+
+.h-btn-1:hover {
+  background: var(--btnGreenMedium);
+  color: var(--txtBlackMedium);
+  /* font-weight: bold; */
+}
+
+.h-btn-2 {
+  font-family: var(--font-primary);
+  font-size: var(--font-sm);
+  transition: all 0.2s;
+  color: var(--bright);
+  margin: 10px;
+  padding: 5px;
+  background: var(--btnBlueLight);
+  text-transform: none;
+  outline: none;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 100%;
+}
+
+.h-btn-2:hover {
+  background: var(--btnBlue);
+  color: var(--txtLightGrey);
+  /* font-weight: bold; */
+}
+
+.h-btn-3 {
+  font-family: var(--font-primary);
+  font-size: var(--font-sm);
+  transition: all 0.2s;
+  color: var(--textGreen);
+  margin: 10px;
+  padding: 5px;
+  background: transparent;
+  text-transform: none;
+  outline: none;
+  border-radius: 4px;
+  border-color: var(--btnGreen);
+  cursor: pointer;
+  /* height: 100%; */
+}
+
+.h-btn-3:hover {
+  background: transparent;
+  color: var(--txtBlackMedium);
+  border-color: var(--btnBlackMedium);
+  /* font-weight: bold; */
+}

@@ -1,0 +1,49 @@
+.centered-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  .opacity-container {
+    transition: opacity 0.3s ease-in;
+    opacity: 1;
+  }
+  
+  .opacity-container.activated {
+    opacity: 0.5;
+  }
+  
+  /* padding top longitud media */
+  .p-t-md {
+    padding-top: var(--space-md);
+  }
+  
+  /*   marging top longitud larga */
+  .m-t-lg {
+    margin-top: var(--space-lg);
+  }
+  
+  .flex {
+    display: flex;
+  }
+  
+  .overflow-hidden {
+    overflow: hidden;
+  }
+  
+  /* Para que el texto no salga de la caja */
+  .truncate-text {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+  }
+  
+  .truncate-multiline-text {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+  

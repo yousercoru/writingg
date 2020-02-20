@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "writingg",
+  "name": "Writingg, la plataforma de concursos literarios donde escritores y organizadores conectan.",
   "icons": [
     {
       "src": "favicon.ico",
@@ -8,14 +8,14 @@
       "type": "image/x-icon"
     },
     {
-      "src": "logo192.png",
+      "src": "writingg-logo-192.png",
       "type": "image/png",
-      "sizes": "192x192"
+      "sizes": "192x58"
     },
     {
-      "src": "logo512.png",
+      "src": "writingg-logo-512.png",
       "type": "image/png",
-      "sizes": "512x512"
+      "sizes": "512x155"
     }
   ],
   "start_url": ".",

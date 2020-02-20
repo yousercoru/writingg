@@ -33,7 +33,7 @@ body,
   margin-top: 1px;
   font-family: var(--font-primary);
   height: 100%;
-  background: linear-gradient(to bottom, var(--lightGrey) 80%, var(--cGreen));
+  background: linear-gradient(to bottom, var(--lightGrey) 95%, var(--cGreen));
   color: var(--primary);
   line-height: 1.8em;
   display: flex;
@@ -100,7 +100,6 @@ a:hover {
   /* opacity: 0.7; */
   /* border-bottom: 2px solid var(--secondary); */
   color: var(--textGreen);
-  text-decoration: none;
 }
 
 a:active {
@@ -117,6 +116,10 @@ ul > li {
   cursor: pointer;
 }
 
+.writingg-logo {
+  color: var(--textGreen);
+}
+
 ::-webkit-scrollbar {
   width: 3px;
 }
@@ -129,3 +132,4 @@ ul > li {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--bright);
 }
+

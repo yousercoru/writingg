@@ -7,7 +7,7 @@ export function Header({ onLogout }) {
     <header>
         <div>
             <h1>
-                <Link to="/">writingg.</Link>
+                <Link to="/">writingg<span className="writingg-logo">.</span></Link>
             </h1>
         </div>
         

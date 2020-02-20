@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { login } from "../http/authService";
 // import { signIn } from "../http/authService";
 import { useAuth } from "../context/auth-context";
-import { Header } from "../components/Header";
+// import { Header } from "../components/Header";
 
 export function Login() {
     const { 
@@ -38,10 +38,10 @@ export function Login() {
 
     return (
         <React.Fragment>
-            <Header />
+            {/* <Header /> */}
             <main className="centered-container">
                 {/* <img src="writingg-logo-192.png" alt="Writingg.com" /> */}
-                <h1>writingg.</h1>
+                <h1>writingg<span className="writingg-logo">.</span></h1>
                 <h4 className="p-t-md">Hoy es un gran día para leer y escribir</h4>
                 <h2>Inicia sesión</h2>
                 <form onSubmit={handleSubmit(handleLogin)} noValidate>

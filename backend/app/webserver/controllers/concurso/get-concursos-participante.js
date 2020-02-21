@@ -72,7 +72,7 @@ async function validate(payload) {
 //   return noteHydrated;
 // }
 
-async function getConcursosParticipante(req, res, next) {
+async function getConcursosOrganizador(req, res, next) {
   //const { idusers } = req.claims;
 
   const { userId } = req.claims;
@@ -85,19 +85,25 @@ async function getConcursosParticipante(req, res, next) {
     return res.status(400).send(e);
   }
   const users_idusers = userId;
+  const todayDate = new Date()
+    .toISOString()
+    .substring(0, 19)
+    .replace("T", " ");
   let connection;
   try {
     connection = await mysqlPool.getConnection();
-    const sqlQuery = `SELECT c.nombreConcurso, c.categoria, c.primerPremio, c.fechaVencimiento, c.fechaPremiados,
-     c.bases, uc.created_at, uc.ratingParticipante, uc.ratingOrganizador, uc.deleted_at, uc.obra
-      FROM users_has_concursos uc
-      LEFT JOIN concursos c
-        ON c.idconcursos = uc.concursos_idconcursos   
-        WHERE
-        uc.users_idusers = ?
-        AND uc.deleted_at IS NULL`;
+    const sqlQuery = `SELECT *
+      FROM concursos
+      WHERE
+      users_idusers = ?
+      AND fechaVencimiento < ?
+      AND deleted_at IS NULL
+      ORDER BY fechaVencimiento DESC`;
 
-    const [rows] = await connection.execute(sqlQuery, [users_idusers]);
+    const [rows] = await connection.execute(sqlQuery, [
+      users_idusers,
+      todayDate
+    ]);
     connection.release();
 
     if (rows.length === 0) {
@@ -121,4 +127,4 @@ async function getConcursosParticipante(req, res, next) {
   }
 }
 
-module.exports = getConcursosParticipante;
+module.exports = getConcursosOrganizador;

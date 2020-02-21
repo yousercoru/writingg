@@ -32,15 +32,8 @@ axios.interceptors.response.use(
   }
 );
 
-export function login({ email, password }) {
-    console.log({ email, password });
-    return axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth`, null, {
-      auth: {
-        username: email,
-        password
-      }
-
-    });
+export function login(formData) {
+  return axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth`, formData);
 }
 
 export function createAccount(registerData) {

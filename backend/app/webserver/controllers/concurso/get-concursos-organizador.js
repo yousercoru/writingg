@@ -85,15 +85,25 @@ async function getConcursosOrganizador(req, res, next) {
     return res.status(400).send(e);
   }
   const users_idusers = userId;
+  const todayDate = new Date()
+    .toISOString()
+    .substring(0, 19)
+    .replace("T", " ");
   let connection;
   try {
     connection = await mysqlPool.getConnection();
     const sqlQuery = `SELECT *
       FROM concursos
       WHERE
-      users_idusers = ?`;
+      users_idusers = ?
+      AND fechaVencimiento < ?
+      AND deleted_at IS NULL
+      ORDER BY fechaVencimiento DESC`;
 
-    const [rows] = await connection.execute(sqlQuery, [users_idusers]);
+    const [rows] = await connection.execute(sqlQuery, [
+      users_idusers,
+      todayDate
+    ]);
     connection.release();
 
     if (rows.length === 0) {

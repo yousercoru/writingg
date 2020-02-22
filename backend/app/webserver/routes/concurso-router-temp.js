@@ -11,6 +11,7 @@ const checkOrganizadorRol = require("../controllers/account/check-organizador-ro
 
 const addGanadoresToConcurso = require("../controllers/concurso/add-ganadores-concurso");
 const addParticipanteToConcurso = require("../controllers/concurso/add-participante-concurso");
+const addRatingToConcurso = require("../controllers/concurso/add-rating-concurso");
 const createConcurso = require("../controllers/concurso/create-concurso");
 const deleteConcurso = require("../controllers/concurso/delete-concurso");
 const deleteParticipanteToConcurso = require("../controllers/concurso/delete-participante-concurso");
@@ -29,6 +30,12 @@ router.get(
   checkAccountSession,
   checkEscritorRol,
   getConcursosParticipante
+);
+router.put(
+  "/concursos/rating/:idconcursos",
+  checkAccountSession,
+  checkEscritorRol,
+  addRatingToConcurso
 );
 router.put(
   "/concursos/ganador/:idconcursos",

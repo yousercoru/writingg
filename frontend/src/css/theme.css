@@ -20,11 +20,18 @@
   --btnBlueLight: #6E86ED;
   --btnGreenMedium: #66CC99;
   --btnGreen: #64C3AB;
+  --btnlightGrey: #f5f7fa;
+  --btnsoftGreen: #edfbf6;
+  --btnBlueGrey: #545873;
+
 
   /* Fondos */
   --white: #FFFFFF;
-  --lightGrey: #F5F7FA;
+  --lightGrey: #f5f7fa;
   --blackMedium: #1D1B38;
+  --BlueGrey: #545873;
+  --softGreen: #edfbf6;
+  
 
 
   /* Custom colors */

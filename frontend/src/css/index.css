@@ -5,6 +5,8 @@
 @import './forms.css';
 @import './utils.css';
 @import './header.css';
+@import './footer.css';
+/* @import './login-register.css'; */
 /* @import './tag-list.css'; */
 /* @import './note.css'; */
 /* @import './dashboard.css'; */
@@ -28,17 +30,33 @@ html {
   font-size: 100%;
 }
 
-body,
-#root {
-  margin-top: 1px;
+/* body,
+#root  */
+
+body {
   font-family: var(--font-primary);
   height: 100%;
-  background: linear-gradient(to bottom, var(--lightGrey) 95%, var(--cGreen));
+  min-height: 100%;
+  /* background: linear-gradient(90deg, var(--lightGrey) 0%, var(--softGreen) 100%); */
+  /* background: var(--lightGrey); */
+  background-image: linear-gradient(to right, rgba(245, 247, 250, 0.9), rgba(237, 251, 246, 0.9)), url("../img/background.jpg");
+  background-color: linear-gradient(90deg, var(--lightGrey) 0%, var(--softGreen) 100%);
   color: var(--primary);
   line-height: 1.8em;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
+  /* overflow: hidden; */
+}
+
+main {
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+  margin-top: 15vh;
+  margin-left: 5vw;
+  margin-right: 5vw;
+  padding: 15px;
+  max-width: 1200px;
 }
 
 .gutter-horizontal {

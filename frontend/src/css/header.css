@@ -4,6 +4,7 @@ header {
     position: fixed;
     top: 0px;
     display: flex;
+    flex: 0 0 auto;
     flex-direction: row;
     /* flex-wrap: wrap; */
     align-items: center;
@@ -12,12 +13,14 @@ header {
     /* padding: 20px; */
     height: 12vh;
     background-color: var(--bright);
+    border-bottom: 1px solid var(--cGreen);
+    overflow: hidden;
 }
 
 nav {
-    display: flex;
+    /* display: flex; */
     /* flex-direction: row; */
-    justify-content: space-around;
+    /* justify-content: space-around; */
     font-family: var(--font-primary);
     color: var(--txtBlack);
     /* text-transform: none; */
@@ -27,6 +30,6 @@ nav {
 }
 
 .h-categoria {
-    /* margin: 20px; */
-    padding: 30px;
+    margin: 30px;
+    /* padding: 30px; */
 }

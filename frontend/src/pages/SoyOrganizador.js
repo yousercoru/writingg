@@ -4,8 +4,9 @@ import React from "react";
 // import { login } from "../http/authService";
 // import { signIn } from "../http/authService";
 // import { useAuth } from "../context/auth-context";
+
 import { Header } from "../components/Header";
-import background from '../img/background.jpg';
+import { Footer } from "../components/Footer";
 
 
 
@@ -42,9 +43,28 @@ export function SoyOrganizador() {
     return (
         <React.Fragment>
             <Header />
-            <div  styles={{ backgroundImage:`url(${background})` }}>
-                <h1>This is the background</h1>
-            </div>
+            <main className="container">
+                <h1>Hola mundo!</h1>
+                <p>Soy Organizador</p>
+                <p>Soy Organizador</p>
+                <p>Soy Organizador</p>
+                <p>Soy Organizador</p>
+                <p>Soy Organizador</p>
+                <p>Soy Organizador</p>
+                <p>Soy Organizador</p>
+                <p>Soy Organizador</p>
+                <p>Soy Organizador</p>
+                <p>Soy Organizador</p>
+                <p>Soy Organizador</p>
+                <p>Soy Organizador</p>
+                <p>Soy Organizador</p>
+                <p>Soy Organizador</p>
+                <p>Soy Organizador</p>
+                <p>Soy Organizador</p>
+                <p>Soy Organizador</p>
+                <p>Soy Organizador</p>
+            </main>
+            <Footer />
         </React.Fragment>
     );
 }

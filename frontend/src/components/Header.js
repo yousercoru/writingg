@@ -7,41 +7,55 @@ export function Header({ onLogout }) {
     <header>
         <div>
             <h1>
-                <Link to="/">writingg<span className="writingg-logo">.</span></Link>
+                <Link to="/" className="h-categoria">writingg<span className="writingg-logo">.</span></Link>
             </h1>
         </div>
         
         <div>
-            <nav>
-                <h4>
-                    <Link to="/soy-escritor" className="h-categoria">¿Eres escritor?</Link>
-                </h4>
-                <h4>
-                    <Link to="/soy-organizador" className="h-categoria">¿Eres organizador?</Link>
-                </h4>
-            </nav>
+            <h4>
+                <Link to="/soy-escritor" className="h-categoria">¿Eres escritor?</Link>
+            </h4>
+        </div>
+        <div>
+            <h4>
+                <Link to="/soy-organizador" className="h-categoria">¿Eres organizador?</Link>
+            </h4>
         </div>
         <div>
             <Link to="/alta-concurso">
-                <button className="h-btn-3">
+                <a className="h-btn-3" href="/alta-concurso">
                     Dar de alta un cuncurso
-                </button>
+                </a>
             </Link>
-            <Link to="/account">
-                <button className="h-btn-2">
+            <Link to="/register">
+                <a className="h-btn-2" href="/register">
                     Hazte una cuenta
-                </button>
+                </a>
             </Link>
             <Link to="/login">
-                <button className="h-btn-1">
+                <a className="h-btn-1" href="/login">
                     Inicia sesión
-                </button>
+                </a>
             </Link>
             <Link to="/" onClick={onLogout}>
-                <button className="h-btn-3">
+                <a className="h-btn-3" href="/">
                     Salir
-                </button>
+                </a>
             </Link>  
+            {/* <nav>
+                <div>
+                    <Link to="/">Dar de alta un cuncurso</Link>
+                </div>
+                <div>
+                    <Link to="/register">Hazte una cuenta</Link>
+                </div>
+                <div>
+                    <Link to="/login">Inicia sesión</Link>
+                </div>
+                <div>
+                    <Link to="/" onClick={onLogout}>Salir</Link>
+                </div>
+            </nav>   */}
         </div>
     </header>
   );

@@ -1,10 +1,13 @@
 import React from "react";
+import jwt from 'jsonwebtoken';
 import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { login } from "../http/authService";
 // import { signIn } from "../http/authService";
 import { useAuth } from "../context/auth-context";
 // import { Header } from "../components/Header";
+
+// import '../css/forms.css';
 
 export function Register() {
     const { 
@@ -19,14 +22,14 @@ export function Register() {
     });
 
     const history = useHistory();
-    const { setIsAuthenticated, setCurrentUser } = useAuth();
+    const { setRol, setCurrentUser } = useAuth();
     
-    const handleLogin = formData => {
+    const handleLogin = registerData => {
         // return signIn(formData)
-        login(formData)
+        login(registerData)
             .then(response => {
-                // setRole(jwt_decode(response.data.token))
-                setIsAuthenticated(true);
+                setRol(jwt(response.data.token))
+                // setIsAuthenticated(true);
                 setCurrentUser(response.data);
                 history.push('/');
             })
@@ -119,8 +122,7 @@ export function Register() {
                                 required: 'La contraseña es obligatoria',
                                 minLength: {
                                     value: 6,
-                                    message:
-                                        'Introduce una contraseña con al menos 6 caracteres'
+                                    message:'Introduce una contraseña con al menos 6 caracteres'
                                 }
                             })}
                             name="password"
@@ -136,14 +138,14 @@ export function Register() {
                         errors.tipoCuenta ? 'ko' : formState.touched.tipoCuenta && 'ok'
                         }`}
                     >
-                        <label>Selecciona una tipo de cuenta</label>
-                        <select
+                        <label>Selecciona un tipo de cuenta</label>
+                        <select name="TipoDeCuenta"
                             ref={register({
                                 required: 'Elige entre escritor u organizador' 
                             })}
-                            name="tipoCuenta"
-                            type="select"
-                            placeholder="Selecciona un tipo de cuenta"
+                            // name="tipoCuenta"
+                            // type="select"
+                            // placeholder="Selecciona un tipo de cuenta"
                             >
                             <option value="Escritor">Escritor</option>
                             <option value="Organizador">Organizador</option>   
@@ -153,7 +155,7 @@ export function Register() {
                         )}
                     </div>
                     <div className="btn-container">
-                        {/* REVISAR. No falta hacia donde apunta */}
+                        {/* REVISAR. Nos falta hacia donde apunta */}
                         <button
                             type="submit"
                             className="btn"
@@ -162,7 +164,7 @@ export function Register() {
                             Acceder
                         </button>
                         <div className="m-t-lg">
-                        <Link to="/register">¿No estás registrado? Crea una cuenta</Link>
+                        <Link to="/">Volver</Link>
                         </div>
                     </div>
                 </form>

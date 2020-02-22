@@ -46,6 +46,10 @@
     display: block;
     margin-bottom: 0.5rem;
   }
+
+  select {
+    background-color: #bbbbbb00;
+  }
   
   .errorMessage {
     position: relative;

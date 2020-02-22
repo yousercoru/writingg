@@ -1,53 +1,79 @@
 import React from "react";
-// import { Link, useHistory } from "react-router-dom";
-// import { useForm } from "react-hook-form";
-// import { login } from "../http/authService";
-// import { signIn } from "../http/authService";
+// import { Link } from "react-router-dom";
 // import { useAuth } from "../context/auth-context";
-import { Header } from "../components/Header";
-import background from '../img/background.jpg';
-import { BrowserRouter } from "react-router-dom";
 
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
 
 
 export function SoyEscritor() {
-    // const { 
-    //     handleSubmit,
-    //     register,
-    //     errors,
-    //     formState,
-    //     setError,
-    //     setValue
-    // } = useForm({
-    //     mode: 'onBlur'
-    // });
-
+    // const { setCurrentUser, setIsAuthenticated } = useAuth();
     // const history = useHistory();
-    // const { setIsAuthenticated, setCurrentUser } = useAuth();
-    
-    // const handleLogin = formData => {
-    //     // return signIn(formData)
-    //     login(formData)
-    //         .then(response => {
-    //             // setRole(jwt_decode(response.data.token))
-    //             setIsAuthenticated(true);
-    //             setCurrentUser(response.data);
-    //             history.push('/');
-    //         })
-    //         .catch(error => {
-    //             setValue('password', '');
-    //             setError('password', 'credentials', 'Tus credenciales no son válidas');
-    //         });
-    // };
-
     return (
         <React.Fragment>
-            <BrowserRouter>
             <Header />
-            </BrowserRouter>
-            <div  styles={{ backgroundImage:`url(${background})` }}>
-                <h1>This is the background</h1>
-            </div>
+            <main className="container">
+                <div>
+                    <h2>¿Cómo participar en los concursos?</h2>
+                    {/* <Link to="/register">Regístrate</Link> */}
+                </div>
+                <h1>Hola mundo!</h1>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+                <p>Soy escritor</p>
+            </main>
+            <Footer />
         </React.Fragment>
     );
 }

@@ -35,7 +35,3 @@ axios.interceptors.response.use(
 export function login(formData) {
   return axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth`, formData);
 }
-
-export function createAccount(registerData) {
-  return axios.post(`${process.env.REACT_APP_BACKEND_URL}/accounts`, registerData);
-}

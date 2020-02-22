@@ -12,6 +12,6 @@ import axios from "axios";
 //     return axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/concursos`);
 // }
 
-// export function getConcursosByCategoria(categoria) {
-//     return axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/concursos/search`, categoria);
-// }
+export function getConcursosByCategoria(categoria) {
+    return axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/concursos/?`, categoria);
+}

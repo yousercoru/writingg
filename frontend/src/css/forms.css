@@ -18,7 +18,7 @@
   input {
     font-family: var(--font-primary);
     flex: 1;
-    font-size: var(--font-l);
+    font-size: var(--font-m);
     border: none;
     border-bottom: 1px solid;
     padding: 0px;

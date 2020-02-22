@@ -22,25 +22,17 @@ export function Header({ onLogout }) {
             </h4>
         </div>
         <div>
-            <Link to="/alta-concurso">
-                <a className="h-btn-3" href="/alta-concurso">
+            <Link to="/alta-concurso" className="h-btn-3">
                     Dar de alta un cuncurso
-                </a>
             </Link>
-            <Link to="/register">
-                <a className="h-btn-2" href="/register">
-                    Hazte una cuenta
-                </a>
+            <Link to="/register" className="h-btn-2">
+                    Hazte una cuenta          
             </Link>
-            <Link to="/login">
-                <a className="h-btn-1" href="/login">
-                    Inicia sesión
-                </a>
+            <Link to="/login" className="h-btn-1">
+                    Inicia sesión              
             </Link>
-            <Link to="/" onClick={onLogout}>
-                <a className="h-btn-3" href="/">
+            <Link to="/" onClick={onLogout} className="h-btn-3">
                     Salir
-                </a>
             </Link>  
             {/* <nav>
                 <div>

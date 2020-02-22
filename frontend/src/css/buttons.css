@@ -112,10 +112,10 @@
   font-family: var(--font-primary);
   font-size: var(--font-sm);
   transition: all 0.2s;
-  color: var(--font-primary);
+  color: var(--bright);
   margin: 10px;
   padding: 5px;
-  background: var(--btnlightGrey);
+  background: var(--btnBlueGrey);
   text-transform: none;
   outline: none;
   border-radius: 4px;
@@ -124,7 +124,7 @@
 }
 
 .h-btn-4:hover {
-  background: var(--btnBlueGrey);
+  background: var(--btnDarkBlue);
   color: var(--txtLightGrey);
   /* font-weight: bold; */
 }

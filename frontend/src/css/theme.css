@@ -64,11 +64,11 @@
   /* --font-special: "Press Start 2P"; */
 
   /* font-sizes */
-  --font-xs: 0.6rem;
-  --font-sm: 0.8rem;
-  --font-m: 1rem;
-  --font-l: 1.2rem;
-  --font-xl: 1.6rem;
+  --font-xs: 0.8rem;
+  --font-sm: 1rem;
+  --font-m: 1,5rem;
+  --font-l: 2rem;
+  --font-xl: 2.5rem;
   --font-xxl: 3rem;
 
   /* spacing */

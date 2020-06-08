@@ -2,7 +2,8 @@ import React from "react";
 import jwt from 'jsonwebtoken';
 import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { login } from "../http/authService";
+// import { login } from "../http/authService";
+import { createAccount } from "../http/accountService"
 // import { signIn } from "../http/authService";
 import { useAuth } from "../context/auth-context";
 // import { Header } from "../components/Header";
@@ -25,8 +26,9 @@ export function Register() {
     const { setRol, setCurrentUser } = useAuth();
     
     const handleLogin = registerData => {
-        // return signIn(formData)
-        login(registerData)
+        console.log(registerData);
+        return createAccount(registerData)
+        // login(registerData)
             .then(response => {
                 setRol(jwt(response.data.token))
                 // setIsAuthenticated(true);
@@ -139,7 +141,7 @@ export function Register() {
                         }`}
                     >
                         <label>Selecciona un tipo de cuenta</label>
-                        <select name="TipoDeCuenta"
+                        <select name="rol"
                             ref={register({
                                 required: 'Elige entre escritor u organizador' 
                             })}

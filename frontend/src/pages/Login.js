@@ -22,15 +22,17 @@ export function Login() {
     });
 
     const history = useHistory();
-    const { setRol, setCurrentUser } = useAuth();
+    const { setRol, setCurrentUser, setIsAuthenticated } = useAuth();
     
     const handleLogin = formData => {
         return login(formData)
             .then(response => {
-                setRol(jwt(response.data.token))
-                // setIsAuthenticated(true);
+                console.log(response);
+                // setRol(jwt(response.data.token))
+                setRol(response.data.rol);
+                setIsAuthenticated(true);
                 setCurrentUser(response.data);
-                history.push('/');
+                history.push('');
             })
             .catch(error => {
                 setValue('password', '');

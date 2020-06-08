@@ -24,6 +24,15 @@ function App() {
       {/* <HomeSlider /> */}
       <AuthProvider>
         <Switch>
+          <Route exact path="/">
+            <Home />
+          </Route>
+          <Route path="/login">
+            <Login />
+          </Route>
+          <Route path="/register">
+            <Register />
+          </Route>
           <PrivateRoute exact path="/dashboard">
             <Dashboard />
           </PrivateRoute>
@@ -32,15 +41,6 @@ function App() {
           </Route>
           <Route path="/soy-escritor">
             <SoyEscritor />
-          </Route>
-          <Route path="/login">
-            <Login />
-          </Route>
-          <Route path="/register">
-            <Register />
-          </Route>
-          <Route path="/">
-            <Home />
           </Route>
         </Switch>
       </AuthProvider>

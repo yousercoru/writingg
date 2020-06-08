@@ -37,11 +37,14 @@ const connection = await mysqlPool.getConnection();
 const getConcursoQuery = `SELECT * FROM concursos WHERE idconcursos = ?`;
 const [results] = await connection.execute(getConcursoQuery, [idconcursos]);
 connection.release();
+console.log([results]);
 if (results.length < 1) {
 return res.status(404).send();
 }
 
 const [concursoData] = results;
+console.log(concursoData);
+console.log(results);
 
 return res.send({
   data: concursoData
@@ -49,7 +52,7 @@ return res.send({
 } catch (e) {
 console.error(e);
 res.status(500).send({
-message: e.message
+  message: e.message
 });
 }
 }

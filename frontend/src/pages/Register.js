@@ -163,7 +163,7 @@ export function Register() {
                             className="btn"
                             disabled={formState.isSubmitting}
                         >
-                            Acceder
+                            Regístrate
                         </button>
                         <div className="m-t-lg">
                         <Link to="/">Volver</Link>

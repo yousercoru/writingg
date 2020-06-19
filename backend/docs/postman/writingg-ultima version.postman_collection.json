@@ -1,0 +1,524 @@
+{
+	"info": {
+		"_postman_id": "0b9ebdc0-7d26-4a86-bf20-7bc0712a4bde",
+		"name": "writingg-ultima version",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create account",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"yousercoruAyto1@yopmail.com\",\n\t\"password\": \"123456x\",\n\t\"nombre\": \"Usuario 1\",\n\t\"dni\": \"12345678a\",\n\t\"rol\": \"organizador\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/accounts",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"accounts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Put update account",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGY2MDg1ZS1kMDAwLTRmNDYtOGYzOS1kOTQ2ZDRmMjE5YzIiLCJyb2wiOiJvcmdhbml6YWRvciIsImlhdCI6MTU5MjE1NTQ5MCwiZXhwIjoxNTkyMTU5MDkwfQ.TYCdYXG7g6xUaUQg5XczjqDHUzfhJLMD7MPU87t9SLU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"yousercoruAyto1@yopmail.com\",\n\t\"password\": \"123456x\",\n\t\"nombre\": \"Organizador 1\",\n\t\"dni\": \"12345678a\"\n\t\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/accounts/userid",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"accounts",
+						"userid"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"yousercoru1@yopmail.com\",\n\t\"password\": \"123456x\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/auth",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"auth"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create concurso",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGY2MDg1ZS1kMDAwLTRmNDYtOGYzOS1kOTQ2ZDRmMjE5YzIiLCJyb2wiOiJvcmdhbml6YWRvciIsImlhdCI6MTU5MjE1NTQ5MCwiZXhwIjoxNTkyMTU5MDkwfQ.TYCdYXG7g6xUaUQg5XczjqDHUzfhJLMD7MPU87t9SLU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nombreConcurso\": \"V concurso jóvenes escritores Estrella Galicia\",\n    \"bases\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\",\n    \"fechaVencimiento\": \"31/12/2020\",\n    \"primerPremio\": \"18000\",\n    \"fechaPremiados\": \"5/01/2021\",\n    \"categoria\": \"Novela\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/concursos/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"concursos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get concursos",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/concursos/",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"concursos",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get concurso",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/concursos/d21b22a1-acff-465b-a4d0-990d3961d3db",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"concursos",
+						"d21b22a1-acff-465b-a4d0-990d3961d3db"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete concurso",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGY2MDg1ZS1kMDAwLTRmNDYtOGYzOS1kOTQ2ZDRmMjE5YzIiLCJyb2wiOiJvcmdhbml6YWRvciIsImlhdCI6MTU5MjE1Njg0NiwiZXhwIjoxNTkyMTYwNDQ2fQ.qbR9S1GSGlm_FWyvsHxtQ8HpY-ijTGUkUh_H5Jn1QrM",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/concursos/d21b22a1-acff-465b-a4d0-990d3961d3db",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"concursos",
+						"d21b22a1-acff-465b-a4d0-990d3961d3db"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add participante into concurso",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzZTQxZTVjYS1hNGYyLTRmM2UtOWQ4MC04ZWE1MWUyYTNlZGIiLCJyb2wiOiJlc2NyaXRvciIsImlhdCI6MTU5MjE1NjAxMywiZXhwIjoxNTkyMTU5NjEzfQ.2nx_BdeM2GT-sFb_NiSS1r_u7guR85bvWOHCiv46Nh0",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/concursos/d21b22a1-acff-465b-a4d0-990d3961d3db",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"concursos",
+						"d21b22a1-acff-465b-a4d0-990d3961d3db"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete participante concurso",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzZTQxZTVjYS1hNGYyLTRmM2UtOWQ4MC04ZWE1MWUyYTNlZGIiLCJyb2wiOiJlc2NyaXRvciIsImlhdCI6MTU5MjE1NzA3NywiZXhwIjoxNTkyMTYwNjc3fQ.YxpqbE8cECTgTw372lGvX1If3oBLx4aad3FzBVEHNpE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "text/plain",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/concursos/d21b22a1-acff-465b-a4d0-990d3961d3db",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"concursos",
+						"d21b22a1-acff-465b-a4d0-990d3961d3db"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get participantes concurso",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjOTk4M2Q0Yi00MmVkLTQ4MWItYmY2NC0yZDRlZDhhNGZhZTgiLCJyb2wiOiJlc2NyaXRvciIsImlhdCI6MTU4MTUzMTk1NiwiZXhwIjoxNTgxNTM1NTU2fQ.BkzaodTwuqbszT3TAFOFKzAoVoQvM951RZSOp_BMzIQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/concursos/d21b22a1-acff-465b-a4d0-990d3961d3db/concursantes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"concursos",
+						"d21b22a1-acff-465b-a4d0-990d3961d3db",
+						"concursantes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload doc",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJhYjQyYmZlMi01NDExLTQ3NzItOWIyYy05NzYwMzMyNDE3NzkiLCJyb2wiOiJlc2NyaXRvciIsImlhdCI6MTU4MTkzNzQ1NywiZXhwIjoxNTgxOTQxMDU3fQ.AS0usztrav-TR2wimeHy7TulFLBPneptGawAHMtZtzA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "document",
+							"type": "file",
+							"src": "/home/daniel/Proyecto/writingg-master-3/backend/docs/Mi_novela.pdf"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/concursos/6d152676-3b71-48b7-9b5f-ba843200ff9f/obra",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"concursos",
+						"6d152676-3b71-48b7-9b5f-ba843200ff9f",
+						"obra"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get concursos participante",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzZTQxZTVjYS1hNGYyLTRmM2UtOWQ4MC04ZWE1MWUyYTNlZGIiLCJyb2wiOiJlc2NyaXRvciIsImlhdCI6MTU5MjE1NjIxOSwiZXhwIjoxNTkyMTU5ODE5fQ.QwFTVAPI1_rvIJZD4aOFGZM9Imj5_gZBWZ54h2umRM8",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/participante/concursos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"participante",
+						"concursos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get concursos por categoria",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/concursos/poesia",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"concursos",
+						"poesia"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search concursos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/concursos/search?nombreConcurso=poesia",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"concursos",
+						"search"
+					],
+					"query": [
+						{
+							"key": "nombreConcurso",
+							"value": "poesia"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}

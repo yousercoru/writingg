@@ -25,12 +25,21 @@ const getConcursosOrganizadorVencidos = require("../controllers/concurso/get-con
 const searchConcursos = require("../controllers/concurso/search-controller");
 const uploadDoc = require("../controllers/concurso/upload-doc");
 
+
+//Open Enpoints
+router.get("/concursos/search", searchConcursos);
+router.get("/concursos/:idconcursos", getConcurso);
+router.get("/concursos", getConcursos);
+router.get("/concursos/:categoria", getConcursosByCategoria);
+
+// Mostra con
 router.get(
-  "/participante/concursos",
+  "/concursos/:idParticipante",
   checkAccountSession,
   checkEscritorRol,
   getConcursosParticipante
 );
+
 router.put(
   "/concursos/rating/:idconcursos",
   checkAccountSession,
@@ -43,6 +52,7 @@ router.put(
   checkOrganizadorRol,
   addGanadoresToConcurso
 );
+
 router.post(
   "/concursos",
   checkAccountSession,
@@ -50,10 +60,7 @@ router.post(
   createConcurso
 );
 
-router.get("/concursos/search", searchConcursos);
-router.get("/concursos/:idconcursos", getConcurso);
-router.get("/concursos", getConcursos);
-router.get("/concursos/:categoria", getConcursosByCategoria);
+
 // router.get("/concursos/:idconcursos", getConcurso);
 router.delete(
   "/concursos/:idconcursos",
@@ -63,35 +70,42 @@ router.delete(
 );
 
 router.get(
-  "/organizador/concursos",
+  "/concursos/:idorganizador",
   checkAccountSession,
   checkOrganizadorRol,
   getConcursosOrganizador
 );
+
+
 router.get(
-  "/organizadorVencidos/concursos",
+  "/concursos/organizadorVencidos",
   checkAccountSession,
   checkOrganizadorRol,
   getConcursosOrganizadorVencidos
 );
+
 router.post(
   "/concursos/:idconcursos",
   checkAccountSession,
   checkEscritorRol,
   addParticipanteToConcurso
 );
+
 router.put(
   "/concursos/:idconcursos",
   checkAccountSession,
   checkEscritorRol,
   deleteParticipanteToConcurso
 );
+
 router.get(
   "/concursos/:idconcursos/concursantes",
   checkAccountSession,
   checkOrganizadorRol,
   getConcursantesConcurso
 );
+
+
 router.post(
   "/concursos/:idconcursos/obra",
   checkAccountSession,
@@ -99,5 +113,11 @@ router.post(
   upload.single("document"),
   uploadDoc
 );
+
+
+
+
+
+
 
 module.exports = router;

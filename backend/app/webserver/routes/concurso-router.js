@@ -25,10 +25,9 @@ const getConcursosOrganizadorVencidos = require("../controllers/concurso/get-con
 const searchConcursos = require("../controllers/concurso/search-controller");
 const uploadDoc = require("../controllers/concurso/upload-doc");
 
-
 //Open Enpoints
 router.get("/concursos/search", searchConcursos);
-router.get("/concursos/:idconcursos", getConcurso);
+router.get("/concurso/:slugNombreConcurso", getConcurso);
 router.get("/concursos", getConcursos);
 router.get("/concursos/:categoria", getConcursosByCategoria);
 
@@ -60,7 +59,6 @@ router.post(
   createConcurso
 );
 
-
 // router.get("/concursos/:idconcursos", getConcurso);
 router.delete(
   "/concursos/:idconcursos",
@@ -75,7 +73,6 @@ router.get(
   checkOrganizadorRol,
   getConcursosOrganizador
 );
-
 
 router.get(
   "/concursos/organizadorVencidos",
@@ -105,7 +102,6 @@ router.get(
   getConcursantesConcurso
 );
 
-
 router.post(
   "/concursos/:idconcursos/obra",
   checkAccountSession,
@@ -113,11 +109,5 @@ router.post(
   upload.single("document"),
   uploadDoc
 );
-
-
-
-
-
-
 
 module.exports = router;

@@ -5,7 +5,7 @@ const mysqlPool = require("../../../database/mysql-pool");
 
 async function validate(payload) {
   const schema = Joi.object({
-    idconcursos: Joi.string().required(),
+    slugNombreConcurso: Joi.string().required(),
     idusers: Joi.string().guid({
       version: ["uuidv4"],
     }),
@@ -17,12 +17,11 @@ async function validate(payload) {
 }
 
 async function getConcurso(req, res, next) {
-  const { idconcursos } = req.params;
+  const { slugNombreConcurso } = req.params;
   //const { idusers } = req.claims;
 
-  console.log(idconcursos);
   const payload = {
-    idconcursos,
+    slugNombreConcurso,
     //idusers
   };
 
@@ -35,7 +34,9 @@ async function getConcurso(req, res, next) {
   try {
     const connection = await mysqlPool.getConnection();
     const getConcursoQuery = `SELECT * FROM concursos WHERE idconcursos = ?`;
-    const [results] = await connection.execute(getConcursoQuery, [idconcursos]);
+    const [results] = await connection.execute(getConcursoQuery, [
+      slugNombreConcurso,
+    ]);
     connection.release();
     console.log([results]);
     if (results.length < 1) {

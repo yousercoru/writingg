@@ -13,5 +13,12 @@ import axios from "axios";
 // }
 
 export function getConcursosByCategoria(categoria) {
-    return axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/concursos/?`, categoria);
+  return axios.post(
+    `${process.env.REACT_APP_BACKEND_URL}/api/concursos/?`,
+    categoria
+  );
+}
+
+export function createConcursos(body) {
+  return axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/concursos`, body);
 }

@@ -1,5 +1,6 @@
-import React, { useContext, useState } from 'react';
-import jwt from 'jsonwebtoken';
+import React, { useContext, useState, useEffect } from "react";
+import jwt from "jsonwebtoken";
+import { clientApi } from "../http/apis";
 
 // 1) Creamos el contexto
 const AuthContext = React.createContext();
@@ -7,47 +8,66 @@ const AuthContext = React.createContext();
 // Recuperamos el token del localStorage ya que si el usuario
 // refresca la página del navegador necesito iniciar la aplicación
 // con un estado autenticado
-const storedUser = JSON.parse(localStorage.getItem('currentUser'));
 
 // 2) Creamos el custom Provider
 export function AuthProvider({ children }) {
   // 2.1) Creamos Estados
   // En caso de que trabaje con roles deberia decodificar el token para obtener el role inicial
-  
+
   // const [isAuthenticated, setIsAuthenticated] = useState(storedUser !== null);
   // const [currentUser, setCurrentUser] = useState(storedUser);
 
   // 2.2) Definiremos los métodos para modificar el estado si lo quiero hacer aqui
   // Tambien puede retornar las funciones modificadoras de estado y hacerlo desde los componentes
-  let userData = null;
-  if (storedUser) {
-    userData = jwt.decode(storedUser.accessToken);
-  }
 
   // const [accessToken, setAccessToken] = useState(storedUser && storedUser.accessToken);
   // const [rol, setRol] = useState(userData && userData.role);
   // const [currentUserId, setCurrentUserId] = useState(userData && userData.userId);
-  const [isAuthenticated, setIsAuthenticated] = useState(storedUser.token !== null);
-  const [currentUser, setCurrentUser] = useState(storedUser);
-  const [rol, setRol] = useState(storedUser.rol);
 
+  const [currentUser, setCurrentUser] = useState(null);
+
+  const setUserAndToken = (data) => {
+    //decodificar el token
+    const userData = jwt.decode(data.accessToken);
+
+    //colocar el token en el estado
+    setCurrentUser(userData);
+
+    //colocar token en toda la aplicacion
+    clientApi.setToken(data.accessToken);
+  };
+
+  const setToken = (data) => {
+    localStorage.setItem("currentUser", JSON.stringify(data));
+
+    setUserAndToken(data);
+  };
+
+  const deleteUser = () => {
+    localStorage.removeItem("currentUser");
+    clientApi.setToken(null);
+
+    setCurrentUser(null);
+  };
+
+  //componente se inicia se ejecuta
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("currentUser"));
+
+    setUserAndToken(storedUser);
+  }, []);
 
   // 2.3) Devolvemos el Context
   // Si usara roles puedo devolver el role actual del usuario en lugar de isAuthenticated
   return (
     <AuthContext.Provider
-      value={{ 
-        isAuthenticated,
-        setIsAuthenticated,
-        currentUser, 
+      value={{
+        isAuthenticated: currentUser != null,
+        currentUser,
         setCurrentUser,
-        // accessToken,
-        // setAccessToken,
-        rol,
-        setRol,
-        // currentUserId,
-        // setCurrentUserId,
-       }}
+        setToken,
+        deleteUser,
+      }}
     >
       {children}
     </AuthContext.Provider>

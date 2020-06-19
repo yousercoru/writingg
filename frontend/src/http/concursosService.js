@@ -1,4 +1,5 @@
 import axios from "axios";
+import { clientApi } from "./apis";
 
 // export function createConcursos() {
 //     return axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/concursos`, concurso);
@@ -12,6 +13,10 @@ import axios from "axios";
 //     return axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/concursos`);
 // }
 
+export function getConcurso(slugNombreConcurso) {
+  return clientApi.getClient().get(`api/concurso/${slugNombreConcurso}`);
+}
+
 export function getConcursosByCategoria(categoria) {
   return axios.post(
     `${process.env.REACT_APP_BACKEND_URL}/api/concursos/?`,
@@ -19,6 +24,7 @@ export function getConcursosByCategoria(categoria) {
   );
 }
 
+//TODO
 export function createConcursos(body) {
-  return axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/concursos`, body);
+  return clientApi.getClient().post(`api/concursos`, body);
 }

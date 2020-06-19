@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
-import { convertToRaw } from "draft-js";
+import { EditorState, convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 
 import { Editor } from "react-draft-wysiwyg";
@@ -9,7 +9,7 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 import { createConcursos } from "../http/concursosService";
 
 export default function AltaConcurso() {
-  const [editorState, setEditorState] = useState("");
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
   const {
     handleSubmit,
     register,
@@ -28,11 +28,14 @@ export default function AltaConcurso() {
   const create = async () => {
     console.log(formState, "state");
 
-    const result = await createConcursos({ nombreConcurso: "Nombre" });
+    const result = await createConcursos({
+      nombreConcurso: "Nombre",
+      bases: getEditorHTML(),
+    });
   };
 
   return (
-    <div>
+    <div sty>
       <form>
         <input ref={register({ required: "" })} name="nombreConcurso" />
       </form>

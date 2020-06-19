@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css?family=Nunito:300,400,600&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Nunito:300,400,600&display=swap");
 
-@import './theme.css';
-@import './buttons.css';
-@import './forms.css';
-@import './utils.css';
-@import './header.css';
-@import './footer.css';
-@import './home.css';
+@import "./theme.css";
+@import "./buttons.css";
+@import "./forms.css";
+@import "./utils.css";
+@import "./header.css";
+@import "./footer.css";
+@import "./home.css";
 /* @import './login-register.css'; */
 /* @import './tag-list.css'; */
 /* @import './note.css'; */
@@ -40,8 +40,17 @@ body {
   /* min-height: 100%; */
   /* background: linear-gradient(90deg, var(--lightGrey) 0%, var(--softGreen) 100%); */
   /* background: var(--lightGrey); */
-  background-image: linear-gradient(to right, rgba(245, 247, 250, 0.9), rgba(237, 251, 246, 0.6)), url("../img/background.jpg");
-  background-color: linear-gradient(90deg, var(--lightGrey) 0%, var(--softGreen) 100%);
+  background-image: linear-gradient(
+      to right,
+      rgba(245, 247, 250, 0.9),
+      rgba(237, 251, 246, 0.6)
+    ),
+    url("../img/background.jpg");
+  background-color: linear-gradient(
+    90deg,
+    var(--lightGrey) 0%,
+    var(--softGreen) 100%
+  );
   color: var(--primary);
   line-height: 1.8em;
   /* display: flex;
@@ -152,3 +161,10 @@ ul > li {
   background: var(--bright);
 }
 
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}

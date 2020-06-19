@@ -28,13 +28,17 @@ export function AuthProvider({ children }) {
 
   const setUserAndToken = (data) => {
     //decodificar el token
-    const userData = jwt.decode(data.accessToken);
+    try {
+      const userData = jwt.decode(data.accessToken);
 
-    //colocar el token en el estado
-    setCurrentUser(userData);
+      //colocar el token en el estado
+      setCurrentUser(userData);
 
-    //colocar token en toda la aplicacion
-    clientApi.setToken(data.accessToken);
+      //colocar token en toda la aplicacion
+      clientApi.setToken(data.accessToken);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const setToken = (data) => {

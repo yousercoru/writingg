@@ -23,6 +23,7 @@ async function validate(payload) {
 async function createConcurso(req, res, next) {
   const concursoData = { ...req.body };
 
+  // COMPROBAR QUE LLEGAN LOS DATOS
   console.log(concursoData);
 
   const { userId } = req.claims;

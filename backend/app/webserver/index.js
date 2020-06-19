@@ -1,22 +1,18 @@
-'use strict';
+"use strict";
 
-const express = require('express');
+const express = require("express");
 
-const {
-  accountRouter,
-  authRouter,
-  concursoRouter,
-
-} = require('./routes');
+const { accountRouter, authRouter, concursoRouter } = require("./routes");
 
 const app = express();
-const cors = require('cors');
+const cors = require("cors");
 
 app.use(cors());
 app.use(express.json());
-app.use('/api', accountRouter);
-app.use('/api', authRouter);
-app.use('/api', concursoRouter);
+
+app.use("/api", accountRouter);
+app.use("/api", authRouter);
+app.use("/api", concursoRouter);
 
 let server = null;
 async function listen(port) {
@@ -38,7 +34,7 @@ async function close() {
     await server.close();
     server = null;
   } else {
-    console.error('Can not close a non started server');
+    console.error("Can not close a non started server");
   }
 }
 

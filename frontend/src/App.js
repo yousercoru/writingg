@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import { Dashboard } from "./pages/Dashboard";
+import Dashboard from "./pages/Dashboard";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 
@@ -14,6 +14,7 @@ import { PrivateRoute } from "./components/PrivateRoute";
 import AltaConcurso from "./pages/AltaConcurso";
 import { Header } from "./components/Header";
 import Concurso from "./pages/Concurso";
+import Concursos from "./pages/Concursos";
 
 // import { Header } from "./components/Header";
 // import { Footer } from "./components/Footer";
@@ -44,6 +45,9 @@ function App() {
 
             <Route path="/concurso/:slugNombreConcurso">
               <Concurso />
+            </Route>
+            <Route path="/concursos/:categoria">
+              <Concursos />
             </Route>
 
             <PrivateRoute exact path="/dashboard">

@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import jwt from "jsonwebtoken";
 import { clientApi } from "../http/apis";
+import { getAuthUser } from "../http/authService";
 
 // 1) Creamos el contexto
 const AuthContext = React.createContext();
@@ -25,8 +26,10 @@ export function AuthProvider({ children }) {
   // const [currentUserId, setCurrentUserId] = useState(userData && userData.userId);
 
   const [currentUser, setCurrentUser] = useState(null);
+  const [isUserLoaded, setIsUserLoaded] = useState(false);
+  const [userLogged, setUserLogged] = useState(null);
 
-  const setUserAndToken = (data) => {
+  const setUserAndToken = async (data) => {
     //decodificar el token
     try {
       const userData = jwt.decode(data.accessToken);
@@ -36,15 +39,21 @@ export function AuthProvider({ children }) {
 
       //colocar token en toda la aplicacion
       clientApi.setToken(data.accessToken);
+
+      //obtener datos del usuario
+      const result = await getAuthUser();
+
+      setUserLogged(result.data.data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const setToken = (data) => {
+  const setToken = async (data) => {
     localStorage.setItem("currentUser", JSON.stringify(data));
 
-    setUserAndToken(data);
+    await setUserAndToken(data);
+    setIsUserLoaded(true);
   };
 
   const deleteUser = () => {
@@ -56,9 +65,15 @@ export function AuthProvider({ children }) {
 
   //componente se inicia se ejecuta
   useEffect(() => {
-    const storedUser = JSON.parse(localStorage.getItem("currentUser"));
+    const getData = async () => {
+      const storedUser = JSON.parse(localStorage.getItem("currentUser"));
 
-    setUserAndToken(storedUser);
+      await setUserAndToken(storedUser);
+
+      setIsUserLoaded(true);
+    };
+
+    getData();
   }, []);
 
   // 2.3) Devolvemos el Context
@@ -71,6 +86,8 @@ export function AuthProvider({ children }) {
         setCurrentUser,
         setToken,
         deleteUser,
+        isUserLoaded,
+        userLogged,
       }}
     >
       {children}

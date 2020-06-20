@@ -18,10 +18,7 @@ export function getConcurso(slugNombreConcurso) {
 }
 
 export function getConcursosByCategoria(categoria) {
-  return axios.post(
-    `${process.env.REACT_APP_BACKEND_URL}/api/concursos/?`,
-    categoria
-  );
+  return clientApi.getClient().get(`api/concursos/${categoria}`);
 }
 
 //TODO

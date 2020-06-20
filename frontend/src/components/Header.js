@@ -4,8 +4,7 @@ import "../css/header.css";
 import { useAuth } from "../context/auth-context";
 
 export function Header({ onLogout }) {
-  const { currentUser, deleteUser } = useAuth();
-  console.log(currentUser, "user");
+  const { currentUser, deleteUser, userLogged } = useAuth();
 
   return (
     <header>
@@ -49,9 +48,21 @@ export function Header({ onLogout }) {
           </>
         ) : (
           <>
-            <Link to="/" onClick={onLogout} className="h-btn-3">
-              Perfil
+            <Link to="/dashboard" className="h-btn-3">
+              Hola {userLogged && userLogged.nombre}
             </Link>
+            {/* <ul className="perfil-header">
+                <li>
+                  <a href="">Submenu1</a>
+                </li>
+                <li>
+                  <a href="">Submenu2</a>
+                </li>
+                <li>
+                  <a href="">Submenu3</a>
+                </li>
+              </ul> */}
+
             <Link to="/" onClick={() => deleteUser()} className="h-btn-3">
               Salir
             </Link>

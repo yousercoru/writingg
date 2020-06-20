@@ -66,7 +66,9 @@ export function Home() {
           <h3>Busca por categoría</h3>
         </div>
         <div className="categorias">
-          <div className="box-categorias">Novela</div>
+          <div className="box-categorias">
+            <Link to="/concursos/novela">Novela</Link>
+          </div>
           <div className="box-categorias">Cuentos</div>
           <div className="box-categorias">Poesía</div>
           <div className="box-categorias">Microrrelatos</div>

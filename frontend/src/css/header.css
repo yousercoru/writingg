@@ -1,35 +1,77 @@
-@import './buttons.css';
+@import "./buttons.css";
 
 header {
-    position: fixed;
-    top: 0px;
-    display: flex;
-    flex: 0 0 auto;
-    flex-direction: row;
-    /* flex-wrap: wrap; */
-    align-items: center;
-    justify-content: space-around;
-    width: 100%;
-    /* padding: 20px; */
-    height: 12vh;
-    background-color: var(--bright);
-    border-bottom: 1px solid var(--cGreen);
-    overflow: hidden;
+  position: fixed;
+  top: 0px;
+  display: flex;
+  flex: 0 0 auto;
+  flex-direction: row;
+  /* flex-wrap: wrap; */
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  /* padding: 20px; */
+  height: 12vh;
+  background-color: var(--bright);
+  border-bottom: 1px solid var(--cGreen);
+  overflow: hidden;
 }
 
 nav {
-    /* display: flex; */
-    /* flex-direction: row; */
-    /* justify-content: space-around; */
-    font-family: var(--font-primary);
-    color: var(--txtBlack);
-    /* text-transform: none; */
-    /* text-decoration: none; */
-    /* align-items: flex-end; */
-    /* padding-bottom: 10px; */
+  /* display: flex; */
+  /* flex-direction: row; */
+  /* justify-content: space-around; */
+  font-family: var(--font-primary);
+  color: var(--txtBlack);
+  /* text-transform: none; */
+  /* text-decoration: none; */
+  /* align-items: flex-end; */
+  /* padding-bottom: 10px; */
 }
 
 .h-categoria {
-    margin: 30px;
-    /* padding: 30px; */
+  margin: 30px;
+  /* padding: 30px; */
 }
+
+/* Desplegable 'Mi perfil'*/
+
+/* ul,
+ol {
+  list-style: none;
+}
+
+.perfil-header > li {
+  float: left;
+}
+
+.perfil-header li a {
+  background-color: #000;
+  color: #fff;
+  text-decoration: none;
+  padding: 10px 12px;
+  display: block;
+}
+
+.perfil-header li a:hover {
+  background-color: #434343;
+}
+
+.perfil-header li ul {
+  display: none;
+  position: absolute;
+  min-width: 140px;
+}
+
+.perfil-header li:hover > ul {
+  display: block;
+}
+
+.perfil-header li ul li {
+  position: relative;
+}
+
+.perfil-header li ul li ul {
+  right: -140px;
+  top: 0px;
+} */

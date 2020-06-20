@@ -26,8 +26,9 @@ export function Login() {
   const handleLogin = (formData) => {
     return login(formData)
       .then((response) => {
-        setToken(response.data);
-        history.push("/");
+        setToken(response.data).then(() => {
+          history.push("/");
+        });
       })
       .catch((error) => {
         setValue("password", "");

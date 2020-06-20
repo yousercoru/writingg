@@ -1,11 +1,26 @@
-// import React from "react";
-// import { Link } from "react-router-dom";
-// // import { useForm } from "react-hook-form";
-// // import { login } from "../http/authService";
-// // import { signIn } from "../http/authService";
-// // import { useAuth } from "../context/auth-context";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import { getConcursosByCategoria } from "../http/concursosService";
 
-// import { Header } from "../components/Header";
-// import { Footer } from "../components/Footer";
+function Concursos(props) {
+  const [data, setData] = useState(null);
 
-// import '../css/index.css';
+  const historyParams = useParams();
+
+  useEffect(() => {
+    const getData = async () => {
+      const result = await getConcursosByCategoria(historyParams.categoria);
+
+      setData(result.data);
+    };
+    getData();
+
+    return () => {};
+  }, []);
+
+  console.log(data);
+
+  return <div>Concursos</div>;
+}
+
+export default Concursos;

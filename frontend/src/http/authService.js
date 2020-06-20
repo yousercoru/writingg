@@ -33,6 +33,10 @@ import { clientApi } from "./apis";
 //   }
 // );
 
+export function getAuthUser() {
+  return clientApi.getClient().get(`api/auth/user`);
+}
+
 export function login(formData) {
   return clientApi.getClient().post(`api/auth`, formData);
   //return axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth`, formData);

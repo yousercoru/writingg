@@ -1,6 +1,6 @@
-'use strict';
+"use strict";
 
-const mysql = require('mysql2/promise');
+const mysql = require("mysql2/promise");
 
 const {
   MYSQL_HOST,
@@ -20,7 +20,7 @@ async function connect() {
     password: MYSQL_PASSWORD,
     database: MYSQL_DATABASE,
     port: MYSQL_PORT,
-    timezone: 'Z',
+    timezone: "Z",
     // debug: true,
     // multipleStatements: true,
   };
@@ -34,14 +34,28 @@ async function connect() {
     const connection = await pool.getConnection();
     connection.release();
   } catch (e) {
-    console.error('mysql pool connect', e);
+    console.error("mysql pool connect", e);
     throw e;
   }
 }
 
 async function getConnection() {
   if (pool === null) {
-    throw new Error("MySQL connection didn't established. You must connect first.");
+    throw new Error(
+      "MySQL connection didn't established. You must connect first."
+    );
+  }
+
+  const connection = await pool.getConnection();
+
+  return connection;
+}
+
+async function getConnectionWithParams() {
+  if (pool === null) {
+    throw new Error(
+      "MySQL connection didn't established. You must connect first."
+    );
   }
 
   const connection = await pool.getConnection();
@@ -52,4 +66,5 @@ async function getConnection() {
 module.exports = {
   connect,
   getConnection,
+  getConnectionWithParams,
 };

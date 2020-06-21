@@ -4,6 +4,7 @@ const Joi = require("@hapi/joi");
 const uuidV4 = require("uuid/v4");
 const mysqlPool = require("../../../database/mysql-pool");
 const updloadFile = require("../helpers/updloadFile");
+const slugify = require("../helpers/slugify");
 
 const httpServerDomain = process.env.HTTP_SERVER_DOMAIN;
 
@@ -58,8 +59,8 @@ async function createConcurso(req, res, next) {
    * guardar la imagen cartel cloudinary
    */
 
-  const bases_pdf_link = updloadFile(bases_pdf, uuidV4());
-  const cartel_link = updloadFile(cartel, uuidV4());
+  const bases_pdf_link = await updloadFile(bases_pdf, uuidV4());
+  const cartel_link = await updloadFile(cartel, uuidV4());
 
   const idconcursos = uuidV4();
   const concurso = {
@@ -72,14 +73,20 @@ async function createConcurso(req, res, next) {
     primerPremio,
     fechaPremiados,
     created_At,
-    cartel: cartel_link,
-    bases_pdf: bases_pdf_link,
+    slugNombreConcurso: slugify(nombreConcurso),
+    //cartel: cartel_link,
+    //åbases_pdf: bases_pdf_link,
   };
 
   try {
     const connection = await mysqlPool.getConnection();
     try {
       const sqlCreateConcurso = "INSERT INTO concursos SET ?";
+
+      console.log(concurso);
+
+      console.log(connection.format(sqlCreateConcurso, concurso));
+
       await connection.query(sqlCreateConcurso, concurso);
 
       connection.release();

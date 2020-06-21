@@ -33,7 +33,7 @@ async function getConcurso(req, res, next) {
 
   try {
     const connection = await mysqlPool.getConnection();
-    const getConcursoQuery = `SELECT * FROM concursos WHERE idconcursos = ?`;
+    const getConcursoQuery = `SELECT * FROM concursos WHERE slugNombreConcurso = ?`;
     const [results] = await connection.execute(getConcursoQuery, [
       slugNombreConcurso,
     ]);

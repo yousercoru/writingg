@@ -17,6 +17,10 @@ export function getConcurso(slugNombreConcurso) {
   return clientApi.getClient().get(`api/concurso/${slugNombreConcurso}`);
 }
 
+export function getConcursos(params) {
+  return clientApi.getClient().get(`api/concursos`, { params });
+}
+
 export function getConcursosByCategoria(categoria) {
   return clientApi.getClient().get(`api/concursos/${categoria}`);
 }

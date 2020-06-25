@@ -5,9 +5,9 @@ const mysqlPool = require("../../../database/mysql-pool");
 async function getConcursos(req, res, next) {
   console.log(req.query);
 
-  const { keywords, categoria, fechas } = req.query;
+  const { keywords, categoria, fechaInicio, fechaFin } = req.query;
 
-  console.log(keywords, categoria, fechas);
+  console.log(keywords, categoria);
 
   //const { userId } = req.params;
 
@@ -22,14 +22,24 @@ async function getConcursos(req, res, next) {
     JOIN users u
     ON u.idusers = c.users_idusers
     WHERE c.deleted_at IS NULL
-    AND c.nombreConcurso LIKE :keywords
-    OR u.nombre LIKE :keywords
-    OR c.bases LIKE :keywords
-    AND c.categoria LIKE :categoria`;
+    AND c.categoria LIKE :categoria
+    AND (
+      c.nombreConcurso LIKE :keywords 
+      OR u.nombre LIKE :keywords
+      OR c.bases LIKE :keywords
+    )
+    ${
+      fechaFin &&
+      fechaInicio &&
+      "AND c.fechaVencimiento between :fechaInicio and :fechaFin"
+    }
+    `;
 
     const [rows] = await connection.execute(sqlQuery, {
       keywords: `%${keywords}%`,
       categoria: `%${categoria}%`,
+      fechaInicio,
+      fechaFin,
     });
 
     connection.config.namedPlaceholders = false;

@@ -8,6 +8,8 @@ import { Link } from "react-router-dom";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 
+import SearchToolBar from "../components/SearchToolBar";
+
 import "../css/index.css";
 
 export function Home() {
@@ -47,6 +49,7 @@ export function Home() {
             <div>
               <h2>Somos la nueva plataforma de concursos literarios</h2>
             </div>
+            <SearchToolBar />
             {/* <div clasName="btn-slider"> */}
             {/* <div clasName="btn-slider"> */}
             <div clasName="btn-slider">
@@ -69,10 +72,18 @@ export function Home() {
           <div className="box-categorias">
             <Link to="/concursos/novela">Novela</Link>
           </div>
-          <div className="box-categorias">Cuentos</div>
-          <div className="box-categorias">Poesía</div>
-          <div className="box-categorias">Microrrelatos</div>
-          <div className="box-categorias">Ensayos</div>
+          <div className="box-categorias">
+            <Link to="/concursos/cuentos">Cuentos</Link>
+          </div>
+          <div className="box-categorias">
+            <Link to="/concursos/poesia">Poesía</Link>
+          </div>
+          <div className="box-categorias">
+            <Link to="/concursos/microrrelatos">Microrrelatos</Link>
+          </div>
+          <div className="box-categorias">
+            <Link to="/concursos/ensayos">Ensayos</Link>
+          </div>
         </div>
         {/* <div className="wrapper">
                     <div className="slider">

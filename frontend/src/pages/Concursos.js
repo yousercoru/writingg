@@ -1,10 +1,26 @@
 import React, { useState, useEffect } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, useLocation } from "react-router-dom";
 import {
   getConcursosByCategoria,
   getConcursos,
 } from "../http/concursosService";
 import SearchToolBar from "../components/SearchToolBar";
+
+function useQuery() {
+  const search = useLocation().search;
+  if (!search) {
+    return {};
+  }
+
+  return JSON.parse(
+    '{"' +
+      decodeURI(search.substring(1))
+        .replace(/"/g, '\\"')
+        .replace(/&/g, '","')
+        .replace(/=/g, '":"') +
+      '"}'
+  );
+}
 
 function Concursos(props) {
   const [data, setData] = useState(null);
@@ -15,23 +31,36 @@ function Concursos(props) {
   });
 
   const historyParams = useParams();
+  const query = useQuery();
+
   const history = useHistory();
 
-  useEffect(() => {
-    const getData = async () => {
-      const result = await getConcursos(params);
+  const getData = async (p) => {
+    const result = await getConcursos(p);
 
-      setData(result.data);
-    };
-    getData();
+    setData(result.data);
+  };
+
+  const search = async (p) => {
+    setParams(p);
+    await getData(p);
+  };
+
+  useEffect(() => {
+    getData({ ...params, ...historyParams, ...query });
 
     return () => {};
   }, []);
 
+  console.log(query);
+
   return (
     <div>
       Concursos
-      <SearchToolBar />
+      <SearchToolBar
+        defaultParams={{ ...historyParams, ...query }}
+        onSearch={search}
+      />
       <table>
         <thead>
           <th>Concurso</th>

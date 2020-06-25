@@ -1,55 +1,63 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
+import { useHistory } from "react-router-dom";
 
-const categorias = ["Cuentos", "Ensayos", "Microrrelatos", "Novela", "Poesía"];
+const categorias = ["Cuentos", "Ensayos", "Microrrelatos", "Novela", "Poesia"];
 
-function SearchToolBar({ onSearch }) {
+function SearchToolBar({ onSearch, defaultParams }) {
+  const history = useHistory();
   const [params, setParams] = useState({
     keywords: "",
     categoria: "",
     fechas: "",
+    ...defaultParams,
   });
 
-  console.log(params);
+  const onChange = (e) => {
+    setParams({ ...params, [e.target.name]: e.target.value });
+  };
+
+  //default search
+  const search = () => {
+    if (onSearch) {
+      return onSearch(params);
+    }
+
+    history.push(
+      `/concursos?keywords=${params.keywords}&categoria=${params.categoria}&fechas=${params.fechas}`
+    );
+  };
 
   return (
     <div>
       <div>
         <input
+          name="keywords"
           placeholder="Palabras clave"
-          onChange={(e) =>
-            setParams((prevParams) => ({
-              ...prevParams,
-              keywords: e.target.value,
-            }))
-          }
+          onChange={onChange}
         />
-        {// Revisar esta parte:}
-        <select
-          value={params.categoria}
-          onChange={(e) => {
-            setParams((prevParams) => ({
-              ...prevParams,
-              categoria: e.target ? e.target.value : params.categoria,
-            }));
-          }}
-        >
+
+        <select name="categoria" onChange={onChange}>
+          <option value="">Todas las categorías</option>
           {categorias.map((categoria, key) => (
-            <option key={key} value={categoria}>
+            <option
+              selected={
+                params.categoria &&
+                categoria.toUpperCase() === params.categoria.toUpperCase()
+              }
+              key={key}
+              value={categoria}
+            >
               {categoria}
             </option>
           ))}
         </select>
         <input
+          name="fechas"
           placeholder="Calendario fechas"
-          onChange={(e) =>
-            setParams((prevParams) => ({
-              ...prevParams,
-              fechas: e.target.value,
-            }))
-          }
+          onChange={onChange}
         />
       </div>
-      <button onClick={() => onSearch()}>Buscar</button>
+      <button onClick={() => search()}>Buscar</button>
     </div>
   );
 }

@@ -46,7 +46,7 @@ function App() {
             <Route path="/concurso/:slugNombreConcurso">
               <Concurso />
             </Route>
-            <Route path="/concursos/:categoria">
+            <Route path="/concursos/:categoria?">
               <Concursos />
             </Route>
 

@@ -4,7 +4,10 @@ import {
   getConcursosByCategoria,
   getConcursos,
 } from "../http/concursosService";
+
 import SearchToolBar from "../components/SearchToolBar";
+
+import moment from "moment";
 
 function useQuery() {
   const search = useLocation().search;
@@ -27,7 +30,8 @@ function Concursos(props) {
   const [params, setParams] = useState({
     keywords: "",
     categoria: "",
-    fechas: "",
+    fechaInicio: "",
+    fechaFin: "",
   });
 
   const historyParams = useParams();
@@ -51,8 +55,6 @@ function Concursos(props) {
 
     return () => {};
   }, []);
-
-  console.log(query);
 
   return (
     <div>
@@ -84,8 +86,8 @@ function Concursos(props) {
                 </td>
                 <td>{d.users_idusers}</td>
                 <td>{d.categoria}</td>
-                <td>{d.fechaVencimiento}</td>
-                <td>{d.fechaPremiados}</td>
+                <td>{moment(d.fechaVencimiento).format("DD/MM/YYYY")}</td>
+                <td>{moment(d.fechaPremiados).format("DD/MM/YYYY")}</td>
                 <td>{"Nº participantes"}</td>
                 <td>{d.primerPremio}</td>
               </tr>

@@ -1,14 +1,18 @@
 import React, { useState, useMemo } from "react";
 import { useHistory } from "react-router-dom";
 
+import moment from "moment";
+
 const categorias = ["Cuentos", "Ensayos", "Microrrelatos", "Novela", "Poesia"];
 
 function SearchToolBar({ onSearch, defaultParams }) {
   const history = useHistory();
+
   const [params, setParams] = useState({
     keywords: "",
     categoria: "",
-    fechas: "",
+    fechaInicio: "",
+    fechaFin: "",
     ...defaultParams,
   });
 
@@ -19,11 +23,11 @@ function SearchToolBar({ onSearch, defaultParams }) {
   //default search
   const search = () => {
     if (onSearch) {
-      return onSearch(params);
+      onSearch(params);
     }
 
     history.push(
-      `/concursos?keywords=${params.keywords}&categoria=${params.categoria}&fechas=${params.fechas}`
+      `/concursos?keywords=${params.keywords}&categoria=${params.categoria}&fechaInicio=${params.fechaInicio}&fechaFin=${params.fechaFin}`
     );
   };
 
@@ -33,6 +37,7 @@ function SearchToolBar({ onSearch, defaultParams }) {
         <input
           name="keywords"
           placeholder="Palabras clave"
+          value={params.keywords}
           onChange={onChange}
         />
 
@@ -51,9 +56,18 @@ function SearchToolBar({ onSearch, defaultParams }) {
             </option>
           ))}
         </select>
+
         <input
-          name="fechas"
-          placeholder="Calendario fechas"
+          name="fechaInicio"
+          value={params.fechaInicio}
+          type="date"
+          onChange={onChange}
+        />
+
+        <input
+          name="fechaFin"
+          value={params.fechaFin}
+          type="date"
           onChange={onChange}
         />
       </div>

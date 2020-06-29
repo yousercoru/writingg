@@ -50,7 +50,7 @@ function App() {
               <Concursos />
             </Route>
 
-            <PrivateRoute exact path="/dashboard">
+            <PrivateRoute exact path="/dashboard/:menu?">
               <Dashboard />
             </PrivateRoute>
             <Route path="/soy-organizador">

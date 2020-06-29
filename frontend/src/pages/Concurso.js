@@ -1,7 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
+import { useHistory, useParams, Link } from "react-router-dom";
+import moment from "moment";
 
-import { getConcurso } from "../http/concursosService";
+import { useAuth } from "../context/auth-context";
+
+import {
+  getConcurso,
+  addParticipante,
+  addDocToParticipante,
+} from "../http/concursosService";
+import Modal from "../components/Modal";
+import MailTo from "../components/MailTo";
 
 // const data = {
 //   idconcursos: "95978322-97ec-4389-bb1e-1b445da654f1",
@@ -35,10 +44,80 @@ import { getConcurso } from "../http/concursosService";
 //   ],
 // };
 
+const ModalFirstStep = ({ userLogged, data, onClick, setFile, file }) => (
+  <div>
+    <div>
+      {userLogged && userLogged.nombre} estás a un paso de participar en el
+      concurso:
+    </div>
+    <div>
+      <h2>{data.nombreConcurso}</h2>
+    </div>
+    <div>
+      <p>Subir PDF:</p>
+
+      <input type="file" onChange={(e) => setFile(e.target.files)} />
+    </div>
+
+    <button onClick={onClick}>Enviar</button>
+  </div>
+);
+
+const ModalContentSuccess = ({ userLogged }) => (
+  <div>
+    <div>
+      <h2>¡Felicidades!</h2>
+      <h3>
+        {userLogged && userLogged.nombre} tu inscripción se ha realizado
+        correctamente
+      </h3>
+    </div>
+    <div>
+      <h4>Compartir</h4>
+      <div>
+        <a>In</a>
+        <a>Fb</a>
+        <a>Tw</a>
+        <a>Ln</a>
+      </div>
+    </div>
+
+    {/* Poner ruta correctamente*/}
+    <Link to="/dashboard/MisConcursos">
+      <button>Ir a mis concursos</button>
+    </Link>
+  </div>
+);
+
+const ModalContentError = ({ userLogged }) => (
+  <div>
+    <div>
+      <h2>¡Lo sentimos! Ha habido un problema al tramitar tu solicitud</h2>
+      <h3>{userLogged && userLogged.nombre} inténtalo de nuevo más tarde</h3>
+    </div>
+    <div>
+      <h4>¿Sigues teniendo problemas</h4>
+      <button>
+        <a href={mailTo()}>¿Alguna duda? Escribe al organizador</a>
+      </button>
+    </div>
+  </div>
+);
+
+const mailTo = () => {
+  return `mailto:abc@example.com?subject = Feedback&body = Message`;
+};
+
 function Concurso() {
   const [data, setData] = useState(null);
+  const [modalOpen, toggleModal] = useState(false);
+  const [modalContent, setModalContent] = useState("ModalFirstStep");
+
+  const [file, setFile] = useState(null);
 
   const historyParams = useParams();
+
+  const { currentUser, userLogged } = useAuth();
 
   useEffect(() => {
     const getDataConcurso = async () => {
@@ -51,8 +130,28 @@ function Concurso() {
     return () => {};
   }, []);
 
-  const mailTo = () => {
-    return `mailto:abc@example.com?subject = Feedback&body = Message`;
+  const participar = async () => {
+    if (!file) {
+      return;
+    }
+
+    try {
+      const result = await addParticipante(data.idconcursos);
+
+      //nsole.log(result.data);
+
+      const formdata = new FormData();
+      formdata.append("document", file[0]);
+
+      console.log(file[0].name);
+
+      const fileResult = await addDocToParticipante(data.idconcursos, formdata);
+
+      console.log(fileResult);
+      setModalContent("ModalContentSuccess");
+    } catch (error) {
+      setModalContent("ModalContentError");
+    }
   };
 
   // si no se han cargado los datos
@@ -62,6 +161,25 @@ function Concurso() {
 
   return (
     <div style={{ marginTop: "15em" }}>
+      <Modal isModalOpen={modalOpen} onModalClose={() => toggleModal(false)}>
+        {modalContent === "ModalFirstStep" && (
+          <ModalFirstStep
+            data={data}
+            userLogged={userLogged}
+            setFile={setFile}
+            file={file}
+            onClick={() => participar()}
+          />
+        )}
+
+        {modalContent === "ModalContentSuccess" && (
+          <ModalContentSuccess userLogged={userLogged} />
+        )}
+
+        {modalContent === "ModalContentError" && (
+          <ModalContentError userLogged={userLogged} />
+        )}
+      </Modal>
       <div className="container-top">
         <div className="first-colunm">
           <div>
@@ -78,7 +196,7 @@ function Concurso() {
                 </li>
                 <li>
                   <p>Organizador:</p>
-                  <p>{data.users_idusers}</p>
+                  <p>{data.organizador.nombre}</p>
                 </li>
                 <li>
                   <p>Premio:</p>
@@ -99,11 +217,11 @@ function Concurso() {
                 )}
                 <li>
                   <p>Fecha cierre:</p>
-                  <p>{data.fechaVencimiento}</p>
+                  <p>{moment(data.fechaVencimiento).format("DD/MM/YYYY")}</p>
                 </li>
                 <li>
                   <p>Entrega premios:</p>
-                  <p>{data.fechaPremiados}</p>
+                  <p>{moment(data.fechaPremiados).format("DD/MM/YYYY")}</p>
                 </li>
               </ul>
             </div>
@@ -115,11 +233,21 @@ function Concurso() {
         </div>
         <div className="second-column">
           <h4>{data.nombreConcurso}</h4>
-          <button className="participar-button">Participar</button>
+          {currentUser && currentUser.rol !== "organizador" && (
+            <button
+              className="participar-button"
+              onClick={() => {
+                setModalContent("ModalFirstStep");
+                toggleModal(true);
+              }}
+            >
+              Participar
+            </button>
+          )}
           <div>
             <span>{data.categoria}</span>
             <span>{data.primerPremio}</span>
-            <span>{data.fechaVencimiento}</span>
+            <span>{moment(data.fechaVencimiento).format("DD/MM/YYYY")}</span>
           </div>
           <div>
             <h4>Compartir</h4>
@@ -131,7 +259,7 @@ function Concurso() {
             </div>
           </div>
           <button>
-            <a href={mailTo()}>¿Alguna duda? Escribe al organizador</a>
+            <MailTo>¿Alguna duda? Escribe al organizador</MailTo>
           </button>
         </div>
       </div>

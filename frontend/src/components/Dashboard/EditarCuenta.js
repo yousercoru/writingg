@@ -14,7 +14,7 @@ function EditarCuenta(props) {
     setValue,
   } = useForm({
     mode: "onBlur",
-    defaultValues: userLogged,
+    defaultValues: userLogged ? userLogged : {},
   });
 
   const handleSave = (userData) => {

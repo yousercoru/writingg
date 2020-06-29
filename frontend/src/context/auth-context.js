@@ -45,6 +45,7 @@ export function AuthProvider({ children }) {
 
       setUserLogged(result.data.data);
     } catch (error) {
+      deleteUser();
       console.log(error);
     }
   };

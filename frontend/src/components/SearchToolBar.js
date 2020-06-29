@@ -1,8 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { useHistory } from "react-router-dom";
 
-import moment from "moment";
-
 const categorias = ["Cuentos", "Ensayos", "Microrrelatos", "Novela", "Poesia"];
 
 function SearchToolBar({ onSearch, defaultParams }) {

@@ -25,7 +25,29 @@ export function getConcursosByCategoria(categoria) {
   return clientApi.getClient().get(`api/concursos/${categoria}`);
 }
 
+export function addParticipante(idconcursos) {
+  return clientApi
+    .getClient()
+    .post(`/api/concurso-participante/${idconcursos}`);
+}
+
+export function deleteParticipante(idconcursos) {
+  return clientApi
+    .getClient()
+    .delete(`/api/concurso-participante/${idconcursos}`);
+}
+
+export function addDocToParticipante(idconcursos, formData) {
+  return clientApi
+    .getClient()
+    .post(`/api/concursos/${idconcursos}/obra`, formData);
+}
+
 //TODO
 export function createConcursos(body) {
   return clientApi.getClient().post(`api/concursos`, body);
+}
+
+export function misConcursos() {
+  return clientApi.getClient().get(`api/concursos-participante`);
 }

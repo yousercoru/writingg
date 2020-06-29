@@ -8,6 +8,7 @@ import {
   getConcurso,
   addParticipante,
   addDocToParticipante,
+  misConcursos,
 } from "../http/concursosService";
 import Modal from "../components/Modal";
 import MailTo from "../components/MailTo";
@@ -110,6 +111,7 @@ const mailTo = () => {
 
 function Concurso() {
   const [data, setData] = useState(null);
+  const [inscrito, setInscrito] = useState(null);
   const [modalOpen, toggleModal] = useState(false);
   const [modalContent, setModalContent] = useState("ModalFirstStep");
 
@@ -123,7 +125,17 @@ function Concurso() {
     const getDataConcurso = async () => {
       const result = await getConcurso(historyParams.slugNombreConcurso);
 
-      setData(result.data.data);
+      const concursos = await misConcursos();
+
+      const concursoData = result.data.data;
+      const isInscrito = concursos.data.activos.find(
+        (concurso) =>
+          concurso.concursos_idconcursos === concursoData.idconcursos
+      );
+
+      setInscrito(isInscrito);
+
+      setData(concursoData);
     };
     getDataConcurso();
 
@@ -233,7 +245,7 @@ function Concurso() {
         </div>
         <div className="second-column">
           <h4>{data.nombreConcurso}</h4>
-          {currentUser && currentUser.rol !== "organizador" && (
+          {!inscrito && currentUser && currentUser.rol !== "organizador" && (
             <button
               className="participar-button"
               onClick={() => {

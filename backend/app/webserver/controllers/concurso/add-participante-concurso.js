@@ -5,7 +5,9 @@ const mysqlPool = require("../../../database/mysql-pool");
 
 async function validate(payload) {
   const schema = Joi.object({
-    idconcursos: Joi.string().guid({version: ["uuidv4"]}).required()
+    idconcursos: Joi.string()
+      .guid({ version: ["uuidv4"] })
+      .required(),
     // userId: Joi.string()
     //   .guid({
     //     version: ["uuidv4"]
@@ -26,7 +28,9 @@ async function getConcurso(idconcursos) {
   FROM concursos
     WHERE idconcursos = ?
       AND deleted_at IS NULL`;
-  const [concursoData] = await connection.execute(getConcursoQuery, [idconcursos]);
+  const [concursoData] = await connection.execute(getConcursoQuery, [
+    idconcursos,
+  ]);
   connection.release();
 
   if (concursoData.length < 1) {
@@ -41,9 +45,9 @@ async function addParticipanteToConcurso(req, res, next) {
   const { idconcursos } = req.params;
   const { userId } = req.claims;
 
-console.log(idconcursos);
+  console.log(idconcursos, "concurso", userId);
   const payload = {
-    idconcursos
+    idconcursos,
     // userId
   };
 
@@ -55,7 +59,7 @@ console.log(idconcursos);
   }
 
   try {
-    const concurso = await getConcurso(idconcursos/*, userId*/);
+    const concurso = await getConcurso(idconcursos /*, userId*/);
 
     if (!concurso) {
       return res.status(404).send();
@@ -66,16 +70,23 @@ console.log(idconcursos);
       const getWorkerQuery = `SELECT users_idusers
         FROM users_has_concursos 
         WHERE concursos_idconcursos = ?
-        AND deleted_at IS NULL `;
-      const [results] = await connection.execute(getWorkerQuery, [idconcursos]);
+        AND users_idusers = ?
+        AND deleted_at IS NULL`;
+      const [results] = await connection.execute(getWorkerQuery, [
+        idconcursos,
+        userId,
+      ]);
       connection.release();
+
+      console.log(results);
+
       if (results.length !== 0) {
-        return res.status(403).send();
+        return res.status(403).send({ success: false });
       }
     } catch (e) {
       console.error(e);
       res.status(500).send({
-        message: e.message
+        message: e.message,
       });
     }
 
@@ -91,9 +102,9 @@ console.log(idconcursos);
     console.log(userId);
 
     const userRow = {
-        concursos_idconcursos: idconcursos,
-        users_idusers: userId,
-        created_at: new Date().toISOString().replace('T', ' ').substring(0, 19)
+      concursos_idconcursos: idconcursos,
+      users_idusers: userId,
+      created_at: new Date().toISOString().replace("T", " ").substring(0, 19),
     };
 
     const connection = await mysqlPool.getConnection();
@@ -104,16 +115,18 @@ console.log(idconcursos);
       console.error(e);
       connection.release();
       return res.status(500).send({
-        message: e.message
+        message: e.message,
       });
     }
 
-    return res.status(204).send();
+    console.log({ yes: true });
+
+    return res.status(204).send({ success: true });
   } catch (e) {
     console.error(e);
 
     return res.status(500).send({
-      message: e.message
+      message: e.message,
     });
   }
 }

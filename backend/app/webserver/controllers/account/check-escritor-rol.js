@@ -1,15 +1,13 @@
 "use strict";
 
 async function checkEscritorRol(req, res, next) {
-const {
-rol,
-} = req.claims;
+  const { rol } = req.claims;
 
-if (rol !== "escritor") {
-return res.status(403).send();
-}
+  if (rol !== "escritor") {
+    return res.status(403).send();
+  }
 
-next();
+  next();
 }
 
 module.exports = checkEscritorRol;

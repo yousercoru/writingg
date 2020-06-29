@@ -7,7 +7,7 @@ const uuidV4 = require("uuid/v4");
 cloudinary.config({
   cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
   api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 async function uploadDoc(req, res, next) {
@@ -17,7 +17,7 @@ async function uploadDoc(req, res, next) {
 
   if (!file || !file.buffer) {
     return res.status(400).send({
-      message: "invalid document"
+      message: "invalid document",
     });
   }
 
@@ -27,7 +27,7 @@ async function uploadDoc(req, res, next) {
       {
         resource_type: "auto",
         public_id: id,
-        format: "pdf"
+        format: "pdf",
       },
       async (err, result) => {
         if (err) {
@@ -41,7 +41,7 @@ async function uploadDoc(req, res, next) {
         const upload = {
           users_idusers: userId,
           concursos_idconcursos: idconcursos,
-          obra
+          obra,
         };
 
         let connection;
@@ -51,13 +51,17 @@ async function uploadDoc(req, res, next) {
           SET obra = ?
           WHERE users_idusers = ?
           AND concursos_idconcursos = ?`;
-          await connection.execute(sqlUploadDocument, [obra, userId, idconcursos]);
+          await connection.execute(sqlUploadDocument, [
+            obra,
+            userId,
+            idconcursos,
+          ]);
 
           connection.release();
 
           console.log(result.secure_url);
           res.header("Location", obra);
-          return res.status(201).send();
+          return res.status(201).send({ success: true });
         } catch (e) {
           if (connection) {
             connection.release();
@@ -69,7 +73,7 @@ async function uploadDoc(req, res, next) {
     )
     .end(file.buffer);
 
-    // next();
+  // next();
 }
 
 module.exports = uploadDoc;

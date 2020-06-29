@@ -2,6 +2,7 @@
 
 const Joi = require("@hapi/joi");
 const mysqlPool = require("../../../database/mysql-pool");
+const { getUser } = require("../auth/get-auth-user");
 
 async function validate(payload) {
   const schema = Joi.object({
@@ -37,6 +38,7 @@ async function getConcurso(req, res, next) {
     const [results] = await connection.execute(getConcursoQuery, [
       slugNombreConcurso,
     ]);
+
     connection.release();
     console.log([results]);
     if (results.length < 1) {
@@ -44,8 +46,8 @@ async function getConcurso(req, res, next) {
     }
 
     const [concursoData] = results;
-    console.log(concursoData);
-    console.log(results);
+
+    const organizador = await getUser(concursoData.users_idusers);
 
     const nextConcursos = [
       // datos simulados ("hardcodeados")
@@ -54,7 +56,7 @@ async function getConcurso(req, res, next) {
     ];
 
     return res.send({
-      data: { ...concursoData, nextConcursos },
+      data: { ...concursoData, nextConcursos, organizador },
     });
   } catch (e) {
     console.error(e);

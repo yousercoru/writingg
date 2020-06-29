@@ -1,15 +1,13 @@
 "use strict";
 
 async function checkOrganizadorRol(req, res, next) {
-const {
-rol,
-} = req.claims;
+  const { rol } = req.claims;
 
-if (rol !== "organizador") {
-return res.status(403).send();
-}
+  if (rol !== "organizador") {
+    return res.status(403).send();
+  }
 
-next();
+  next();
 }
 
 module.exports = checkOrganizadorRol;

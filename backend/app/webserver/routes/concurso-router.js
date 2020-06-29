@@ -33,7 +33,7 @@ router.get("/concursos/:categoria", getConcursosByCategoria);
 
 // Mostra con
 router.get(
-  "/concursos/:idParticipante",
+  "/concursos-participante",
   checkAccountSession,
   checkEscritorRol,
   getConcursosParticipante
@@ -82,10 +82,17 @@ router.get(
 );
 
 router.post(
-  "/concursos/:idconcursos",
+  "/concurso-participante/:idconcursos",
   checkAccountSession,
   checkEscritorRol,
   addParticipanteToConcurso
+);
+
+router.delete(
+  "/concurso-participante/:idconcursos",
+  checkAccountSession,
+  checkEscritorRol,
+  deleteParticipanteToConcurso
 );
 
 router.put(

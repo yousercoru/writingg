@@ -68,7 +68,7 @@ router.delete(
 );
 
 router.get(
-  "/concursos/:idorganizador",
+  "/concursos-organizador",
   checkAccountSession,
   checkOrganizadorRol,
   getConcursosOrganizador

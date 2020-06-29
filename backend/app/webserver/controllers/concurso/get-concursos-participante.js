@@ -18,6 +18,8 @@ async function validate(payload) {
 const getConcursosActivos = async (userId) => {
   let connection;
 
+  const todayDate = new Date().toISOString().substring(0, 19).replace("T", " ");
+
   connection = await mysqlPool.getConnection();
   const sqlQuery = `SELECT users_has_concursos.*,
     concursos.slugNombreConcurso,
@@ -31,26 +33,47 @@ const getConcursosActivos = async (userId) => {
     INNER JOIN concursos on concursos.idconcursos = users_has_concursos.concursos_idconcursos
     INNER JOIN users on concursos.users_idusers = users.idusers
     WHERE users_has_concursos.users_idusers = ?
-    AND users_has_concursos.deleted_at IS NULL`;
+    AND users_has_concursos.deleted_at IS NULL
+    AND concursos.fechaVencimiento > ?`;
 
-  const [rows] = await connection.execute(sqlQuery, [userId]);
+  const [rows] = await connection.execute(sqlQuery, [userId, todayDate]);
   connection.release();
 
   return rows;
 };
 
-const getConcursosFinalizados = (userId) => {
-  return [];
+const getConcursosFinalizados = async (userId) => {
+  let connection;
+
+  const todayDate = new Date().toISOString().substring(0, 19).replace("T", " ");
+
+  connection = await mysqlPool.getConnection();
+  const sqlQuery = `SELECT users_has_concursos.*,
+    concursos.slugNombreConcurso,
+    concursos.nombreConcurso,
+    concursos.fechaVencimiento,
+    concursos.fechaPremiados,
+    users.nombre as organizador,
+    users.email as organizador_email
+     
+    FROM users_has_concursos
+    INNER JOIN concursos on concursos.idconcursos = users_has_concursos.concursos_idconcursos
+    INNER JOIN users on concursos.users_idusers = users.idusers
+    WHERE users_has_concursos.users_idusers = ?
+    AND users_has_concursos.deleted_at IS NULL
+    AND concursos.fechaVencimiento < ?
+    `;
+
+  const [rows] = await connection.execute(sqlQuery, [userId, todayDate]);
+  connection.release();
+
+  return rows;
 };
 
-async function getConcursosOrganizador(req, res, next) {
+async function getConcursosEscritor(req, res, next) {
   //const { idusers } = req.claims;
 
   const { userId } = req.claims;
-
-  console.log("Aqui", userId);
-
-  const todayDate = new Date().toISOString().substring(0, 19).replace("T", " ");
 
   try {
     const activos = await getConcursosActivos(userId);
@@ -73,4 +96,4 @@ async function getConcursosOrganizador(req, res, next) {
   }
 }
 
-module.exports = getConcursosOrganizador;
+module.exports = getConcursosEscritor;

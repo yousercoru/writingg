@@ -9,114 +9,66 @@ const mysqlPool = require("../../../database/mysql-pool");
 //  */
 async function validate(payload) {
   const schema = Joi.object({
-    userId: Joi.string()
+    userId: Joi.string(),
   });
 
   Joi.assert(payload, schema);
 }
 
-// /**
-//  *
-//  * @param {Array} rows Each row note with a tagId / tag per row
-//  * @returns {Object} note Note object with array of tags:
-//  *  {
-//  *    title: "title note",
-//  *    tags: [{
-//  *      tagId: "uuid-of-tag-id-1",
-//  *      tag: "JS"
-//  *    }]
-//  *  }
-//  */
-// function hydrateNoteTags(rows) {
-//   const noteHydrated = rows.reduce((acc, rawNote) => {
-//     /**
-//      * esta nota tiene un tag?
-//      */
-//     const tag = rawNote.tagId
-//       ? {
-//           tagId: rawNote.tagId,
-//           tag: rawNote.tag
-//         }
-//       : undefined;
+const getConcursosActivos = async (userId) => {
+  let connection;
 
-//     const notaProcesada = acc.id !== undefined;
+  const todayDate = new Date().toISOString().substring(0, 19).replace("T", " ");
 
-//     /**
-//      * La primera vez creamos el objeto nota con el array de tags
-//      * si tiene
-//      */
-//     if (!notaProcesada) {
-//       return {
-//         ...acc,
-//         ...rawNote,
-//         createdAt: rawNote.created_at,
-//         updatedAt: rawNote.updated_at,
-//         tags: tag ? [tag] : [],
-//         tagId: undefined,
-//         tag: undefined,
-//         created_at: undefined,
-//         updated_at: undefined
-//       };
-//     }
+  connection = await mysqlPool.getConnection();
 
-//     /**
-//      * El acumulador ya tiene la nota, necesitamos ir
-//      * añadiendo los tags
-//      */
-//     return {
-//       ...acc,
-//       tags: [...acc.tags, tag]
-//     };
-//   }, {});
+  const sqlQuery = `Select concursos.* ,
+  (select count(*) from users_has_concursos where users_has_concursos.concursos_idconcursos = concursos.idconcursos) as participantes
+  from concursos 
+  where concursos.users_idusers = ? 
+  and concursos.fechaVencimiento > ?
+  `;
 
-//   return noteHydrated;
-// }
+  const [rows] = await connection.execute(sqlQuery, [userId, todayDate]);
+  connection.release();
+
+  return rows;
+};
+
+const getConcursosFinalizados = async (userId) => {
+  let connection;
+
+  const todayDate = new Date().toISOString().substring(0, 19).replace("T", " ");
+
+  connection = await mysqlPool.getConnection();
+  const sqlQuery = `Select concursos.* ,
+  (select count(*) from users_has_concursos where users_has_concursos.concursos_idconcursos = concursos.idconcursos) as participantes
+  from concursos 
+  where concursos.users_idusers = ? 
+  and concursos.fechaPremiados < ?
+  `;
+  const [rows] = await connection.execute(sqlQuery, [userId, todayDate]);
+  connection.release();
+
+  return rows;
+};
 
 async function getConcursosOrganizador(req, res, next) {
   //const { idusers } = req.claims;
 
   const { userId } = req.claims;
+
   try {
-    const payload = {
-      userId
+    const activos = await getConcursosActivos(userId);
+
+    const finalizados = await getConcursosFinalizados(userId);
+
+    const data = {
+      activos,
+      finalizados,
     };
-    await validate(payload);
-  } catch (e) {
-    return res.status(400).send(e);
-  }
-  const users_idusers = userId;
-  const todayDate = new Date()
-    .toISOString()
-    .substring(0, 19)
-    .replace("T", " ");
-  let connection;
-  try {
-    connection = await mysqlPool.getConnection();
-    const sqlQuery = `SELECT *
-      FROM concursos
-      WHERE
-      users_idusers = ?
-      AND fechaVencimiento < ?
-      AND deleted_at IS NULL
-      ORDER BY fechaVencimiento DESC`;
 
-    const [rows] = await connection.execute(sqlQuery, [
-      users_idusers,
-      todayDate
-    ]);
-    connection.release();
-
-    if (rows.length === 0) {
-      return res.status(404).send();
-    }
-
-    const concursos = rows.map(concurso => {
-      return {
-        ...concurso
-      };
-    });
-
-    return res.send(concursos);
+    return res.send(data);
   } catch (e) {
     if (connection) {
       connection.release();

@@ -19,7 +19,7 @@ function Dashboard(props) {
     historyParams.menu ? historyParams.menu : "EditarCuenta"
   );
   const PageComponent = Pages[currentPage] ? Pages[currentPage] : <></>;
-  const { currentUser, deleteUser } = useAuth();
+  const { currentUser, deleteUser, userLogged } = useAuth();
 
   const setPage = (page) => {
     history.push(`/dashboard/${page}`);
@@ -30,7 +30,7 @@ function Dashboard(props) {
     <div>
       <div className="menu-perfil">
         <img />
-        <h3>{"Nombre y Apellido"}</h3>
+        <h3>{userLogged.nombre}</h3>
         <button onClick={() => setPage("EditarCuenta")}>Editar cuenta</button>
         <button>Cambiar contraseña</button>
         <button onClick={() => setPage("MisConcursos")}>Mis concursos</button>

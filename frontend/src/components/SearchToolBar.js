@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { useHistory } from "react-router-dom";
+import SelectCategorias from "./SelectCategorias";
 
 const categorias = ["Cuentos", "Ensayos", "Microrrelatos", "Novela", "Poesia"];
 
@@ -39,21 +40,11 @@ function SearchToolBar({ onSearch, defaultParams }) {
           onChange={onChange}
         />
 
-        <select name="categoria" onChange={onChange}>
-          <option value="">Todas las categorías</option>
-          {categorias.map((categoria, key) => (
-            <option
-              selected={
-                params.categoria &&
-                categoria.toUpperCase() === params.categoria.toUpperCase()
-              }
-              key={key}
-              value={categoria}
-            >
-              {categoria}
-            </option>
-          ))}
-        </select>
+        <SelectCategorias
+          onChange={onChange}
+          selected={params.categoria}
+          showAllOptions
+        />
 
         <input
           name="fechaInicio"

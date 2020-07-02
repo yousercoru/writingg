@@ -2,7 +2,7 @@ import React from "react";
 import moment from "moment";
 import MailTo from "../../MailTo";
 
-function Activos({ data, history, deleteParticipanteConcurso }) {
+function ActivosEscritor({ data, history, deleteParticipanteConcurso }) {
   return (
     <div>
       <h2>Estoy inscrito en</h2>
@@ -69,4 +69,4 @@ function Activos({ data, history, deleteParticipanteConcurso }) {
   );
 }
 
-export default Activos;
+export default ActivosEscritor;

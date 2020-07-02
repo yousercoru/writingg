@@ -8,42 +8,10 @@ import {
   getConcurso,
   addParticipante,
   addDocToParticipante,
-  misConcursos,
+  misConcursosEscritor,
 } from "../http/concursosService";
 import Modal from "../components/Modal";
 import MailTo from "../components/MailTo";
-
-// const data = {
-//   idconcursos: "95978322-97ec-4389-bb1e-1b445da654f1",
-//   users_idusers: "a4cbaa24-8019-4518-a7bd-653364164070",
-//   created_at: "2020-06-14T17:58:56.000Z",
-//   nombreConcurso: "V concurso jóvenes escritores Estrella Galicia",
-//   bases:
-//     "<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>",
-//   fechaVencimiento: "31/12/2020",
-//   primerPremio: "18000",
-//   segundoPremio: null,
-//   tercerPremio: null,
-//   fechaPremiados: "5/01/2021",
-//   ganador: null,
-//   segundo: null,
-//   tercero: null,
-//   cartel: null,
-//   bases_pdf: null,
-//   updated_at: null,
-//   deleted_at: null,
-//   categoria: "Novela",
-//   nextConcursos: [
-//     {
-//       id: "",
-//       nombre: "Concurso 2",
-//     },
-//     {
-//       id: "",
-//       nombre: "Concurso 3",
-//     },
-//   ],
-// };
 
 const ModalFirstStep = ({ userLogged, data, onClick, setFile, file }) => (
   <div>
@@ -125,7 +93,7 @@ function Concurso() {
     const getDataConcurso = async () => {
       const result = await getConcurso(historyParams.slugNombreConcurso);
 
-      const concursos = await misConcursos();
+      const concursos = await misConcursosEscritor();
 
       const concursoData = result.data.data;
       const isInscrito = concursos.data.activos.find(

@@ -2,7 +2,7 @@ import React from "react";
 
 import moment from "moment";
 
-function Finalizados({ data, history }) {
+function FinalizadosEscritor({ data, history }) {
   if (data && data.finalizados.length == 0) {
     return <></>;
   }
@@ -18,7 +18,7 @@ function Finalizados({ data, history }) {
           <th>Tercero</th>
           <th>Obra</th>
           <th>Valoración de tu obra</th>
-          <th>Cómo lo valoras</th>
+          <th>Tu valoración</th>
         </thead>
         <tbody>
           {data && data.finalizados ? (
@@ -42,8 +42,8 @@ function Finalizados({ data, history }) {
                     </a>
                   </button>
                 </td>
-                <td>Valoración de tu obra</td>
-                <td>Cómo lo valoras</td>
+                <td>{console.log("Valoración de tu obra")}</td>
+                <td>{console.log("Tu valoración")}</td>
               </tr>
             ))
           ) : (
@@ -55,4 +55,4 @@ function Finalizados({ data, history }) {
   );
 }
 
-export default Finalizados;
+export default FinalizadosEscritor;

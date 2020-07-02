@@ -1,20 +1,34 @@
 import React, { useState, useEffect } from "react";
-import { misConcursos } from "../../http/concursosService";
-import moment from "moment";
+import {
+  misConcursosEscritor,
+  misConcursosOrganizador,
+} from "../../http/concursosService";
+
 import { useHistory } from "react-router-dom";
-import MailTo from "../MailTo";
+
 import { deleteParticipante } from "../../http/concursosService";
-import Activos from "./MisConcursosTables/Activos";
-import Finalizados from "./MisConcursosTables/Finalizados";
+import ActivosEscritor from "./MisConcursosTables/ActivosEscritor";
+import FinalizadosEscritor from "./MisConcursosTables/FinalizadosEscritor";
+import { useAuth } from "../../context/auth-context";
+import ActivosOrganizador from "./MisConcursosTables/ActivosOrganizador";
+import FinalizadosOrganizador from "./MisConcursosTables/FinalizadosOrganizador";
 
 function MisConcursos() {
   const [data, setData] = useState(null);
+
+  const { currentUser } = useAuth();
   const history = useHistory();
 
   const getDataConcurso = async () => {
-    const result = await misConcursos();
+    if (currentUser.rol === "organizador") {
+      const result = await misConcursosOrganizador();
+      setData(result.data);
+    }
 
-    setData(result.data);
+    if (currentUser.rol === "escritor") {
+      const result = await misConcursosEscritor();
+      setData(result.data);
+    }
   };
 
   const deleteParticipanteConcurso = async (idConcurso) => {
@@ -33,13 +47,28 @@ function MisConcursos() {
 
   return (
     <div>
-      <Activos
-        data={data}
-        history={history}
-        deleteParticipanteConcurso={deleteParticipanteConcurso}
-      />
+      {currentUser && currentUser.rol === "escritor" && (
+        <>
+          <ActivosEscritor
+            data={data}
+            history={history}
+            deleteParticipanteConcurso={deleteParticipanteConcurso}
+          />
 
-      <Finalizados data={data} history={history} />
+          <FinalizadosEscritor data={data} history={history} />
+        </>
+      )}
+      {currentUser && currentUser.rol === "organizador" && (
+        <>
+          <ActivosOrganizador
+            data={data}
+            history={history}
+            deleteParticipanteConcurso={deleteParticipanteConcurso}
+          />
+
+          <FinalizadosOrganizador data={data} history={history} />
+        </>
+      )}
     </div>
   );
 }

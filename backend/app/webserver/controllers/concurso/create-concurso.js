@@ -29,17 +29,19 @@ async function createConcurso(req, res, next) {
 
   const { userId } = req.claims;
 
-  console.log(req.files);
+  console.log(req.files.cartel);
 
   console.log(userId);
 
-  return;
-
+  /* 
   try {
     await validate(concursoData);
   } catch (e) {
+    console.log("aqui");
+
     return res.status(400).send(e);
   }
+  */
 
   const created_At = new Date()
     .toISOString()
@@ -51,68 +53,54 @@ async function createConcurso(req, res, next) {
     bases,
     fechaVencimiento,
     primerPremio,
+    segundoPremio,
+    tercerPremio,
     fechaPremiados,
-    bases_pdf,
-    cartel,
   } = concursoData;
   //   const { nombreConcurso, categoria, bases, fechaVencimiento, primerPremio, fechaPremiados} = concursoData;
 
-  /**
-   * TODO
-   *
-   * guardar el pdf en cloudinary
-   * guardar la imagen cartel cloudinary
-   */
-
-  const bases_pdf_link = await updloadFile(bases_pdf, uuidV4());
-  const cartel_link = await updloadFile(cartel, uuidV4());
+  let bases_pdf;
+  if (req.files.bases_pdf) {
+    bases_pdf = await updloadFile(req.files.bases_pdf);
+  }
+  const cartel = await updloadFile(req.files.cartel);
 
   const idconcursos = uuidV4();
   const concurso = {
     idconcursos,
     users_idusers: userId,
+    created_At,
     nombreConcurso,
-    categoria,
     bases,
     fechaVencimiento,
     primerPremio,
+    segundoPremio,
+    tercerPremio,
     fechaPremiados,
-    created_At,
+    cartel: cartel.url,
+    bases_pdf: bases_pdf.url,
+    categoria,
     slugNombreConcurso: slugify(nombreConcurso),
-    //cartel: cartel_link,
-    //åbases_pdf: bases_pdf_link,
   };
 
+  const connection = await mysqlPool.getConnection();
   try {
-    const connection = await mysqlPool.getConnection();
-    try {
-      const sqlCreateConcurso = "INSERT INTO concursos SET ?";
+    const sqlCreateConcurso = "INSERT INTO concursos SET ?";
 
-      console.log(concurso);
+    console.log(concurso);
 
-      console.log(connection.format(sqlCreateConcurso, concurso));
+    console.log(connection.format(sqlCreateConcurso, concurso));
 
-      await connection.query(sqlCreateConcurso, concurso);
+    const [result] = await connection.query(sqlCreateConcurso, concurso);
 
-      connection.release();
+    console.log(result);
 
-      res.header(
-        "Location",
-        `${httpServerDomain}/api/concursos/${idconcursos}`
-      );
-      return res.status(201).send();
-    } catch (e) {
-      connection.release();
-      throw e;
-    }
+    connection.release();
+
+    return res.status(201).send({ sucess: true, result });
   } catch (e) {
-    console.error(e);
-
-    if (e.code === "ER_DUP_ENTRY") {
-      return res.status(409).send();
-    }
-
-    return res.status(500).send();
+    connection.release();
+    throw e;
   }
 }
 

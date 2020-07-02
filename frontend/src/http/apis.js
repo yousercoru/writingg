@@ -53,7 +53,7 @@ class ClientAPI {
           !error.config.url.includes("/auth")
         ) {
           localStorage.removeItem("currentUser");
-          window.location.href = "/";
+          //window.location.href = "/";
         }
         // Siempre devolver el error de esta forma, a través de Promise.reject
         return Promise.reject(error);

@@ -1,7 +1,7 @@
 import React from "react";
 import moment from "moment";
 
-function ActivosOrganizador({ data, history, deleteParticipanteConcurso }) {
+function ActivosOrganizador({ data, history, setEditNombreConcurso }) {
   return (
     <div>
       <h2>En curso</h2>
@@ -30,7 +30,11 @@ function ActivosOrganizador({ data, history, deleteParticipanteConcurso }) {
                 <td>{d.primerPremio}</td>
                 <td>{d.participantes}</td>
                 <td>
-                  <button onClick={() => console.log("Editar")}>Editar</button>
+                  <button
+                    onClick={() => setEditNombreConcurso(d.slugNombreConcurso)}
+                  >
+                    Editar
+                  </button>
                 </td>
               </tr>
             ))

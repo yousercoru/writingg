@@ -15,8 +15,8 @@ function FinalizadosOrganizador({ data, history, deleteParticipanteConcurso }) {
           <th>Valoración de los participantes</th>
         </thead>
         <tbody>
-          {data && data.activos ? (
-            data.activos.map((d) => (
+          {data && data.finalizados ? (
+            data.finalizados.map((d) => (
               <tr>
                 <td
                   onClick={() =>

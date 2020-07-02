@@ -92,16 +92,18 @@ function Concurso() {
   useEffect(() => {
     const getDataConcurso = async () => {
       const result = await getConcurso(historyParams.slugNombreConcurso);
-
-      const concursos = await misConcursosEscritor();
-
       const concursoData = result.data.data;
-      const isInscrito = concursos.data.activos.find(
-        (concurso) =>
-          concurso.concursos_idconcursos === concursoData.idconcursos
-      );
 
-      setInscrito(isInscrito);
+      try {
+        const concursos = await misConcursosEscritor();
+
+        const isInscrito = concursos.data.activos.find(
+          (concurso) =>
+            concurso.concursos_idconcursos === concursoData.idconcursos
+        );
+
+        setInscrito(isInscrito);
+      } catch (error) {}
 
       setData(concursoData);
     };

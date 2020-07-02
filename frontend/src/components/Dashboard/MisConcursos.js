@@ -12,9 +12,11 @@ import FinalizadosEscritor from "./MisConcursosTables/FinalizadosEscritor";
 import { useAuth } from "../../context/auth-context";
 import ActivosOrganizador from "./MisConcursosTables/ActivosOrganizador";
 import FinalizadosOrganizador from "./MisConcursosTables/FinalizadosOrganizador";
+import EditarConcurso from "./MisConcursosTables/EditarConcurso";
 
 function MisConcursos() {
   const [data, setData] = useState(null);
+  const [editSlugConcurso, setEditNombreConcurso] = useState("");
 
   const { currentUser } = useAuth();
   const history = useHistory();
@@ -45,6 +47,15 @@ function MisConcursos() {
 
   console.log(data);
 
+  if (editSlugConcurso) {
+    return (
+      <EditarConcurso
+        slugNombreConcurso={editSlugConcurso}
+        setEditNombreConcurso={setEditNombreConcurso}
+      />
+    );
+  }
+
   return (
     <div>
       {currentUser && currentUser.rol === "escritor" && (
@@ -63,7 +74,7 @@ function MisConcursos() {
           <ActivosOrganizador
             data={data}
             history={history}
-            deleteParticipanteConcurso={deleteParticipanteConcurso}
+            setEditNombreConcurso={setEditNombreConcurso}
           />
 
           <FinalizadosOrganizador data={data} history={history} />

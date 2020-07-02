@@ -28,7 +28,12 @@ async function createConcurso(req, res, next) {
   console.log(concursoData);
 
   const { userId } = req.claims;
+
+  console.log(req.files);
+
   console.log(userId);
+
+  return;
 
   try {
     await validate(concursoData);

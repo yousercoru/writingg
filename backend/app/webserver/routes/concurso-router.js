@@ -25,6 +25,8 @@ const getConcursosOrganizadorVencidos = require("../controllers/concurso/get-con
 const searchConcursos = require("../controllers/concurso/search-controller");
 const uploadDoc = require("../controllers/concurso/upload-doc");
 
+const files = upload.fields([{ name: "cartel" }, { name: "bases_pdf" }]);
+
 //Open Enpoints
 router.get("/concursos/search", searchConcursos);
 router.get("/concurso/:slugNombreConcurso", getConcurso);
@@ -56,6 +58,7 @@ router.post(
   "/concursos",
   checkAccountSession,
   checkOrganizadorRol,
+  files,
   createConcurso
 );
 

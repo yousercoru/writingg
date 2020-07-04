@@ -1,13 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import FormConcurso from "../../FormConcurso";
+import { getConcurso } from "../../../http/concursosService";
 
 function EditarConcurso({ slugNombreConcurso, setEditNombreConcurso }) {
-  useEffect(() => {}, [slugNombreConcurso]);
+  const [data, setData] = useState(null);
+  const getData = async () => {
+    const result = await getConcurso(slugNombreConcurso);
+
+    const concursoData = result.data.data;
+
+    delete concursoData.nextConcursos;
+    delete concursoData.organizador;
+
+    setData(result.data.data);
+  };
+  useEffect(() => {
+    getData();
+  }, []);
+
+  console.log(data, "data");
+
   return (
     <div>
       Editar concurso
       <button onClick={() => setEditNombreConcurso("")}>back</button>
-      <FormConcurso isNew={false} />
+      {data ? (
+        <FormConcurso isNew={false} defaultValues={data} />
+      ) : (
+        <div>loading...</div>
+      )}
     </div>
   );
 }

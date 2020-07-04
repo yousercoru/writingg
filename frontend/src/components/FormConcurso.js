@@ -2,7 +2,7 @@ import React, { useState, useMemo } from "react";
 
 import { useForm } from "react-hook-form";
 
-import { EditorState, convertToRaw } from "draft-js";
+import { EditorState, convertToRaw, ContentState } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 
 import { Editor } from "react-draft-wysiwyg";
@@ -12,11 +12,47 @@ import SelectCategorias from "../components/SelectCategorias";
 
 import { createConcursos } from "../http/concursosService";
 
-function FormConcurso({ isNew }) {
-  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+import htmlToDraft from "html-to-draftjs";
+
+import moment from "moment";
+
+function FormConcurso({ isNew, defaultValues }) {
+  const getEditorDefaultState = () => {
+    if (isNew) {
+      return EditorState.createEmpty();
+    }
+
+    if (!isNew && defaultValues.bases) {
+      return EditorState.createWithContent(
+        ContentState.createFromBlockArray(htmlToDraft(defaultValues.bases))
+      );
+    }
+
+    return EditorState.createEmpty();
+  };
+  const [editorState, setEditorState] = useState(getEditorDefaultState());
   const { register, errors, getValues } = useForm({
     mode: "onBlur",
+    defaultValues: defaultValues
+      ? {
+          nombreConcurso: defaultValues.nombreConcurso,
+          categoria: defaultValues.categoria,
+          fechaVencimiento: moment(defaultValues.fechaVencimiento).format(
+            "YYYY-MM-DD"
+          ),
+          // //cartel: defaultValues.cartel,
+          // // bases_pdf: defaultValues.bases_pdf,
+          primerPremio: defaultValues.primerPremio,
+          segundoPremio: defaultValues.segundoPremio,
+          tercerPremio: defaultValues.tercerPremio,
+          fechaPremiados: moment(defaultValues.fechaPremiados).format(
+            "YYYY-MM-DD"
+          ),
+        }
+      : {},
   });
+
+  console.log(defaultValues, "default");
 
   const getEditorHTML = () => {
     return draftToHtml(convertToRaw(editorState.getCurrentContent()));
@@ -54,11 +90,7 @@ function FormConcurso({ isNew }) {
       <form>
         <div>
           <label>Nombre del concurso *</label>
-          <input
-            type="text"
-            name="nombreConcurso"
-            ref={register({ required: "Campo obligatorio" })}
-          />
+          <input type="text" name="nombreConcurso" ref={register({})} />
         </div>
         <div>
           <label>Categoría *</label>

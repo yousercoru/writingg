@@ -53,6 +53,9 @@ const getConcursosFinalizados = async (userId) => {
     concursos.nombreConcurso,
     concursos.fechaVencimiento,
     concursos.fechaPremiados,
+    concursos.ganador,
+    concursos.segundo,
+    concursos.tercero,
     users.nombre as organizador,
     users.email as organizador_email
      

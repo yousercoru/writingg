@@ -24,6 +24,7 @@ const getConcursosOrganizador = require("../controllers/concurso/get-concursos-o
 const getConcursosOrganizadorVencidos = require("../controllers/concurso/get-concursosVencidos-organizador");
 const searchConcursos = require("../controllers/concurso/search-controller");
 const uploadDoc = require("../controllers/concurso/upload-doc");
+const editConcurso = require("../controllers/concurso/edit-concurso");
 
 const files = upload.fields([{ name: "cartel" }, { name: "bases_pdf" }]);
 
@@ -60,6 +61,14 @@ router.post(
   checkOrganizadorRol,
   files,
   createConcurso
+);
+
+router.put(
+  "/concursos/:idconcursos",
+  checkAccountSession,
+  checkOrganizadorRol,
+  files,
+  editConcurso
 );
 
 // router.get("/concursos/:idconcursos", getConcurso);

@@ -17,6 +17,7 @@ import EditarConcurso from "./MisConcursosTables/EditarConcurso";
 function MisConcursos() {
   const [data, setData] = useState(null);
   const [editSlugConcurso, setEditNombreConcurso] = useState("");
+  const [winnerConcurso, setWinnersConcurso] = useState(false);
 
   const { currentUser } = useAuth();
   const history = useHistory();
@@ -45,13 +46,12 @@ function MisConcursos() {
     return () => {};
   }, []);
 
-  console.log(data);
-
   if (editSlugConcurso) {
     return (
       <EditarConcurso
         slugNombreConcurso={editSlugConcurso}
         setEditNombreConcurso={setEditNombreConcurso}
+        winnerConcurso={winnerConcurso}
       />
     );
   }
@@ -77,7 +77,12 @@ function MisConcursos() {
             setEditNombreConcurso={setEditNombreConcurso}
           />
 
-          <FinalizadosOrganizador data={data} history={history} />
+          <FinalizadosOrganizador
+            data={data}
+            history={history}
+            setEditNombreConcurso={setEditNombreConcurso}
+            setWinnersConcurso={setWinnersConcurso}
+          />
         </>
       )}
     </div>

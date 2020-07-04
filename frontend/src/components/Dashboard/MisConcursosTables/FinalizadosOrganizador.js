@@ -1,7 +1,12 @@
 import React from "react";
 import moment from "moment";
 
-function FinalizadosOrganizador({ data, history, deleteParticipanteConcurso }) {
+function FinalizadosOrganizador({
+  data,
+  history,
+  setEditNombreConcurso,
+  setWinnersConcurso,
+}) {
   return (
     <div>
       <h2>Finalizados</h2>
@@ -28,7 +33,14 @@ function FinalizadosOrganizador({ data, history, deleteParticipanteConcurso }) {
                 <td>{moment(d.fechaPremiados).format("DD/MM/YYYY")}</td>
                 <td>{d.primerPremio}</td>
                 <td>
-                  <button onClick={() => console.log("Ver")}>Ver</button>
+                  <button
+                    onClick={() => {
+                      setEditNombreConcurso(d.slugNombreConcurso);
+                      setWinnersConcurso(true);
+                    }}
+                  >
+                    Ver
+                  </button>
                 </td>
                 <td>{d.participantes}</td>
                 <td>{console.log("Valoración de los participantes")}</td>

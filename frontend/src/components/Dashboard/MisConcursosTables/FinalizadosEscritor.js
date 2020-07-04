@@ -32,9 +32,9 @@ function FinalizadosEscritor({ data, history }) {
                   {d.nombreConcurso}
                 </td>
                 <td>{d.organizador}</td>
-                <td>Nombre y apellidos</td>
-                <td>Nombre y apellidos</td>
-                <td>Nombre y apellidos</td>
+                <td>{d.ganador}</td>
+                <td>{d.segundo}</td>
+                <td>{d.tercero}</td>
                 <td>
                   <button>
                     <a href={d.obra} target="_blank">

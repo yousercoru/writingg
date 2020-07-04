@@ -10,13 +10,13 @@ import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 import SelectCategorias from "../components/SelectCategorias";
 
-import { createConcursos } from "../http/concursosService";
+import { createConcursos, editConcursos } from "../http/concursosService";
 
 import htmlToDraft from "html-to-draftjs";
 
 import moment from "moment";
 
-function FormConcurso({ isNew, defaultValues }) {
+function FormConcurso({ isNew, defaultValues, setWinners }) {
   const getEditorDefaultState = () => {
     if (isNew) {
       return EditorState.createEmpty();
@@ -48,6 +48,9 @@ function FormConcurso({ isNew, defaultValues }) {
           fechaPremiados: moment(defaultValues.fechaPremiados).format(
             "YYYY-MM-DD"
           ),
+          ganador: defaultValues.ganador,
+          segundo: defaultValues.segundo,
+          tercero: defaultValues.tercero,
         }
       : {},
   });
@@ -66,7 +69,7 @@ function FormConcurso({ isNew, defaultValues }) {
     edit();
   };
 
-  const create = async () => {
+  const generateFormData = () => {
     const formValues = getValues();
     const data = {
       ...formValues,
@@ -80,26 +83,44 @@ function FormConcurso({ isNew, defaultValues }) {
       formdata.append(key, value);
     });
 
+    return formdata;
+  };
+
+  const create = async () => {
+    const formdata = generateFormData();
+
     const result = await createConcursos(formdata);
   };
 
-  const edit = async () => {};
+  const edit = async () => {
+    const formdata = generateFormData();
+
+    const result = await editConcursos(defaultValues.idconcursos, formdata);
+  };
 
   return (
     <div>
       <form>
         <div>
           <label>Nombre del concurso *</label>
-          <input type="text" name="nombreConcurso" ref={register({})} />
+          <input
+            type="text"
+            disabled={setWinners}
+            name="nombreConcurso"
+            ref={register({})}
+          />
         </div>
         <div>
           <label>Categoría *</label>
-          <SelectCategorias selectedProps={{ ref: register({}) }} />
+          <SelectCategorias
+            selectedProps={{ ref: register({}), disabled: setWinners }}
+          />
         </div>
         <div>
           <label>Fecha de vencimiento *</label>
           <input
             type="date"
+            disabled={setWinners}
             name="fechaVencimiento"
             ref={register({ required: "Campo obligatorio" })}
           />
@@ -108,41 +129,59 @@ function FormConcurso({ isNew, defaultValues }) {
           <label>Cartel</label>
           <input
             type="file"
+            disabled={setWinners}
             name="cartel"
             ref={register({ required: "Campo obligatorio" })}
           />
         </div>
         <div>
           <label>Subir PDF de las bases</label>
-          <input type="file" name="bases_pdf" ref={register()} />
+          <input
+            disabled={setWinners}
+            type="file"
+            name="bases_pdf"
+            ref={register()}
+          />
         </div>
         <h2>Premios</h2>
         <div>
           <label>1er premio *</label>
           <input
             type="text"
+            disabled={setWinners}
             name="primerPremio"
             ref={register({ required: "Campo obligatorio" })}
           />
         </div>
         <div>
           <label>2º premio</label>
-          <input type="text" name="segundoPremio" ref={register()} />
+          <input
+            type="text"
+            disabled={setWinners}
+            name="segundoPremio"
+            ref={register()}
+          />
         </div>
         <div>
           <label>3er premio</label>
-          <input type="text" name="tercerPremio" ref={register()} />
+          <input
+            type="text"
+            disabled={setWinners}
+            name="tercerPremio"
+            ref={register()}
+          />
         </div>
         <div>
           <label>Fecha entrega de premios *</label>
           <input
             type="date"
+            disabled={setWinners}
             name="fechaPremiados"
             ref={register({ required: "Campo obligatorio" })}
           />
         </div>
 
-        {false && (
+        {setWinners && (
           <>
             <div>
               <label>Ganador</label>
@@ -150,11 +189,11 @@ function FormConcurso({ isNew, defaultValues }) {
             </div>
             <div>
               <label>Segundo</label>
-              <input type="text" name="ganador" ref={register()} />
+              <input type="text" name="segundo" ref={register()} />
             </div>
             <div>
               <label>Tercero</label>
-              <input type="text" name="ganador" ref={register()} />
+              <input type="text" name="tercero" ref={register()} />
             </div>
           </>
         )}
@@ -162,6 +201,7 @@ function FormConcurso({ isNew, defaultValues }) {
 
       <Editor
         editorState={editorState}
+        readOnly={setWinners}
         toolbarClassName="toolbarClassName"
         wrapperClassName="wrapperClassName"
         editorClassName="editorClassName"

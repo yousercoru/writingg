@@ -48,6 +48,10 @@ export function createConcursos(body) {
   return clientApi.getClient().post(`api/concursos`, body);
 }
 
+export function editConcursos(idconcursos, body) {
+  return clientApi.getClient().put(`api/concursos/${idconcursos}`, body);
+}
+
 export function misConcursosEscritor() {
   return clientApi.getClient().get(`api/concursos-participante`);
 }

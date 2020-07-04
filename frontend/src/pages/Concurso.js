@@ -232,6 +232,10 @@ function Concurso() {
             <span>{moment(data.fechaVencimiento).format("DD/MM/YYYY")}</span>
           </div>
           <div>
+            <p>Participantes actuales:</p>
+            <p>{data.participantes}</p>
+          </div>
+          <div>
             <h4>Compartir</h4>
             <div>
               <a>In</a>

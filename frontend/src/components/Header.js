@@ -48,7 +48,13 @@ export function Header({ onLogout }) {
           </>
         ) : (
           <>
-            <Link to="/dashboard" className="h-btn-3">
+            <Link
+              to="/dashboard"
+              className="h-btn-3"
+              onClick={() => {
+                window.location.href = "/dashboard";
+              }}
+            >
               Hola {userLogged && userLogged.nombre}
             </Link>
             {/* <ul className="perfil-header">

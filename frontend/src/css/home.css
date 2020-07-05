@@ -1,17 +1,15 @@
-
-
 .presentacion {
-    width: auto;
-    height: 350px;
-    /* background-image: linear-gradient(to right, rgba(245, 247, 250, 0.7), rgba(237, 251, 246, 0.7)), url("../img/background.jpg"); */
-    background: rgba(255, 255, 255, 0.8);
-    box-shadow: 0 10px 20px -10px rgba(0,0,0,0.2);
-    overflow: none;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    align-items: center;
-    /* text-align: center; */
+  width: auto;
+  height: 350px;
+  /* background-image: linear-gradient(to right, rgba(245, 247, 250, 0.7), rgba(237, 251, 246, 0.7)), url("../img/background.jpg"); */
+  background: rgba(255, 255, 255, 0.8);
+  box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.2);
+  overflow: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  /* text-align: center; */
 }
 
 /*.btn-slider {
@@ -21,52 +19,72 @@
     padding: 150px;
 } */
 
-
 .t-seccion {
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-
 .categorias {
-    width: 100%;
-    min-height: auto;
-    margin: 20px;
-    /* padding-left: 15px;
+  width: 100%;
+  min-height: auto;
+  margin: 20px;
+  /* padding-left: 15px;
     padding-right: 15px; */
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    font-size: var(--font-m);
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--font-m);
+  color: white;
 }
 
 .box-categorias {
-    width: 180px;
-    height: 200px;
-    overflow: none;
-    margin: 20px;
-    padding-left: 15px;
-    padding-right: 15px;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    font-size: var(--font-m);
-    background: rgba(100, 195, 171, 0.5);
-    box-shadow: 0 10px 20px -10px rgba(0,0,0,0.2);
+  width: 180px;
+  height: 200px;
+  overflow: none;
+  margin: 20px;
+  padding-left: 15px;
+  padding-right: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: var(--font-m);
+  /* background: rgba(100, 195, 171, 0.5); */
+  /* background-image: url("../img/homepage/writingg-cuentos.png"); */
+
+  box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.2);
+}
+
+.novela {
+  background-image: url("../img/homepage/writingg-novela.png");
+}
+
+.cuentos {
+  background-image: url("../img/homepage/writingg-cuentos.png");
+}
+
+.poesia {
+  background-image: url("../img/homepage/writingg-poesia.png");
+}
+
+.microrrelatos {
+  background-image: url("../img/homepage/writingg-microrrelatos.png");
+}
+
+.ensayos {
+  background-image: url("../img/homepage/writingg-ensayos.png");
 }
 
 .box-categorias:hover {
-    background: rgba(44, 192, 155, 0.5);
-    box-shadow: 0 10px 20px -10px rgba(0,0,0,0.2);
-    font-size: 20px;
-    color: white;
-    cursor: pointer;
+  /* background: rgba(44, 192, 155, 0.5);d */
+  box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.2);
+  font-size: 25px;
+  /* color: white; */
+  cursor: pointer;
 }
-

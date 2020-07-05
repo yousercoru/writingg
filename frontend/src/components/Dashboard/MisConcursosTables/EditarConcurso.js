@@ -26,6 +26,12 @@ function EditarConcurso({
     <div>
       Editar concurso
       <button onClick={() => setEditNombreConcurso("")}>back</button>
+      {winnerConcurso && (
+        <p style={{ color: "red" }}>
+          Nota: este concurso ya ha vencido. Solo puedes modificar el listado de
+          ganadores
+        </p>
+      )}
       {data ? (
         <FormConcurso
           isNew={false}

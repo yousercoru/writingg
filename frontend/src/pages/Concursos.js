@@ -88,7 +88,7 @@ function Concursos(props) {
                 <td>{d.categoria}</td>
                 <td>{moment(d.fechaVencimiento).format("DD/MM/YYYY")}</td>
                 <td>{moment(d.fechaPremiados).format("DD/MM/YYYY")}</td>
-                <td>{"Nº participantes"}</td>
+                <td>{d.participantes}</td>
                 <td>{d.primerPremio}</td>
               </tr>
             ))

@@ -142,7 +142,7 @@ function Concurso() {
   }
 
   return (
-    <div style={{ marginTop: "15em" }}>
+    <div style={{ overflowY: "scroll", height: "75vh", width: "100%" }}>
       <Modal isModalOpen={modalOpen} onModalClose={() => toggleModal(false)}>
         {modalContent === "ModalFirstStep" && (
           <ModalFirstStep
@@ -168,7 +168,9 @@ function Concurso() {
             <h1>{data.nombreConcurso}</h1>
           </div>
           <div className="details-container">
-            <div>{data.cartel}</div>
+            <div>
+              <img src={data.cartel} />
+            </div>
             <div>
               <h2>Detalles:</h2>
               <ul className="ul-details">
@@ -224,6 +226,12 @@ function Concurso() {
               }}
             >
               Participar
+            </button>
+          )}
+
+          {!currentUser && (
+            <button>
+              <Link to="/login">Participar</Link>
             </button>
           )}
           <div>

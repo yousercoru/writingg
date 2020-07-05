@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 // import { signIn } from "../http/authService";
 // import { useAuth } from "../context/auth-context";
 
-import { Header } from "../components/Header";
+// import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 
 import SearchToolBar from "../components/SearchToolBar";
@@ -69,19 +69,19 @@ export function Home() {
           <h3>Busca por categoría</h3>
         </div>
         <div className="categorias">
-          <div className="box-categorias">
+          <div className="box-categorias novela">
             <Link to="/concursos/novela">Novela</Link>
           </div>
-          <div className="box-categorias">
+          <div className="box-categorias cuentos">
             <Link to="/concursos/cuentos">Cuentos</Link>
           </div>
-          <div className="box-categorias">
+          <div className="box-categorias poesia">
             <Link to="/concursos/poesia">Poesía</Link>
           </div>
-          <div className="box-categorias">
+          <div className="box-categorias microrrelatos">
             <Link to="/concursos/microrrelatos">Microrrelatos</Link>
           </div>
-          <div className="box-categorias">
+          <div className="box-categorias ensayos">
             <Link to="/concursos/ensayos">Ensayos</Link>
           </div>
         </div>

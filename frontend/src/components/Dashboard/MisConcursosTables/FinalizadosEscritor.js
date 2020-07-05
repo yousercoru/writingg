@@ -2,7 +2,13 @@ import React from "react";
 
 import moment from "moment";
 
+import Rating from "react-rating";
+import { setRatingConcurso } from "../../../http/concursosService";
+
 function FinalizadosEscritor({ data, history }) {
+  const setRating = async (idconcursos, rating) => {
+    const result = await setRatingConcurso(idconcursos, rating);
+  };
   if (data && data.finalizados.length == 0) {
     return <></>;
   }
@@ -43,7 +49,15 @@ function FinalizadosEscritor({ data, history }) {
                   </button>
                 </td>
                 <td>{console.log("Valoración de tu obra")}</td>
-                <td>{console.log("Tu valoración")}</td>
+                <td>
+                  <Rating
+                    fractions={1}
+                    initialRating={d.ratingParticipante}
+                    emptySymbol="far fa-star"
+                    fullSymbol="fas fa-star"
+                    onClick={(val) => setRating(d.concursos_idconcursos, val)}
+                  />
+                </td>
               </tr>
             ))
           ) : (

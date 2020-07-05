@@ -59,3 +59,9 @@ export function misConcursosEscritor() {
 export function misConcursosOrganizador() {
   return clientApi.getClient().get(`api/concursos-organizador`);
 }
+
+export function setRatingConcurso(idconcursos, rating) {
+  return clientApi
+    .getClient()
+    .put(`api//concurso/${idconcursos}/rating-concurso`, { rating });
+}

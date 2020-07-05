@@ -99,7 +99,7 @@ function FormConcurso({ isNew, defaultValues, setWinners }) {
   };
 
   return (
-    <div>
+    <div style={{ overflowY: "scroll", height: "60vh" }}>
       <form>
         <div>
           <label>Nombre del concurso *</label>
@@ -183,6 +183,7 @@ function FormConcurso({ isNew, defaultValues, setWinners }) {
 
         {setWinners && (
           <>
+            <h3>Premiados</h3>
             <div>
               <label>Ganador</label>
               <input type="text" name="ganador" ref={register()} />

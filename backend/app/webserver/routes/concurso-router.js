@@ -25,6 +25,8 @@ const getConcursosOrganizadorVencidos = require("../controllers/concurso/get-con
 const searchConcursos = require("../controllers/concurso/search-controller");
 const uploadDoc = require("../controllers/concurso/upload-doc");
 const editConcurso = require("../controllers/concurso/edit-concurso");
+const setRatingConcurso = require("../controllers/concurso/set-rating-concurso");
+const setRatingObra = require("../controllers/concurso/set-rating-obra");
 
 const files = upload.fields([{ name: "cartel" }, { name: "bases_pdf" }]);
 
@@ -127,6 +129,20 @@ router.post(
   checkEscritorRol,
   upload.single("document"),
   uploadDoc
+);
+
+router.put(
+  "/concurso/:idconcursos/rating-concurso",
+  checkAccountSession,
+  checkEscritorRol,
+  setRatingConcurso
+);
+
+router.put(
+  "/concurso/:idconcursos/rating-obra",
+  checkAccountSession,
+  checkEscritorRol,
+  setRatingObra
 );
 
 module.exports = router;

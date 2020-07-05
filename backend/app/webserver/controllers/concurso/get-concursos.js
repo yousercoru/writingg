@@ -17,7 +17,10 @@ async function getConcursos(req, res, next) {
 
     connection.config.namedPlaceholders = true;
 
-    const sqlQuery = `SELECT c.nombreConcurso, c.slugNombreConcurso, c.categoria, u.nombre, c.primerPremio, c.fechaVencimiento, c.fechaPremiados
+    const sqlQuery = `SELECT c.nombreConcurso, c.slugNombreConcurso, c.categoria, u.nombre, c.primerPremio, c.fechaVencimiento, c.fechaPremiados,
+    (select count(*) from users_has_concursos
+    WHERE users_has_concursos.concursos_idconcursos = c.idconcursos)
+    AS participantes
     FROM concursos c
     JOIN users u
     ON u.idusers = c.users_idusers
@@ -33,6 +36,8 @@ async function getConcursos(req, res, next) {
       fechaInicio &&
       "AND c.fechaVencimiento between :fechaInicio and :fechaFin"
     }
+
+    ORDER BY c.fechaVencimiento DESC
     `;
 
     const [rows] = await connection.execute(sqlQuery, {

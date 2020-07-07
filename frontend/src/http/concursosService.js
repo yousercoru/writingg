@@ -63,5 +63,19 @@ export function misConcursosOrganizador() {
 export function setRatingConcurso(idconcursos, rating) {
   return clientApi
     .getClient()
-    .put(`api//concurso/${idconcursos}/rating-concurso`, { rating });
+    .put(`api/concurso/${idconcursos}/rating-concurso`, { rating });
+}
+
+export function setRatingObra(idconcursos, users_idusers, rating) {
+  return clientApi
+    .getClient()
+    .put(`api/concurso/${idconcursos}/${users_idusers}/rating-obra`, {
+      rating,
+    });
+}
+
+export function participantesConcurso(idconcursos) {
+  return clientApi
+    .getClient()
+    .get(`api/concursos/${idconcursos}/participantes-concurso`);
 }

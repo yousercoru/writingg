@@ -13,11 +13,17 @@ import { useAuth } from "../../context/auth-context";
 import ActivosOrganizador from "./MisConcursosTables/ActivosOrganizador";
 import FinalizadosOrganizador from "./MisConcursosTables/FinalizadosOrganizador";
 import EditarConcurso from "./MisConcursosTables/EditarConcurso";
+import ParticipantesConcurso from "./MisConcursosTables/ParticipantesConcurso";
 
 function MisConcursos() {
   const [data, setData] = useState(null);
+
+  //se usa para editar un concurso
   const [editSlugConcurso, setEditNombreConcurso] = useState("");
   const [winnerConcurso, setWinnersConcurso] = useState(false);
+
+  //se usa para ver los participantes de un concurso
+  const [concursoId, setConcursoId] = useState("");
 
   const { currentUser } = useAuth();
   const history = useHistory();
@@ -45,6 +51,15 @@ function MisConcursos() {
 
     return () => {};
   }, []);
+
+  if (concursoId) {
+    return (
+      <ParticipantesConcurso
+        concursoId={concursoId}
+        setConcursoId={setConcursoId}
+      />
+    );
+  }
 
   if (editSlugConcurso) {
     return (
@@ -82,6 +97,7 @@ function MisConcursos() {
             history={history}
             setEditNombreConcurso={setEditNombreConcurso}
             setWinnersConcurso={setWinnersConcurso}
+            setConcursoId={setConcursoId}
           />
         </>
       )}

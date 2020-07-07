@@ -1,11 +1,13 @@
 import React from "react";
 import moment from "moment";
+import Rating from "react-rating";
 
 function FinalizadosOrganizador({
   data,
   history,
   setEditNombreConcurso,
   setWinnersConcurso,
+  setConcursoId,
 }) {
   return (
     <div>
@@ -17,6 +19,7 @@ function FinalizadosOrganizador({
           <th>Premio</th>
           <th>Premiados</th>
           <th>Participantes</th>
+          <th>Ver participantes y obras</th>
           <th>Valoración de los participantes</th>
         </thead>
         <tbody>
@@ -39,11 +42,32 @@ function FinalizadosOrganizador({
                       setWinnersConcurso(true);
                     }}
                   >
-                    Ver
+                    <i className="fas fa-eye"></i>
                   </button>
                 </td>
                 <td>{d.participantes}</td>
-                <td>{console.log("Valoración de los participantes")}</td>
+                <td>
+                  <button
+                    onClick={() => {
+                      setConcursoId(d.idconcursos);
+                    }}
+                  >
+                    <i className="fas fa-eye"></i>
+                  </button>
+                </td>
+                <td>
+                  {d.avgRatingConcurso ? (
+                    <Rating
+                      fractions={2}
+                      initialRating={d.avgRatingConcurso}
+                      emptySymbol="far fa-star"
+                      fullSymbol="fas fa-star"
+                      readonly
+                    />
+                  ) : (
+                    "-"
+                  )}
+                </td>
               </tr>
             ))
           ) : (

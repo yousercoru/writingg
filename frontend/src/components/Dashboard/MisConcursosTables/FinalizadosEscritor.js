@@ -24,7 +24,7 @@ function FinalizadosEscritor({ data, history }) {
           <th>Tercero</th>
           <th>Obra</th>
           <th>Valoración de tu obra</th>
-          <th>Tu valoración</th>
+          <th>¿Qué te ha parecido el concurso?</th>
         </thead>
         <tbody>
           {data && data.finalizados ? (
@@ -39,8 +39,8 @@ function FinalizadosEscritor({ data, history }) {
                 </td>
                 <td>{d.organizador}</td>
                 <td>{d.ganador}</td>
-                <td>{d.segundo}</td>
-                <td>{d.tercero}</td>
+                <td>{d.segundo ? d.segundo : "-"}</td>
+                <td>{d.tercero ? d.tercero : "-"}</td>
                 <td>
                   <button>
                     <a href={d.obra} target="_blank">
@@ -48,7 +48,19 @@ function FinalizadosEscritor({ data, history }) {
                     </a>
                   </button>
                 </td>
-                <td>{console.log("Valoración de tu obra")}</td>
+                <td>
+                  {d.ratingOrganizador ? (
+                    <Rating
+                      fractions={1}
+                      initialRating={d.ratingOrganizador}
+                      emptySymbol="far fa-star"
+                      fullSymbol="fas fa-star"
+                      readonly
+                    />
+                  ) : (
+                    "-"
+                  )}
+                </td>
                 <td>
                   <Rating
                     fractions={1}

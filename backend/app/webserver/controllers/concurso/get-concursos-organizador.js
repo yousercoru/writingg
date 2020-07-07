@@ -42,7 +42,8 @@ const getConcursosFinalizados = async (userId) => {
 
   connection = await mysqlPool.getConnection();
   const sqlQuery = `Select concursos.* ,
-  (select count(*) from users_has_concursos where users_has_concursos.concursos_idconcursos = concursos.idconcursos) as participantes
+  (select count(*) from users_has_concursos where users_has_concursos.concursos_idconcursos = concursos.idconcursos) as participantes,
+  (SELECT AVG(ratingParticipante) FROM users_has_concursos where deleted_at is null and users_has_concursos.concursos_idconcursos = concursos.idconcursos) as avgRatingConcurso
   from concursos 
   where concursos.users_idusers = ? 
   and concursos.fechaPremiados < ?

@@ -15,7 +15,7 @@ const addRatingToConcurso = require("../controllers/concurso/add-rating-concurso
 const createConcurso = require("../controllers/concurso/create-concurso");
 const deleteConcurso = require("../controllers/concurso/delete-concurso");
 const deleteParticipanteToConcurso = require("../controllers/concurso/delete-participante-concurso");
-const getConcursantesConcurso = require("../controllers/concurso/get-concursantes-concurso");
+const getParticipantesConcurso = require("../controllers/concurso/get-participantes-concurso");
 const getConcurso = require("../controllers/concurso/get-concurso");
 const getConcursos = require("../controllers/concurso/get-concursos");
 const getConcursosByCategoria = require("../controllers/concurso/get-concursos-by-categoria");
@@ -117,10 +117,10 @@ router.put(
 );
 
 router.get(
-  "/concursos/:idconcursos/concursantes",
+  "/concursos/:idconcursos/participantes-concurso",
   checkAccountSession,
   checkOrganizadorRol,
-  getConcursantesConcurso
+  getParticipantesConcurso
 );
 
 router.post(
@@ -139,9 +139,9 @@ router.put(
 );
 
 router.put(
-  "/concurso/:idconcursos/rating-obra",
+  "/concurso/:idconcursos/:users_idusers/rating-obra",
   checkAccountSession,
-  checkEscritorRol,
+  checkOrganizadorRol,
   setRatingObra
 );
 

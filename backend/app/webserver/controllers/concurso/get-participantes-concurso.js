@@ -9,7 +9,7 @@ const mysqlPool = require("../../../database/mysql-pool");
 //  */
 async function validate(payload) {
   const schema = Joi.object({
-    idconcursos: Joi.string()
+    idconcursos: Joi.string(),
   });
 
   Joi.assert(payload, schema);
@@ -72,12 +72,12 @@ async function validate(payload) {
 //   return noteHydrated;
 // }
 
-async function getConcursantesConcurso(req, res, next) {
+async function getParticipantesConcurso(req, res, next) {
   const { idconcursos } = req.params;
   //const { userId } = req.claims;
   try {
     const payload = {
-      idconcursos
+      idconcursos,
     };
     await validate(payload);
   } catch (e) {
@@ -88,13 +88,12 @@ async function getConcursantesConcurso(req, res, next) {
   let connection;
   try {
     connection = await mysqlPool.getConnection();
-    const sqlQuery = `SELECT u.nombre, u.dni, u.email, obra
-      FROM users u
-      RIGHT JOIN users_has_concursos uc
-        ON u.idusers = uc.users_idusers
-      WHERE
-        uc.concursos_idconcursos = ?
-        AND deleted_at IS NULL`;
+    const sqlQuery = `SELECT u.nombre, u.dni, u.email,
+    uc.obra, uc.created_at, uc.users_idusers, uc.ratingOrganizador
+    FROM users_has_concursos uc
+    INNER JOIN users u ON u.idusers = uc.users_idusers
+    WHERE uc.concursos_idconcursos = ?
+    AND deleted_at IS NULL`;
 
     const [rows] = await connection.execute(sqlQuery, [concursos_idconcursos]);
     connection.release();
@@ -103,11 +102,11 @@ async function getConcursantesConcurso(req, res, next) {
       return res.status(404).send();
     }
 
-    const concursantes = rows.map(concursante => {
+    const concursantes = rows.map((concursante) => {
       return {
         ...concursante,
         created_At: undefined,
-        deleted_At: undefined
+        deleted_At: undefined,
       };
     });
 
@@ -122,4 +121,4 @@ async function getConcursantesConcurso(req, res, next) {
   }
 }
 
-module.exports = getConcursantesConcurso;
+module.exports = getParticipantesConcurso;

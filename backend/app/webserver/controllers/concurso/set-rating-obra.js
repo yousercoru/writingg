@@ -3,7 +3,7 @@
 const mysqlPool = require("../../../database/mysql-pool");
 
 async function setRatingObra(req, res, next) {
-  const { idconcursos } = req.params;
+  const { idconcursos, users_idusers } = req.params;
   const { rating } = req.body;
 
   console.log(req.claims);
@@ -20,12 +20,16 @@ async function setRatingObra(req, res, next) {
       "UPDATE users_has_concursos SET ? where users_idusers = ? and concursos_idconcursos = ?";
 
     console.log(
-      connection.format(sqlCreateConcurso, [ratingData, userId, idconcursos])
+      connection.format(sqlCreateConcurso, [
+        ratingData,
+        users_idusers,
+        idconcursos,
+      ])
     );
 
     const [result] = await connection.query(sqlCreateConcurso, [
       ratingData,
-      userId,
+      users_idusers,
       idconcursos,
     ]);
 

@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../context/auth-context";
+import { updateAccount } from "../../http/authService";
+import Modal from "../Modal";
 
 function EditarCuenta(props) {
   const { userLogged } = useAuth();
+
+  const [showModal, toggleModal] = useState(false);
 
   const {
     handleSubmit,
@@ -17,13 +21,21 @@ function EditarCuenta(props) {
     defaultValues: userLogged ? userLogged : {},
   });
 
-  const handleSave = (userData) => {
+  const handleSave = async (userData) => {
     console.log(userData);
+    const result = await updateAccount(userData);
+
+    toggleModal(true);
+
+    //alert("Tus cambios se han guardado correctamente");
   };
   console.log(errors);
 
   return (
     <div>
+      <Modal isModalOpen={showModal} onModalClose={() => toggleModal(false)}>
+        <div>Tus cambios se han guardado correctamente</div>
+      </Modal>
       <form onSubmit={handleSubmit(handleSave)}>
         <div>
           <label>Nombre</label>
@@ -78,6 +90,23 @@ function EditarCuenta(props) {
           ></input>
           {errors.email && (
             <span className="errorMessage">{errors.email.message}</span>
+          )}
+        </div>
+        <div>
+          <label>Contraseña</label>
+          <input
+            ref={register({
+              minLength: {
+                value: 6,
+                message: "Introduce una contraseña con al menos 6 caracteres",
+              },
+            })}
+            name="password"
+            type="password"
+            placeholder="******"
+          ></input>
+          {errors.password && (
+            <span className="errorMessage">{errors.password.message}</span>
           )}
         </div>
         <button type="submit" className="btn">

@@ -62,11 +62,11 @@ function ParticipantesConcurso({ concursoId, setConcursoId }) {
                   />
                 </td>
                 <td>
-                  <MailTo mail={d.email}>
-                    <button>
+                  <button>
+                    <MailTo mail={d.email}>
                       <i className="fas fa-paper-plane"></i>
-                    </button>
-                  </MailTo>
+                    </MailTo>
+                  </button>
                 </td>
               </tr>
             ))

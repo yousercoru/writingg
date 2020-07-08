@@ -41,3 +41,7 @@ export function login(formData) {
   return clientApi.getClient().post(`api/auth`, formData);
   //return axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/auth`, formData);
 }
+
+export function updateAccount(formData) {
+  return clientApi.getClient().put(`api/update-account`, formData);
+}

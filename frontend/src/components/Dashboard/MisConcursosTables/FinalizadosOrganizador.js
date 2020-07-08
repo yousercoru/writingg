@@ -11,7 +11,7 @@ function FinalizadosOrganizador({
 }) {
   return (
     <div>
-      <h2>Finalizados</h2>
+      <h2>Participantes</h2>
       <table>
         <thead>
           <th>Concurso</th>

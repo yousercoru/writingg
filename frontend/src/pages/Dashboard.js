@@ -32,7 +32,7 @@ function Dashboard(props) {
         <img />
         <h3>{userLogged.nombre}</h3>
         <button onClick={() => setPage("EditarCuenta")}>Editar cuenta</button>
-        <button>Cambiar contraseña</button>
+        {/* <button>Cambiar contraseña</button> */}
         <button onClick={() => setPage("MisConcursos")}>Mis concursos</button>
         {currentUser && currentUser.rol == "organizador" && (
           <Link to="/alta-concurso">

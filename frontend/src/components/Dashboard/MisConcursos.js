@@ -14,9 +14,15 @@ import ActivosOrganizador from "./MisConcursosTables/ActivosOrganizador";
 import FinalizadosOrganizador from "./MisConcursosTables/FinalizadosOrganizador";
 import EditarConcurso from "./MisConcursosTables/EditarConcurso";
 import ParticipantesConcurso from "./MisConcursosTables/ParticipantesConcurso";
+import Modal from "../Modal";
 
 function MisConcursos() {
   const [data, setData] = useState(null);
+
+  const [modalConfirm, toggleModalConfirm] = useState(false);
+  const [modalAlert, toggleModalAlert] = useState(false);
+
+  const [deleteConcursoId, setDeleteConcursoId] = useState("");
 
   //se usa para editar un concurso
   const [editSlugConcurso, setEditNombreConcurso] = useState("");
@@ -41,9 +47,18 @@ function MisConcursos() {
   };
 
   const deleteParticipanteConcurso = async (idConcurso) => {
-    const result = await deleteParticipante(idConcurso);
+    toggleModalConfirm(true);
+    setDeleteConcursoId(idConcurso);
+  };
+
+  const confirmDeleteParticipante = async () => {
+    const result = await deleteParticipante(deleteConcursoId);
 
     await getDataConcurso();
+
+    toggleModalConfirm(false);
+    setDeleteConcursoId("");
+    toggleModalAlert(true);
   };
 
   useEffect(() => {
@@ -73,6 +88,22 @@ function MisConcursos() {
 
   return (
     <div>
+      <Modal
+        isModalOpen={modalConfirm}
+        onModalClose={() => toggleModalConfirm(false)}
+      >
+        <div>
+          <div>¿Estás seguro de que quieres eliminar tu inscripción?</div>
+          <button onClick={() => toggleModalConfirm(false)}>Cancelar</button>
+          <button onClick={() => confirmDeleteParticipante()}>Confirmar</button>
+        </div>
+      </Modal>
+      <Modal
+        isModalOpen={modalAlert}
+        onModalClose={() => toggleModalAlert(false)}
+      >
+        <div>Tu inscripción al concurso se ha eliminado correctamente</div>
+      </Modal>
       {currentUser && currentUser.rol === "escritor" && (
         <>
           <ActivosEscritor

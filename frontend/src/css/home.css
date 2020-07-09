@@ -30,7 +30,7 @@
 .categorias {
   width: 100%;
   min-height: auto;
-  margin: 20px;
+  /* margin: 20px; */
   /* padding-left: 15px;
     padding-right: 15px; */
   display: flex;
@@ -40,6 +40,57 @@
   align-items: center;
   font-size: var(--font-m);
   color: white;
+}
+
+.latest {
+  display: flex;
+}
+
+.box {
+  width: 180px;
+  height: 200px;
+  overflow: hidden;
+  margin: 20px;
+
+  display: flex;
+
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: var(--font-m);
+  background: rgba(255, 255, 255, 0.5);
+  /* background-image: url("../img/homepage/writingg-cuentos.png"); */
+
+  box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.2);
+}
+
+.box-img {
+  height: 60%;
+  width: 100%;
+  overflow: hidden;
+}
+.box-img img {
+  width: 100%;
+  height: 10em;
+  object-fit: cover;
+}
+
+.box-content {
+  height: 40%;
+  width: 100%;
+}
+
+.box-content h4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 3.5em;
+}
+
+.box-content p {
+  text-align: left;
+  width: 100%;
 }
 
 .box-categorias {

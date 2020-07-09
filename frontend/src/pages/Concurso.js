@@ -12,6 +12,7 @@ import {
 } from "../http/concursosService";
 import Modal from "../components/Modal";
 import MailTo from "../components/MailTo";
+import LatestConcursos from "../components/LatestConcursos";
 
 const ModalFirstStep = ({ userLogged, data, onClick, setFile, file }) => (
   <div>
@@ -136,6 +137,18 @@ function Concurso() {
     }
   };
 
+  const allowInscriptions = () => {
+    if (data) {
+      return (
+        !inscrito &&
+        currentUser &&
+        currentUser.rol !== "organizador" &&
+        new Date() < new Date(data.fechaVencimiento)
+      );
+    }
+    return false;
+  };
+
   // si no se han cargado los datos
   if (!data) {
     return <div>loading...</div>;
@@ -217,7 +230,7 @@ function Concurso() {
         </div>
         <div className="second-column">
           <h4>{data.nombreConcurso}</h4>
-          {!inscrito && currentUser && currentUser.rol !== "organizador" && (
+          {allowInscriptions() && (
             <button
               className="participar-button"
               onClick={() => {
@@ -257,16 +270,7 @@ function Concurso() {
           </button>
         </div>
       </div>
-      <div>
-        Irá un componente (Últimos concursos publicados: Novela)
-        {data.nextConcursos.map((concurso) => (
-          <div>
-            <img src="" />
-            <h4>{concurso.nombre}</h4>
-            <p>31/12/2020</p>
-          </div>
-        ))}
-      </div>
+      <LatestConcursos data={data.nextConcursos} />
     </div>
   );
 }

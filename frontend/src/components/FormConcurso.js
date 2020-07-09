@@ -42,9 +42,9 @@ function FormConcurso({ isNew, defaultValues, setWinners }) {
           ),
           // //cartel: defaultValues.cartel,
           // // bases_pdf: defaultValues.bases_pdf,
-          primerPremio: defaultValues.primerPremio,
-          segundoPremio: defaultValues.segundoPremio,
-          tercerPremio: defaultValues.tercerPremio,
+          primerPremio: defaultValues.primerPremio + "€",
+          segundoPremio: defaultValues.segundoPremio + "€",
+          tercerPremio: defaultValues.tercerPremio + "€",
           fechaPremiados: moment(defaultValues.fechaPremiados).format(
             "YYYY-MM-DD"
           ),

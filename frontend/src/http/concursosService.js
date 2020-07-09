@@ -1,20 +1,8 @@
 import axios from "axios";
 import { clientApi } from "./apis";
 
-// export function createConcursos() {
-//     return axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/concursos`, concurso);
-// }
-
-// export function searchConcursos() {
-//     return axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/concursos/search`);
-// }
-
-// export function getConcursos() {
-//     return axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/concursos`);
-// }
-
-export function getConcurso(slugNombreConcurso) {
-  return clientApi.getClient().get(`api/concurso/${slugNombreConcurso}`);
+export function getConcursosLatest() {
+  return clientApi.getClient().get(`api/concursos-latest`);
 }
 
 export function getConcursos(params) {
@@ -25,31 +13,8 @@ export function getConcursosByCategoria(categoria) {
   return clientApi.getClient().get(`api/concursos/${categoria}`);
 }
 
-export function addParticipante(idconcursos) {
-  return clientApi
-    .getClient()
-    .post(`/api/concurso-participante/${idconcursos}`);
-}
-
-export function deleteParticipante(idconcursos) {
-  return clientApi
-    .getClient()
-    .delete(`/api/concurso-participante/${idconcursos}`);
-}
-
-export function addDocToParticipante(idconcursos, formData) {
-  return clientApi
-    .getClient()
-    .post(`/api/concursos/${idconcursos}/obra`, formData);
-}
-
-//TODO
-export function createConcursos(body) {
-  return clientApi.getClient().post(`api/concursos`, body);
-}
-
-export function editConcursos(idconcursos, body) {
-  return clientApi.getClient().put(`api/concursos/${idconcursos}`, body);
+export function getConcurso(slugNombreConcurso) {
+  return clientApi.getClient().get(`api/concurso/${slugNombreConcurso}`);
 }
 
 export function misConcursosEscritor() {
@@ -58,6 +23,32 @@ export function misConcursosEscritor() {
 
 export function misConcursosOrganizador() {
   return clientApi.getClient().get(`api/concursos-organizador`);
+}
+
+export function participantesConcurso(idconcursos) {
+  return clientApi
+    .getClient()
+    .get(`api/concursos/${idconcursos}/participantes-concurso`);
+}
+
+export function createConcursos(body) {
+  return clientApi.getClient().post(`api/concursos`, body);
+}
+
+export function addParticipante(idconcursos) {
+  return clientApi
+    .getClient()
+    .post(`/api/concurso-participante/${idconcursos}`);
+}
+
+export function addDocToParticipante(idconcursos, formData) {
+  return clientApi
+    .getClient()
+    .post(`/api/concursos/${idconcursos}/obra`, formData);
+}
+
+export function editConcursos(idconcursos, body) {
+  return clientApi.getClient().put(`api/concursos/${idconcursos}`, body);
 }
 
 export function setRatingConcurso(idconcursos, rating) {
@@ -74,8 +65,8 @@ export function setRatingObra(idconcursos, users_idusers, rating) {
     });
 }
 
-export function participantesConcurso(idconcursos) {
+export function deleteParticipante(idconcursos) {
   return clientApi
     .getClient()
-    .get(`api/concursos/${idconcursos}/participantes-concurso`);
+    .delete(`/api/concurso-participante/${idconcursos}`);
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 // import { useForm } from "react-hook-form";
 // import { login } from "../http/authService";
@@ -11,30 +11,23 @@ import { Footer } from "../components/Footer";
 import SearchToolBar from "../components/SearchToolBar";
 
 import "../css/index.css";
+import { getConcursos, getConcursosLatest } from "../http/concursosService";
+import LatestConcursos from "../components/LatestConcursos";
 
 export function Home() {
-  // const {
-  //     setError,
-  //     setValue
-  // } = useForm({
-  //     mode: 'onBlur'
-  // });
+  const [data, setData] = useState(null);
 
-  // const history = useHistory();
-  // const { setIsAuthenticated, setCurrentUser } = useAuth();
+  const getData = async () => {
+    const result = await getConcursosLatest();
 
-  // const login(formData)
-  //         .then(response => {
-  //             // setRole(jwt_decode(response.data.token))
-  //             setIsAuthenticated(true);
-  //             setCurrentUser(response.data);
-  //             history.push('/');
-  //         })
-  //         .catch(error => {
-  //             setValue('password', '');
-  //             setError('password', 'credentials', 'Tus credenciales no son válidas');
-  //         });
-  // };
+    setData(result.data);
+  };
+
+  useEffect(() => {
+    getData();
+
+    return () => {};
+  }, []);
 
   return (
     <React.Fragment>
@@ -85,23 +78,7 @@ export function Home() {
             <Link to="/concursos/ensayos">Ensayos</Link>
           </div>
         </div>
-        {/* <div className="wrapper">
-                    <div className="slider">
-                        // </div><div className="slide"> //
-                            <div className="slide">
-                                <div>
-                                    <h3>¿Te gusta escribir?</h3>
-                                    <h2>Participa en concursos literarios y gana fantásticos premios</h2>
-                                    <Link to="/soy-escritor" className="h-btn-4">Más info</Link>
-                                </div>
-                                <div>
-                                    <h3>¿Organizas concursos literarios?</h3>
-                                    <h2>Registra tu concurso y consigue multiplicar la participación</h2>
-                                    <Link to="/soy-organizador" className="h-btn-4">Más info</Link>
-                                </div>
-                            </div>
-                        </div>
-                </div> */}
+        <LatestConcursos data={data} />
       </main>
       <Footer />
     </React.Fragment>

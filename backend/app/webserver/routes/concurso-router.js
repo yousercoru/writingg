@@ -17,7 +17,10 @@ const deleteConcurso = require("../controllers/concurso/delete-concurso");
 const deleteParticipanteToConcurso = require("../controllers/concurso/delete-participante-concurso");
 const getParticipantesConcurso = require("../controllers/concurso/get-participantes-concurso");
 const getConcurso = require("../controllers/concurso/get-concurso");
-const getConcursos = require("../controllers/concurso/get-concursos");
+const getConcursosSearch = require("../controllers/concurso/get-concursos-search");
+const {
+  getConcursosLatest,
+} = require("../controllers/concurso/get-concursos-latest");
 const getConcursosByCategoria = require("../controllers/concurso/get-concursos-by-categoria");
 const getConcursosParticipante = require("../controllers/concurso/get-concursos-participante");
 const getConcursosOrganizador = require("../controllers/concurso/get-concursos-organizador");
@@ -33,8 +36,9 @@ const files = upload.fields([{ name: "cartel" }, { name: "bases_pdf" }]);
 //Open Enpoints
 router.get("/concursos/search", searchConcursos);
 router.get("/concurso/:slugNombreConcurso", getConcurso);
-router.get("/concursos", getConcursos);
+router.get("/concursos", getConcursosSearch);
 router.get("/concursos/:categoria", getConcursosByCategoria);
+router.get("/concursos-latest", getConcursosLatest);
 
 // Mostra con
 router.get(

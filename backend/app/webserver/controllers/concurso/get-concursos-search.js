@@ -2,7 +2,7 @@
 
 const mysqlPool = require("../../../database/mysql-pool");
 
-async function getConcursos(req, res, next) {
+async function getConcursosSearch(req, res, next) {
   console.log(req.query);
 
   const { keywords, categoria, fechaInicio, fechaFin } = req.query;
@@ -73,4 +73,4 @@ async function getConcursos(req, res, next) {
   }
 }
 
-module.exports = getConcursos;
+module.exports = getConcursosSearch;

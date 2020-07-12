@@ -40,7 +40,7 @@ router.get("/concursos", getConcursosSearch);
 router.get("/concursos/:categoria", getConcursosByCategoria);
 router.get("/concursos-latest", getConcursosLatest);
 
-// Mostra con
+// Mostrar con usuario
 router.get(
   "/concursos-participante",
   checkAccountSession,
@@ -77,7 +77,6 @@ router.put(
   editConcurso
 );
 
-// router.get("/concursos/:idconcursos", getConcurso);
 router.delete(
   "/concursos/:idconcursos",
   checkAccountSession,

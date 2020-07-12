@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "d8437917-7528-47a4-a8d5-048344f60081",
+		"_postman_id": "0b9ebdc0-7d26-4a86-bf20-7bc0712a4bde",
 		"name": "writingg",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -19,7 +19,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\": \"yousercoru@yopmail.com\",\n\t\"password\": \"123456x\",\n\t\"nombre\": \"Manolo García\",\n\t\"dni\": \"12345678a\",\n\t\"rol\": \"escritor\"\n}",
+					"raw": "{\n\t\"email\": \"yousercoruAyto1@yopmail.com\",\n\t\"password\": \"123456x\",\n\t\"nombre\": \"Usuario 1\",\n\t\"dni\": \"12345678a\",\n\t\"rol\": \"organizador\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -40,6 +40,51 @@
 			"response": []
 		},
 		{
+			"name": "Put update account",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGY2MDg1ZS1kMDAwLTRmNDYtOGYzOS1kOTQ2ZDRmMjE5YzIiLCJyb2wiOiJvcmdhbml6YWRvciIsImlhdCI6MTU5MjE1NTQ5MCwiZXhwIjoxNTkyMTU5MDkwfQ.TYCdYXG7g6xUaUQg5XczjqDHUzfhJLMD7MPU87t9SLU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"email\": \"yousercoruAyto1@yopmail.com\",\n\t\"password\": \"123456x\",\n\t\"nombre\": \"Organizador 1\",\n\t\"dni\": \"12345678a\"\n\t\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/accounts/userid",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"accounts",
+						"userid"
+					]
+				}
+			},
+			"response": []
+		},
+		{
 			"name": "Login",
 			"request": {
 				"method": "POST",
@@ -53,7 +98,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"email\": \"yousercoruAyto@yopmail.com\",\n\t\"password\": \"123456x\"\n}",
+					"raw": "{\n\t\"email\": \"yousercoru1@yopmail.com\",\n\t\"password\": \"123456x\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -81,7 +126,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0NGMwYWU1My1hMmEwLTRlYTMtYmNhYi03ZGUwZDk2NTQ3OTYiLCJyb2wiOiJvcmdhbml6YWRvciIsImlhdCI6MTU4MTI3MzU0MCwiZXhwIjoxNTgxMjc3MTQwfQ.98hO-aMgy8nHqoSl7gR25gcZwuAVPEqOFTtb951DwC4",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGY2MDg1ZS1kMDAwLTRmNDYtOGYzOS1kOTQ2ZDRmMjE5YzIiLCJyb2wiOiJvcmdhbml6YWRvciIsImlhdCI6MTU5MjE1NTQ5MCwiZXhwIjoxNTkyMTU5MDkwfQ.TYCdYXG7g6xUaUQg5XczjqDHUzfhJLMD7MPU87t9SLU",
 							"type": "string"
 						}
 					]
@@ -97,7 +142,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n\t\"nombreConcurso\": \"III concurso de jóvenes escritores de Vigo\",\n    \"bases\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\",\n    \"fechaVencimiento\": \"8/02/2020\",\n    \"primerPremio\": \"1500\",\n    \"fechaPremiados\": \"8/04/2020\"\n}",
+					"raw": "{\n\t\"nombreConcurso\": \"V concurso jóvenes escritores Estrella Galicia\",\n    \"bases\": \"Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\",\n    \"fechaVencimiento\": \"31/12/2020\",\n    \"primerPremio\": \"18000\",\n    \"fechaPremiados\": \"5/01/2021\",\n    \"categoria\": \"Novela\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -134,14 +179,27 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "{{baseUrl}}/api/concursos/",
+					"raw": "{{baseUrl}}/api/concursos?keyword=&categoria=&fechas=",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"api",
-						"concursos",
-						""
+						"concursos"
+					],
+					"query": [
+						{
+							"key": "keyword",
+							"value": ""
+						},
+						{
+							"key": "categoria",
+							"value": ""
+						},
+						{
+							"key": "fechas",
+							"value": ""
+						}
 					]
 				}
 			},
@@ -175,14 +233,14 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/api/concursos/9a176bf0-030b-4fe6-847b-e737265e8a3c",
+					"raw": "{{baseUrl}}/api/concursos/95978322-97ec-4389-bb1e-1b445da654f1",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"api",
 						"concursos",
-						"9a176bf0-030b-4fe6-847b-e737265e8a3c"
+						"95978322-97ec-4389-bb1e-1b445da654f1"
 					]
 				}
 			},
@@ -196,7 +254,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI0NGMwYWU1My1hMmEwLTRlYTMtYmNhYi03ZGUwZDk2NTQ3OTYiLCJyb2wiOiJvcmdhbml6YWRvciIsImlhdCI6MTU4MTI3MzkzNCwiZXhwIjoxNTgxMjc3NTM0fQ.-h0bRMHEjQrWW0RLVJKSn94JzkoycEdUH-N5ZVqP0nM",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2NGY2MDg1ZS1kMDAwLTRmNDYtOGYzOS1kOTQ2ZDRmMjE5YzIiLCJyb2wiOiJvcmdhbml6YWRvciIsImlhdCI6MTU5MjE1Njg0NiwiZXhwIjoxNTkyMTYwNDQ2fQ.qbR9S1GSGlm_FWyvsHxtQ8HpY-ijTGUkUh_H5Jn1QrM",
 							"type": "string"
 						}
 					]
@@ -208,14 +266,14 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "{{baseUrl}}/api/concursos/9a176bf0-030b-4fe6-847b-e737265e8a3c",
+					"raw": "{{baseUrl}}/api/concursos/d21b22a1-acff-465b-a4d0-990d3961d3db",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"api",
 						"concursos",
-						"9a176bf0-030b-4fe6-847b-e737265e8a3c"
+						"d21b22a1-acff-465b-a4d0-990d3961d3db"
 					]
 				}
 			},
@@ -229,7 +287,7 @@
 					"bearer": [
 						{
 							"key": "token",
-							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI4N2EwZGE4My1kMzBhLTQxY2ItOTQwMS0zYTc1ODYwOTYxOGYiLCJyb2wiOiJlc2NyaXRvciIsImlhdCI6MTU4MTI5NDY2MiwiZXhwIjoxNTgxMjk4MjYyfQ.izgPdVHP5szqD62fvfuLtQMUXnIYjemD3mgy4-clfjQ",
+							"value": "{{token}}",
 							"type": "string"
 						}
 					]
@@ -253,18 +311,314 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/api/concursos/eff68d26-0307-4fef-a26b-def7ccbe0e00",
+					"raw": "{{baseUrl}}/api/concursos/95978322-97ec-4389-bb1e-1b445da654f1",
 					"host": [
 						"{{baseUrl}}"
 					],
 					"path": [
 						"api",
 						"concursos",
-						"eff68d26-0307-4fef-a26b-def7ccbe0e00"
+						"95978322-97ec-4389-bb1e-1b445da654f1"
 					]
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Upload doc",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "document",
+							"type": "file",
+							"src": "/home/daniel/Proyecto/writingg-master-3/backend/docs/Mi_novela.pdf"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/concursos/95978322-97ec-4389-bb1e-1b445da654f1/obra",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"concursos",
+						"95978322-97ec-4389-bb1e-1b445da654f1",
+						"obra"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete participante concurso",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIzZTQxZTVjYS1hNGYyLTRmM2UtOWQ4MC04ZWE1MWUyYTNlZGIiLCJyb2wiOiJlc2NyaXRvciIsImlhdCI6MTU5MjE1NzA3NywiZXhwIjoxNTkyMTYwNjc3fQ.YxpqbE8cECTgTw372lGvX1If3oBLx4aad3FzBVEHNpE",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "text/plain",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/concursos/d21b22a1-acff-465b-a4d0-990d3961d3db",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"concursos",
+						"d21b22a1-acff-465b-a4d0-990d3961d3db"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get participantes concurso",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/concursos/95978322-97ec-4389-bb1e-1b445da654f1/concursantes",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"concursos",
+						"95978322-97ec-4389-bb1e-1b445da654f1",
+						"concursantes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Auth user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/auth/user",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get concursos participante",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/participante/concursos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"participante",
+						"concursos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get concursos organizador",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/api/participante/concursos",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"participante",
+						"concursos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get concursos por categoria",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{baseUrl}}/api/concursos/poesia",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"concursos",
+						"poesia"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search concursos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/api/concursos/search?nombreConcurso=poesia",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"api",
+						"concursos",
+						"search"
+					],
+					"query": [
+						{
+							"key": "nombreConcurso",
+							"value": "poesia"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "33f885c7-c141-44f9-9f6d-53095ba08f34",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "405e278b-ef70-4788-b446-90e6fc7c55d3",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "a3f97dee-68f8-46cb-b483-d6dd0c16bd4e",
+			"key": "token",
+			"value": "",
+			"type": "string"
 		}
 	],
 	"protocolProfileBehavior": {}

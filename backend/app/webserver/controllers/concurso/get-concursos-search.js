@@ -9,9 +9,6 @@ async function getConcursosSearch(req, res, next) {
 
   console.log(keywords, categoria);
 
-  //const { userId } = req.params;
-
-  // 2. Select all tags
   try {
     const connection = await mysqlPool.getConnection();
 
@@ -51,18 +48,12 @@ async function getConcursosSearch(req, res, next) {
 
     connection.release();
 
-    // preparar respuesta
     const concursos = rows.map((concurso) => {
       return {
         ...concurso,
         created_At: undefined,
         updated_At: undefined,
         deleted_At: undefined,
-        // createdAt: tag.created_at,
-        // updatedAt: tag.updated_at,
-        // user_id: undefined,
-        // created_at: undefined,
-        // updated_at: undefined
       };
     });
 

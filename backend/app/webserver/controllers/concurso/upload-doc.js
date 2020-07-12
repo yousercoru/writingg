@@ -72,8 +72,6 @@ async function uploadDoc(req, res, next) {
       }
     )
     .end(file.buffer);
-
-  // next();
 }
 
 module.exports = uploadDoc;

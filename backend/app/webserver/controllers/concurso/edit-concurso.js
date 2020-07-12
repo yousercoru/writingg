@@ -43,7 +43,6 @@ async function editConcurso(req, res, next) {
     segundo,
     tercero,
   } = concursoData;
-  //   const { nombreConcurso, categoria, bases, fechaVencimiento, primerPremio, fechaPremiados} = concursoData;
 
   let bases_pdf;
   if (req.files.bases_pdf) {

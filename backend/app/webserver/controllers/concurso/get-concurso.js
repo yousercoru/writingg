@@ -38,7 +38,8 @@ async function getConcurso(req, res, next) {
     const getConcursoQuery = `SELECT concursos.*,
     (select count(*) from users_has_concursos
     WHERE users_has_concursos.concursos_idconcursos = concursos.idconcursos)
-    AS participantes
+    AS participantes,
+    (SELECT AVG(ratingParticipante) FROM users_has_concursos where deleted_at is null and users_has_concursos.concursos_idconcursos = concursos.idconcursos) as avgRatingConcurso
     FROM concursos WHERE slugNombreConcurso = ?`;
     const [results] = await connection.execute(getConcursoQuery, [
       slugNombreConcurso,

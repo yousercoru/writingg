@@ -5,7 +5,7 @@ const mysqlPool = require("../../../database/mysql-pool");
 
 async function validate(payload) {
   const schema = Joi.object({
-    idconcursos: Joi.string().required()
+    idconcursos: Joi.string().required(),
   });
 
   Joi.assert(payload, schema);
@@ -13,7 +13,6 @@ async function validate(payload) {
 
 async function deleteConcurso(req, res, next) {
   const { idconcursos } = req.params;
-  //const { userId } = req.claims;
 
   try {
     await validate({ idconcursos });
@@ -36,7 +35,7 @@ async function deleteConcurso(req, res, next) {
       .replace("T", " ");
     const [deletedStatus] = await connection.execute(sqlQuery, [
       deleted_at,
-      idconcursos
+      idconcursos,
     ]);
     connection.release();
 

@@ -24,7 +24,6 @@ async function validate(payload) {
 async function createConcurso(req, res, next) {
   const concursoData = { ...req.body };
 
-  // COMPROBAR QUE LLEGAN LOS DATOS
   console.log(concursoData);
 
   const { userId } = req.claims;
@@ -32,16 +31,6 @@ async function createConcurso(req, res, next) {
   console.log(req.files.cartel);
 
   console.log(userId);
-
-  /* 
-  try {
-    await validate(concursoData);
-  } catch (e) {
-    console.log("aqui");
-
-    return res.status(400).send(e);
-  }
-  */
 
   const created_At = new Date()
     .toISOString()
@@ -57,7 +46,6 @@ async function createConcurso(req, res, next) {
     tercerPremio,
     fechaPremiados,
   } = concursoData;
-  //   const { nombreConcurso, categoria, bases, fechaVencimiento, primerPremio, fechaPremiados} = concursoData;
 
   let bases_pdf;
   if (req.files.bases_pdf) {

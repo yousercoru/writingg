@@ -3,10 +3,6 @@
 const Joi = require("@hapi/joi");
 const mysqlPool = require("../../../database/mysql-pool");
 
-// /**
-//  *
-//  * @param {Object} payload
-//  */
 async function validate(payload) {
   const schema = Joi.object({
     userId: Joi.string(),
@@ -55,8 +51,6 @@ const getConcursosFinalizados = async (userId) => {
 };
 
 async function getConcursosOrganizador(req, res, next) {
-  //const { idusers } = req.claims;
-
   const { userId } = req.claims;
 
   try {

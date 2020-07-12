@@ -14,6 +14,11 @@ import Modal from "../components/Modal";
 import MailTo from "../components/MailTo";
 import LatestConcursos from "../components/LatestConcursos";
 
+import SocialMedia from "../components/SocialMedia";
+
+import "../css/concurso.css";
+import Rating from "react-rating";
+
 const ModalFirstStep = ({ userLogged, data, onClick, setFile, file }) => (
   <div>
     <div>
@@ -44,15 +49,8 @@ const ModalContentSuccess = ({ userLogged }) => (
     </div>
     <div>
       <h4>Compartir</h4>
-      <div>
-        <a>In</a>
-        <a>Fb</a>
-        <a>Tw</a>
-        <a>Ln</a>
-      </div>
+      <SocialMedia />
     </div>
-
-    {/* Poner ruta correctamente*/}
     <Link to="/dashboard/MisConcursos">
       <button>Ir a mis concursos</button>
     </Link>
@@ -121,8 +119,6 @@ function Concurso() {
     try {
       const result = await addParticipante(data.idconcursos);
 
-      //nsole.log(result.data);
-
       const formdata = new FormData();
       formdata.append("document", file[0]);
 
@@ -149,13 +145,23 @@ function Concurso() {
     return false;
   };
 
-  // si no se han cargado los datos
+  const url = window.location.href;
+  const summary =
+    "¿Has visto ya este concurso literario? Participa y gana uno de los premios";
+  const title = data && data.nombreConcurso;
+
+  const share = {
+    fb: `https://www.facebook.com/sharer.php?u=${url}'&summary=${summary}'&title=${title}`,
+    in: `https://www.linkedin.com/shareArticle?mini=true&summary=${summary}&title=${title}&url=${url}`,
+    tw: `https://twitter.com/intent/tweet?text=${title} - ${url}`,
+  };
+
   if (!data) {
     return <div>loading...</div>;
   }
 
   return (
-    <div style={{ overflowY: "scroll", height: "75vh", width: "100%" }}>
+    <div className="main-concurso-container">
       <Modal isModalOpen={modalOpen} onModalClose={() => toggleModal(false)}>
         {modalContent === "ModalFirstStep" && (
           <ModalFirstStep
@@ -176,15 +182,21 @@ function Concurso() {
         )}
       </Modal>
       <div className="container-top">
-        <div className="first-colunm">
-          <div>
+        <div className="first-column">
+          <div className="titulo">
             <h1>{data.nombreConcurso}</h1>
           </div>
           <div className="details-container">
             <div>
-              <img src={data.cartel} />
+              <img
+                src={
+                  data.cartel
+                    ? data.cartel
+                    : "https://picsum.photos/id/1073/200/300"
+                }
+              />
             </div>
-            <div>
+            <div className="detail-list-container">
               <h2>Detalles:</h2>
               <ul className="ul-details">
                 <li>
@@ -222,12 +234,16 @@ function Concurso() {
                 </li>
               </ul>
             </div>
-            <div>
-              <h2>Bases:</h2>
-              <div dangerouslySetInnerHTML={{ __html: data.bases }} />
-            </div>
+          </div>
+          <div className="bases">
+            <h2>Bases:</h2>
+            <div
+              className="bases-content"
+              dangerouslySetInnerHTML={{ __html: data.bases }}
+            />
           </div>
         </div>
+
         <div className="second-column">
           <h4>{data.nombreConcurso}</h4>
           {allowInscriptions() && (
@@ -243,34 +259,55 @@ function Concurso() {
           )}
 
           {!currentUser && (
-            <button>
-              <Link to="/login">Participar</Link>
-            </button>
+            <Link to="/login">
+              <button className="participar-button">Participar</button>
+            </Link>
           )}
-          <div>
+          <div className="detalles-concurso-span">
             <span>{data.categoria}</span>
             <span>{data.primerPremio}</span>
             <span>{moment(data.fechaVencimiento).format("DD/MM/YYYY")}</span>
           </div>
-          <div>
-            <p>Participantes actuales:</p>
+          <div className="participantes-actuales">
+            <p>Participantes:</p>
             <p>{data.participantes}</p>
           </div>
-          <div>
-            <h4>Compartir</h4>
-            <div>
-              <a>In</a>
-              <a>Fb</a>
-              <a>Tw</a>
-              <a>Ln</a>
-            </div>
+
+          <div className="rating-concurso">
+            <p>Valoración:</p>
+            {data.avgRatingConcurso ? (
+              <Rating
+                fractions={2}
+                initialRating={data.avgRatingConcurso}
+                emptySymbol="far fa-star"
+                fullSymbol="fas fa-star"
+                readonly
+              />
+            ) : (
+              "-"
+            )}
           </div>
-          <button>
-            <MailTo>¿Alguna duda? Escribe al organizador</MailTo>
-          </button>
+
+          <div className="compartir-concurso">
+            <h4>Compartir</h4>
+            <SocialMedia
+              facebook={share.fb}
+              twitter={share.tw}
+              linkedin={share.in}
+            />
+          </div>
+          <MailTo>
+            <button className="duda-button">
+              ¿Alguna duda? Escribe al organizador
+            </button>
+          </MailTo>
         </div>
       </div>
-      <LatestConcursos data={data.nextConcursos} />
+
+      <LatestConcursos
+        data={data.nextConcursos}
+        title={`Últimos concursos publicados: ${data.categoria}`}
+      />
     </div>
   );
 }

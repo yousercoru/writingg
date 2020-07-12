@@ -1,16 +1,16 @@
-import React from "react";
+import React, { useState } from "react";
 import jwt from "jsonwebtoken";
 import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
-// import { login } from "../http/authService";
-import { createAccount } from "../http/accountService";
-// import { signIn } from "../http/authService";
-import { useAuth } from "../context/auth-context";
-// import { Header } from "../components/Header";
 
-// import '../css/forms.css';
+import { createAccount } from "../http/accountService";
+
+import { useAuth } from "../context/auth-context";
+import Modal from "../components/Modal";
 
 export function Register() {
+  const [modalConfirm, toggleModalConfirm] = useState(false);
+
   const {
     handleSubmit,
     register,
@@ -27,31 +27,26 @@ export function Register() {
 
   const handleLogin = (registerData) => {
     console.log(registerData);
-    return (
-      createAccount(registerData)
-        // login(registerData)
-        .then((response) => {
-          setRol(jwt(response.data.token));
-          // setIsAuthenticated(true);
-          setCurrentUser(response.data);
-          history.push("/");
-        })
-        .catch((error) => {
-          setValue("password", "");
-          setError(
-            "password",
-            "credentials",
-            "Tus credenciales no son válidas"
-          );
-        })
-    );
+    return createAccount(registerData)
+      .then((response) => {
+        toggleModalConfirm(true);
+      })
+      .catch((error) => {});
   };
 
   return (
     <React.Fragment>
-      {/* <Header /> */}
+      <Modal
+        isModalOpen={modalConfirm}
+        onModalClose={() => toggleModalConfirm(false)}
+      >
+        <div>
+          <div>Registro correcto. Ya puedes acceder a tu cuenta</div>
+          <button onClick={() => history.push("/login")}>Ir a login</button>
+        </div>
+      </Modal>
+
       <main className="centered-container">
-        {/* <img src="writingg-logo-192.png" alt="Writingg.com" /> */}
         <h1>
           writingg<span className="writingg-logo">.</span>
         </h1>
@@ -156,19 +151,15 @@ export function Register() {
               ref={register({
                 required: "Elige entre escritor u organizador",
               })}
-              // name="tipoCuenta"
-              // type="select"
-              // placeholder="Selecciona un tipo de cuenta"
             >
-              <option value="Escritor">Escritor</option>
-              <option value="Organizador">Organizador</option>
+              <option value="escritor">Escritor</option>
+              <option value="organizador">Organizador</option>
             </select>
             {errors.tipoCuenta && (
               <span className="errorMessage">{errors.tipoCuenta.message}</span>
             )}
           </div>
           <div className="btn-container">
-            {/* REVISAR. Nos falta hacia donde apunta */}
             <button
               type="submit"
               className="btn"

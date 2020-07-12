@@ -1,12 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-// import { useForm } from "react-hook-form";
-// import { login } from "../http/authService";
-// import { signIn } from "../http/authService";
-// import { useAuth } from "../context/auth-context";
-
-// import { Header } from "../components/Header";
-import { Footer } from "../components/Footer";
 
 import SearchToolBar from "../components/SearchToolBar";
 
@@ -31,56 +24,46 @@ export function Home() {
 
   return (
     <React.Fragment>
-      <main /*className="container"*/>
+      <main>
         <div>
           <div className="presentacion">
-            {/* <div><h4>¿Te gusta escribir? ¿Organizas concursos?</h4></div> */}
-            {/* <div className="slide"><h2>Participa en concursos literarios y gana fantásticos premios</h2></div> */}
             <div>
               <h3>Crea, escribe, participa y gana fantásticos premios</h3>
             </div>
             <div>
-              <h2>Somos la nueva plataforma de concursos literarios</h2>
+              <h2>Cientos de concursos literarios a tu alcance</h2>
             </div>
             <SearchToolBar />
-            {/* <div clasName="btn-slider"> */}
-            {/* <div clasName="btn-slider"> */}
-            <div clasName="btn-slider">
-              <Link to="/soy-escritor" className="h-btn-4">
-                Soy escritor
-              </Link>
-            </div>
-            <div clasName="btn-slider">
-              <Link to="/soy-organizador" className="h-btn-4">
-                Soy organizador
-              </Link>
-            </div>
-            {/* </div> */}
           </div>
         </div>
-        <div clasName="t-seccion">
+        <div className="titulo-seccion">
           <h3>Busca por categoría</h3>
         </div>
         <div className="categorias">
-          <div className="box-categorias novela">
-            <Link to="/concursos/novela">Novela</Link>
-          </div>
-          <div className="box-categorias cuentos">
-            <Link to="/concursos/cuentos">Cuentos</Link>
-          </div>
-          <div className="box-categorias poesia">
-            <Link to="/concursos/poesia">Poesía</Link>
-          </div>
-          <div className="box-categorias microrrelatos">
-            <Link to="/concursos/microrrelatos">Microrrelatos</Link>
-          </div>
-          <div className="box-categorias ensayos">
-            <Link to="/concursos/ensayos">Ensayos</Link>
-          </div>
+          <Link to="/concursos/novela" className="box-categorias novela">
+            <p>Novela</p>
+          </Link>
+          <Link to="/concursos/cuentos" className="box-categorias cuentos">
+            <p>Cuentos</p>
+          </Link>
+          <Link to="/concursos/poesia" className="box-categorias poesia">
+            <p>Poesía</p>
+          </Link>
+          <Link
+            to="/concursos/microrrelatos"
+            className="box-categorias microrrelatos"
+          >
+            <p>Microrrelatos</p>
+          </Link>
+          <Link to="/concursos/ensayos" className="box-categorias ensayos">
+            <p>Ensayos</p>
+          </Link>
         </div>
-        <LatestConcursos data={data} />
+
+        <div className="latest-concursos-home">
+          <LatestConcursos data={data} title="Últimos concursos publicados" />
+        </div>
       </main>
-      <Footer />
     </React.Fragment>
   );
 }

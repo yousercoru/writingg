@@ -1,0 +1,41 @@
+table {
+  margin-top: 15px;
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+table td,
+table th {
+  border: 1px solid rgba(128, 128, 128, 0.5);
+  padding: 5px 4px;
+}
+
+table tbody td {
+  font-size: 13px;
+}
+table tbody td:first-child {
+  cursor: pointer;
+}
+table tbody td:first-child:hover {
+  color: var(--txtBlue);
+  background-color: rgba(102, 51, 153, 0.05);
+}
+table thead {
+  background: var(--cGreen);
+}
+table thead th {
+  font-size: 14px;
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  line-height: 1.5em;
+}
+table tfoot {
+  font-size: 14px;
+  font-weight: bold;
+  color: #000000;
+  border-top: 3px solid #000000;
+}
+table tfoot td {
+  font-size: 14px;
+}

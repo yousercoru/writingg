@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import { Link, useParams, useHistory } from "react-router-dom";
 import EditarCuenta from "../components/Dashboard/EditarCuenta";
 import MisConcursos from "../components/Dashboard/MisConcursos";
+import AltaConcurso from "../pages/AltaConcurso";
 
 import { useAuth } from "../context/auth-context";
 
+import "../css/dashboard.css";
+
 const Pages = {
   EditarCuenta,
-  CambiarPassword: "",
   MisConcursos,
+  AltaConcurso,
 };
 
 function Dashboard(props) {
@@ -27,23 +30,37 @@ function Dashboard(props) {
   };
 
   return (
-    <div>
+    <div className="dashboard">
       <div className="menu-perfil">
-        <img />
-        <h3>{userLogged.nombre}</h3>
-        <button onClick={() => setPage("EditarCuenta")}>Editar cuenta</button>
-        {/* <button>Cambiar contraseña</button> */}
-        <button onClick={() => setPage("MisConcursos")}>Mis concursos</button>
-        {currentUser && currentUser.rol == "organizador" && (
-          <Link to="/alta-concurso">
-            <button>Dar de alta un cuncurso</button>
+        <h2>{userLogged.nombre}</h2>
+        <div className="dashboard-buttons">
+          <button
+            className="dashboard-btn"
+            onClick={() => setPage("EditarCuenta")}
+          >
+            Editar cuenta
+          </button>
+
+          <button
+            className="dashboard-btn"
+            onClick={() => setPage("MisConcursos")}
+          >
+            Mis concursos
+          </button>
+          {currentUser && currentUser.rol == "organizador" && (
+            <button
+              className="dashboard-btn"
+              onClick={() => setPage("AltaConcurso")}
+            >
+              Dar de alta un cuncurso
+            </button>
+          )}
+          <Link to="/" onClick={() => deleteUser()}>
+            <button className="dashboard-btn">Cerrar sesión</button>
           </Link>
-        )}
-        <Link to="/" onClick={() => deleteUser()}>
-          <button>Cerrar sesión</button>
-        </Link>
+        </div>
       </div>
-      <div>
+      <div className="dashboard-content">
         <PageComponent />
       </div>
     </div>

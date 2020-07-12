@@ -1,18 +1,17 @@
-import React /*, {useState}*/ from "react";
+import React from "react";
 import jwt from "jsonwebtoken";
 import { Link, useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { login } from "../http/authService";
-// import { signIn } from "../http/authService";
+
 import { useAuth } from "../context/auth-context";
-// import { Header } from "../components/Header";
 
 export function Login() {
   const {
     handleSubmit,
     register,
     errors,
-    // watch,
+
     formState,
     setError,
     setValue,
@@ -38,14 +37,13 @@ export function Login() {
 
   return (
     <React.Fragment>
-      {/* <Header /> */}
       <main className="centered-container">
         <h1>
           writingg<span className="writingg-logo">.</span>
         </h1>
         <h4 className="p-t-md">Hoy es un gran día para leer y escribir</h4>
         <h2>Inicia sesión</h2>
-        <form onSubmit={handleSubmit(handleLogin)} /*noValidate*/>
+        <form onSubmit={handleSubmit(handleLogin)}>
           <div
             className={`form-control ${
               errors.email ? "ko" : formState.touched.email && "ok"
@@ -89,7 +87,6 @@ export function Login() {
             )}
           </div>
           <div className="btn-container">
-            {/* REVISAR. No falta hacia donde apunta */}
             <button
               type="submit"
               className="btn"

@@ -1,0 +1,142 @@
+.search-toolbar {
+  background: var(--cOrangeSearch);
+
+  height: 75px;
+  width: -webkit-fill-available;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-toolbar-inputs .keywords {
+  width: 20em;
+}
+
+.search-toolbar-inputs input,
+select {
+  margin-left: 5px;
+  height: 60px;
+  background-color: #fff;
+  padding-left: 10px;
+  border: 0;
+  border-radius: 4px;
+}
+
+.search-toolbar-inputs select {
+  background-color: #fff;
+  color: var(--txtBlueLight);
+}
+
+.search-toolbar-inputs input:hover,
+select:hover {
+  box-shadow: 0 0 6px rgba(35, 173, 255, 1);
+}
+
+/* MOBILE NAV */
+
+@media only screen and (max-width: 1400px) {
+  .search-toolbar {
+    display: flex;
+    flex-direction: column;
+    height: max-content;
+  }
+  .search-toolbar-inputs {
+    display: flex;
+    margin-top: 5px;
+  }
+
+  .search-toolbar-inputs input,
+  select {
+    margin-bottom: 5px;
+  }
+
+  .h-btn-search {
+    width: -webkit-fill-available;
+  }
+}
+
+@media only screen and (max-width: 1320px) {
+  .search-toolbar {
+  }
+  .search-toolbar-inputs {
+    display: flex;
+    margin-top: 5px;
+    width: 100%;
+  }
+
+  .search-toolbar-inputs input,
+  select {
+    margin-bottom: 5px;
+  }
+
+  .h-btn-search {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 1140px) {
+  .search-toolbar-inputs {
+    font-size: 75%;
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .search-toolbar-inputs {
+    font-size: 65%;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .search-toolbar {
+    display: flex;
+    flex-direction: column;
+
+    height: max-content;
+    width: 90vw;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .search-toolbar-inputs {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .search-toolbar-inputs select,
+  input {
+    height: 25% !important;
+  }
+
+  .h-btn-search {
+    height: 50% !important;
+  }
+
+  .search-toolbar-inputs .keywords {
+    width: auto;
+  }
+}
+
+@media only screen and (max-width: 300px) {
+  .search-toolbar {
+    width: fit-content;
+    height: fit-content;
+    margin: 0;
+  }
+
+  .search-toolbar-inputs {
+    display: flex;
+    flex-direction: column;
+    margin: 1px;
+  }
+
+  .search-toolbar-inputs select,
+  input {
+    height: 25% !important;
+  }
+
+  .h-btn-search {
+    height: 25% !important;
+    font-size: 1rem !important;
+    margin: 3px !important;
+  }
+}

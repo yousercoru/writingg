@@ -32,8 +32,14 @@ function EditarCuenta(props) {
   console.log(errors);
 
   return (
-    <div>
-      <Modal isModalOpen={showModal} onModalClose={() => toggleModal(false)}>
+    <div className="editar-cuenta">
+      <Modal
+        isModalOpen={showModal}
+        onModalClose={() => {
+          toggleModal(false);
+          window.location.reload();
+        }}
+      >
         <div>Tus cambios se han guardado correctamente</div>
       </Modal>
       <form onSubmit={handleSubmit(handleSave)}>
@@ -109,7 +115,7 @@ function EditarCuenta(props) {
             <span className="errorMessage">{errors.password.message}</span>
           )}
         </div>
-        <button type="submit" className="btn">
+        <button type="submit" className="dashboard-btn">
           Guardar cambios
         </button>
       </form>

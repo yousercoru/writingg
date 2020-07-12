@@ -24,8 +24,13 @@ function EditarConcurso({
 
   return (
     <div>
-      Editar concurso
-      <button onClick={() => setEditNombreConcurso("")}>back</button>
+      <h3>Editar concurso</h3>
+      <button
+        className="dashboard-table-btn"
+        onClick={() => setEditNombreConcurso("")}
+      >
+        <i className="fas fa-chevron-left"></i>
+      </button>
       {winnerConcurso && (
         <p style={{ color: "red" }}>
           Nota: este concurso ya ha vencido. Solo puedes modificar el listado de

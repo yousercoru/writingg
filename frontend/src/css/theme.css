@@ -1,72 +1,68 @@
 :root {
   /* COLORES */
   --primary: #212429;
-  --secondary: #4361D7;
+  --secondary: #4361d7;
 
   /* Texto */
   --txtBlack: #212429;
-  --txtBlackMedium: #1D1B38;
+  --txtBlackMedium: #1d1b38;
   --txtBlueGrey: #545873;
-  --txtBlue: #4361D7;
-  --txtBlueLight: #6E86ED;
-  --textGreen: #64C3AB;
-  --txtGreenLight: #66CC99;
-  --txtLightGrey: #F5F7FA;
+  --txtBlue: #4361d7;
+  --txtBlueLight: #6e86ed;
+  --textGreen: #64c3ab;
+  --txtGreenLight: #66cc99;
+  --txtLightGrey: #f5f7fa;
 
   /* Botones */
-  --btnBlackMedium: #1D1B38;
+  --btnBlackMedium: #1d1b38;
   --btnDarkBlue: #373753;
-  --btnBlue: #4361D7;
-  --btnBlueLight: #6E86ED;
-  --btnGreenMedium: #66CC99;
-  --btnGreen: #64C3AB;
+  --btnBlue: #4361d7;
+  --btnBlueLight: #6e86ed;
+  --btnGreenMedium: #66cc99;
+  --btnGreen: #64c3ab;
   --btnlightGrey: #f5f7fa;
   --btnsoftGreen: #edfbf6;
   --btnBlueGrey: #545873;
 
-
   /* Fondos */
-  --white: #FFFFFF;
+  --white: #ffffff;
   --lightGrey: #f5f7fa;
-  --blackMedium: #1D1B38;
+  --blackMedium: #1d1b38;
   --BlueGrey: #545873;
   --softGreen: #edfbf6;
-  
-
+  --lightGreen: rgba(102, 204, 153, 0.75);
 
   /* Custom colors */
-  --cRed: #F03063;
-  --cOrange: #FD7847;
-  --cYellow: #FED56A;
-  --cYellowLight: #FEDE88;
-  --cGreen: #64C3AB;
-  --cGreenBright: #85F1B8;
-  --cMediumDarkBlue: #494E6A;
-  --cSkyBlue: #63C0F9;
-  --cPurple: #6B31ED;
-  --cPurpleMedium: #895EF7;
-  --cPurpleBright: #AA8CF8;
-  --cElectricPink: #FC22B1;
+  --cRed: #f03063;
+  --cOrange: #fd7847;
+  --cYellow: #fed56a;
+  --cYellowLight: #fede88;
+  --cGreen: #64c3ab;
+  --cGreenBright: #85f1b8;
+  --cMediumDarkBlue: #494e6a;
+  --cSkyBlue: #63c0f9;
+  --cPurple: #6b31ed;
+  --cPurpleMedium: #895ef7;
+  --cPurpleBright: #aa8cf8;
+  --cElectricPink: #fc22b1;
+  --cOrangeSearch: #fbe6c4;
 
   /* Otros */
   --separator: #1b1b1b;
   --medium: #999999;
   --dark: #000;
-  --bright: #fff;
-  --ko: #F03063;
-  --ok: #64C3AB;
-
-  
+  --bright: rgba(255, 255, 255, 0.75);
+  --ko: #f03063;
+  --ok: #64c3ab;
 
   /* fonts */
   --font-primary: "Nunito", "Arial", "Helvetica", sans-serif;
   --font-secondary: "Helvetica", sans-serif;
-  /* --font-special: "Press Start 2P"; */
 
   /* font-sizes */
   --font-xs: 0.8rem;
   --font-sm: 1rem;
-  --font-m: 1,5rem;
+  --font-m: 1, 5rem;
   --font-l: 2rem;
   --font-xl: 2.5rem;
   --font-xxl: 3rem;

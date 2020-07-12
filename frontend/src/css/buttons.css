@@ -1,7 +1,6 @@
 .btn {
   font-family: var(--font-primary);
   transition: all 0.2s;
-  /* min-width: 120px; */
   width: 100%;
   padding: 10px 20px;
   font-size: 1rem;
@@ -12,6 +11,7 @@
   border-radius: 4px;
   cursor: pointer;
   height: 100%;
+  border: none;
 }
 
 .btn:hover {
@@ -58,12 +58,12 @@
   border-radius: 4px;
   cursor: pointer;
   height: 100%;
+  border: none;
 }
 
 .h-btn-1:hover {
   background: var(--btnGreenMedium);
   color: var(--txtBlackMedium);
-  /* font-weight: bold; */
 }
 
 .h-btn-2 {
@@ -79,12 +79,12 @@
   border-radius: 4px;
   cursor: pointer;
   height: 100%;
+  border: none;
 }
 
 .h-btn-2:hover {
   background: var(--btnBlue);
   color: var(--txtLightGrey);
-  /* font-weight: bold; */
 }
 
 .h-btn-3 {
@@ -100,6 +100,7 @@
   border-radius: 4px;
   cursor: pointer;
   height: 100%;
+  border: none;
 }
 
 .h-btn-3:hover {
@@ -121,10 +122,138 @@
   border-radius: 4px;
   cursor: pointer;
   height: 100%;
+  border: none;
 }
 
 .h-btn-4:hover {
   background: var(--btnDarkBlue);
   color: var(--txtLightGrey);
-  /* font-weight: bold; */
+}
+
+.h-btn-search {
+  font-family: var(--font-primary);
+  font-size: var(--font-sm);
+  transition: all 0.2s;
+  color: var(--bright);
+  margin: 10px;
+  padding: 5px;
+  background: var(--btnBlueGrey);
+  text-transform: none;
+  outline: none;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 60px;
+  border: none;
+}
+
+.h-btn-search:hover {
+  background: var(--btnDarkBlue);
+  color: var(--txtLightGrey);
+}
+
+/* Dashboard buttons */
+.dashboard-btn {
+  font-family: var(--font-primary);
+  transition: all 0.2s;
+  width: 90%;
+  font-size: 1rem;
+  background: var(--btnBlueGrey);
+  text-transform: none;
+  color: var(--bright);
+  outline: none;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 40px;
+  margin-top: 20px;
+  border: none;
+  width: 100%;
+}
+
+.dashboard-btn a {
+  color: var(--txtLightGrey);
+}
+
+.dashboard-btn:hover {
+  background: var(--btnDarkBlue);
+  color: var(--txtLightGrey);
+  font-weight: bold;
+}
+
+.dashboard-btn:hover a {
+  color: var(--txtLightGrey);
+}
+
+.dashboard-table-btn {
+  font-family: var(--font-primary);
+  font-size: var(--font-sm);
+  transition: all 0.2s;
+  color: var(--bright);
+  padding: 5px;
+  background: var(--btnBlueGrey);
+  text-transform: none;
+  outline: none;
+  border-radius: 4px;
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+}
+
+.dashboard-table-btn a {
+  color: var(--txtLightGrey);
+}
+
+.dashboard-table-btn:hover {
+  background: var(--btnDarkBlue);
+  color: var(--txtLightGrey);
+}
+
+.dashboard-table-btn:hover a {
+  color: var(--txtLightGrey);
+}
+
+/* CONCURSO */
+.participar-button {
+  font-family: var(--font-primary);
+  font-size: var(--font-sm);
+  transition: all 0.2s;
+  color: var(--bright);
+
+  background: var(--btnBlueLight);
+  text-transform: none;
+  outline: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  border: none;
+  width: 100%;
+  height: 60px;
+  margin-top: 5px;
+}
+.participar-button:hover {
+  background: var(--btnBlue);
+  color: var(--txtLightGrey);
+  font-weight: bold;
+}
+
+.duda-button {
+  font-family: var(--font-primary);
+  font-size: var(--font-sm);
+  transition: all 0.2s;
+  color: var(--bright);
+
+  background: var(--btnBlueGrey);
+  text-transform: none;
+  outline: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  border: none;
+  width: 100%;
+  height: 60px;
+  margin-top: 30px;
+}
+.duda-button:hover {
+  background: var(--btnDarkBlue);
+  color: var(--txtLightGrey);
+  font-weight: bold;
 }

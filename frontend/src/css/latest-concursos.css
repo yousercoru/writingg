@@ -1,0 +1,98 @@
+.latest-main {
+  width: -webkit-fill-available;
+  margin-top: 0px;
+}
+
+.latest-titulo {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  margin-top: 15px;
+  margin-left: 30px;
+}
+
+.latest {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.latest-concursos-home {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.box {
+  width: 180px;
+  height: 200px;
+  overflow: hidden;
+  margin: 20px;
+
+  display: flex;
+
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: var(--font-m);
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.box:hover {
+  box-shadow: 0 10px 20px -10px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
+.box-img {
+  height: 60%;
+  width: 100%;
+  overflow: hidden;
+}
+.box-img img {
+  width: 100%;
+  height: 10em;
+  object-fit: cover;
+}
+
+.box-content {
+  height: 40%;
+  width: 100%;
+}
+
+.box-content h4 {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: 3em;
+}
+
+.box-content p {
+  text-align: left;
+  width: 100%;
+}
+
+/* MOBILE NAC */
+@media only screen and (max-width: 1571px) {
+  .latest {
+    padding-left: 10vw;
+    padding-right: 10vw;
+  }
+}
+
+@media only screen and (max-width: 1320px) {
+  .latest {
+    padding-left: 5vw;
+    padding-right: 5vw;
+  }
+}
+
+@media only screen and (max-width: 1100px) {
+  .latest {
+    padding-left: 1vw;
+    padding-right: 1vw;
+  }
+}

@@ -1,0 +1,70 @@
+@import "./tables.css";
+
+.dashboard {
+  display: flex;
+  height: 80vh;
+  width: auto;
+}
+
+.menu-perfil {
+  display: flex;
+  flex-direction: column;
+  min-width: 30%;
+  max-width: 100%;
+  background-color: var(--bright);
+}
+
+.menu-perfil h2 {
+  margin: 10px;
+  line-height: 2.4rem;
+}
+
+.dashboard-buttons {
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+
+.dashboard-buttons button {
+  margin-top: 2px;
+  height: 40px;
+}
+
+.dashboard-content {
+  padding: 25px;
+  overflow: auto;
+  background-color: var(--bright);
+}
+
+/* EDITAR CUENTA */
+
+.editar-cuenta {
+  width: 45vw;
+}
+
+.editar-cuenta input {
+  width: 45vw;
+}
+
+/* MIS CONCURSOS */
+
+.margin-top50 {
+  margin-top: 50px;
+  overflow-x: auto;
+}
+
+.responsive-table {
+  overflow-y: scroll;
+  overflow-x: auto;
+}
+
+@media only screen and (max-width: 950px) {
+  .dashboard {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .dashboard-content {
+    overflow-x: hidden;
+  }
+}

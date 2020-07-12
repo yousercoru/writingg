@@ -13,70 +13,72 @@ function FinalizadosEscritor({ data, history }) {
     return <></>;
   }
   return (
-    <div>
-      <h2>Concursos finalizados en los que he participado</h2>
-      <table>
-        <thead>
-          <th>Concurso</th>
-          <th>Organizador</th>
-          <th>Ganador</th>
-          <th>Segundo</th>
-          <th>Tercero</th>
-          <th>Obra</th>
-          <th>Valoración de tu obra</th>
-          <th>¿Qué te ha parecido el concurso?</th>
-        </thead>
-        <tbody>
-          {data && data.finalizados ? (
-            data.finalizados.map((d) => (
-              <tr>
-                <td
-                  onClick={() =>
-                    history.push(`/concurso/${d.slugNombreConcurso}`)
-                  }
-                >
-                  {d.nombreConcurso}
-                </td>
-                <td>{d.organizador}</td>
-                <td>{d.ganador}</td>
-                <td>{d.segundo ? d.segundo : "-"}</td>
-                <td>{d.tercero ? d.tercero : "-"}</td>
-                <td>
-                  <button>
-                    <a href={d.obra} target="_blank">
-                      Ver
-                    </a>
-                  </button>
-                </td>
-                <td>
-                  {d.ratingOrganizador ? (
+    <div className="margin-top50">
+      <h3>Concursos finalizados en los que he participado</h3>
+      <div className="responsive-table">
+        <table>
+          <thead>
+            <th>Concurso</th>
+            <th>Organizador</th>
+            <th>Ganador</th>
+            <th>Segundo</th>
+            <th>Tercero</th>
+            <th>Obra</th>
+            <th>Valoración de tu obra</th>
+            <th>¿Qué te ha parecido el concurso?</th>
+          </thead>
+          <tbody>
+            {data && data.finalizados ? (
+              data.finalizados.map((d) => (
+                <tr>
+                  <td
+                    onClick={() =>
+                      history.push(`/concurso/${d.slugNombreConcurso}`)
+                    }
+                  >
+                    {d.nombreConcurso}
+                  </td>
+                  <td>{d.organizador}</td>
+                  <td>{d.ganador}</td>
+                  <td>{d.segundo ? d.segundo : "-"}</td>
+                  <td>{d.tercero ? d.tercero : "-"}</td>
+                  <td>
+                    <button className="dashboard-table-btn">
+                      <a href={d.obra} target="_blank">
+                        Ver
+                      </a>
+                    </button>
+                  </td>
+                  <td>
+                    {d.ratingOrganizador ? (
+                      <Rating
+                        fractions={1}
+                        initialRating={d.ratingOrganizador}
+                        emptySymbol="far fa-star"
+                        fullSymbol="fas fa-star"
+                        readonly
+                      />
+                    ) : (
+                      "-"
+                    )}
+                  </td>
+                  <td>
                     <Rating
                       fractions={1}
-                      initialRating={d.ratingOrganizador}
+                      initialRating={d.ratingParticipante}
                       emptySymbol="far fa-star"
                       fullSymbol="fas fa-star"
-                      readonly
+                      onClick={(val) => setRating(d.concursos_idconcursos, val)}
                     />
-                  ) : (
-                    "-"
-                  )}
-                </td>
-                <td>
-                  <Rating
-                    fractions={1}
-                    initialRating={d.ratingParticipante}
-                    emptySymbol="far fa-star"
-                    fullSymbol="fas fa-star"
-                    onClick={(val) => setRating(d.concursos_idconcursos, val)}
-                  />
-                </td>
-              </tr>
-            ))
-          ) : (
-            <div>loading...</div>
-          )}
-        </tbody>
-      </table>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <div>loading...</div>
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

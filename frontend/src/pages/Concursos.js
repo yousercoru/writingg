@@ -57,46 +57,48 @@ function Concursos(props) {
   }, []);
 
   return (
-    <div>
-      Concursos
+    <div className="concursos-content">
+      <h1>Concursos</h1>
       <SearchToolBar
         defaultParams={{ ...historyParams, ...query }}
         onSearch={search}
       />
-      <table>
-        <thead>
-          <th>Concurso</th>
-          <th>Organizador</th>
-          <th>Categoría</th>
-          <th>Vencimiento</th>
-          <th>Adjudicación</th>
-          <th>Participación</th>
-          <th>Premio</th>
-        </thead>
-        <tbody>
-          {data ? (
-            data.map((d) => (
-              <tr>
-                <td
-                  onClick={() =>
-                    history.push(`/concurso/${d.slugNombreConcurso}`)
-                  }
-                >
-                  {d.nombreConcurso}
-                </td>
-                <td>{d.users_idusers}</td>
-                <td>{d.categoria}</td>
-                <td>{moment(d.fechaVencimiento).format("DD/MM/YYYY")}</td>
-                <td>{moment(d.fechaPremiados).format("DD/MM/YYYY")}</td>
-                <td>{d.participantes}</td>
-                <td>{d.primerPremio}</td>
-              </tr>
-            ))
-          ) : (
-            <div>loading...</div>
-          )}
-        </tbody>
-      </table>
+      <div className="responsive-table">
+        <table>
+          <thead>
+            <th>Concurso</th>
+            <th>Organizador</th>
+            <th>Categoría</th>
+            <th>Vencimiento</th>
+            <th>Adjudicación</th>
+            <th>Participación</th>
+            <th>Premio</th>
+          </thead>
+          <tbody>
+            {data ? (
+              data.map((d) => (
+                <tr>
+                  <td
+                    onClick={() =>
+                      history.push(`/concurso/${d.slugNombreConcurso}`)
+                    }
+                  >
+                    {d.nombreConcurso}
+                  </td>
+                  <td>{d.nombre}</td>
+                  <td>{d.categoria}</td>
+                  <td>{moment(d.fechaVencimiento).format("DD/MM/YYYY")}</td>
+                  <td>{moment(d.fechaPremiados).format("DD/MM/YYYY")}</td>
+                  <td>{d.participantes}</td>
+                  <td>{d.primerPremio}</td>
+                </tr>
+              ))
+            ) : (
+              <div>loading...</div>
+            )}
+          </tbody>
+        </table>
+      </div>
     </div>
   );
 }

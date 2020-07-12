@@ -1,77 +1,99 @@
 @import "./buttons.css";
 
 header {
+  position: relative;
+  z-index: 1;
+}
+
+nav {
+  font-family: var(--font-primary);
+  color: var(--txtBlack);
+}
+
+.h-categoria {
+  margin: 30px;
+}
+
+.desktop {
   position: fixed;
   top: 0px;
   display: flex;
   flex: 0 0 auto;
   flex-direction: row;
-  /* flex-wrap: wrap; */
   align-items: center;
   justify-content: space-around;
   width: 100%;
-  /* padding: 20px; */
-  height: 7vh;
-  background-color: var(--bright);
+  height: 10vh;
+  background-color: white;
   border-bottom: 1px solid var(--cGreen);
   overflow: hidden;
 }
 
-nav {
-  /* display: flex; */
-  /* flex-direction: row; */
-  /* justify-content: space-around; */
-  font-family: var(--font-primary);
-  color: var(--txtBlack);
-  /* text-transform: none; */
-  /* text-decoration: none; */
-  /* align-items: flex-end; */
-  /* padding-bottom: 10px; */
+/* MOBILE NAV */
+
+@media only screen and (max-width: 999px) {
+  .desktop {
+    display: none;
+  }
+
+  .mobile-container {
+    display: block;
+  }
 }
 
-.h-categoria {
-  margin: 30px;
-  /* padding: 30px; */
+@media only screen and (min-width: 1000px) {
+  .desktop {
+    display: flex;
+  }
+  .mobile-container {
+    display: none;
+  }
 }
 
-/* Desplegable 'Mi perfil'*/
+.mobile-container {
+  max-width: 100vw;
 
-/* ul,
-ol {
-  list-style: none;
+  color: white;
+  border-radius: 10px;
+  width: 100vw;
 }
 
-.perfil-header > li {
-  float: left;
+.topnav {
+  background-color: #333;
 }
 
-.perfil-header li a {
-  background-color: #000;
-  color: #fff;
-  text-decoration: none;
-  padding: 10px 12px;
-  display: block;
-}
-
-.perfil-header li a:hover {
-  background-color: #434343;
-}
-
-.perfil-header li ul {
+.topnav #myLinks {
   display: none;
   position: absolute;
-  min-width: 140px;
+  width: 100vw;
+
+  background-color: #fff;
+  z-index: 1;
 }
 
-.perfil-header li:hover > ul {
+.topnav a {
+  color: var(--primary);
+  padding: 14px 16px;
+  text-decoration: none;
+
   display: block;
 }
 
-.perfil-header li ul li {
-  position: relative;
+.topnav a.icon {
+  display: block;
+  position: absolute;
+  right: 20px;
+  top: 15px;
+  font-size: 2rem;
 }
 
-.perfil-header li ul li ul {
-  right: -140px;
-  top: 0px;
-} */
+.active {
+  background-color: #fff;
+
+  border-bottom: 1px solid var(--cGreen);
+  overflow: hidden;
+}
+
+.logo {
+  font-size: var(--font-xxl) !important;
+}

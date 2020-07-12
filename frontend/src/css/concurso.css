@@ -1,0 +1,241 @@
+@import "./theme.css";
+
+.main-concurso-container {
+  width: 100%;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.container-top {
+  display: flex;
+  flex-direction: row;
+  width: 80vw;
+
+  border: none;
+}
+
+/* FIRST COLUMN */
+
+.first-column {
+  overflow-y: scroll;
+  background-color: var(--bright);
+  width: 70%;
+  height: 75vh;
+}
+
+.titulo {
+  margin-bottom: 25px;
+  margin-top: 15px;
+  margin-left: 15px;
+  line-height: 3rem;
+}
+
+.details-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.details-container img {
+  width: 15em;
+  margin-left: 15px;
+}
+
+.detail-list-container {
+  margin-left: 20px;
+  margin-top: 10px;
+}
+
+.ul-details {
+  margin-top: 15px;
+}
+
+.ul-details li {
+  cursor: auto;
+  display: flex;
+  flex-direction: row;
+}
+
+.ul-details li p:first-child {
+  margin-right: 15px;
+  display: flex;
+  width: 8em;
+}
+
+.bases {
+  margin-top: 15px;
+  margin-left: 15px;
+}
+
+.bases-content {
+  margin-top: 15px;
+}
+
+.bases-content img {
+  width: -webkit-fill-available;
+}
+
+/* SECOND COLUMN */
+
+.second-column {
+  background-color: #5458739a;
+  width: 30%;
+  padding: 15px;
+}
+
+.second-column .detalles-concurso-span {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 15px;
+}
+
+.second-column .detalles-concurso-span span {
+  margin-left: 0.5px;
+  margin-right: 0.5px;
+  background-color: white;
+  width: 30%;
+  text-align: center;
+}
+
+.participantes-actuales {
+  display: flex;
+  margin-top: 15px;
+}
+
+.participantes-actuales :first-child {
+  width: 60%;
+}
+
+.rating-concurso {
+  display: flex;
+  margin-top: 15px;
+}
+
+.rating-concurso :first-child {
+  width: 60%;
+}
+
+.compartir-concurso {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.compartir-concurso a:not(:first-child) {
+  margin-left: 15px;
+}
+
+.compartir-concurso i {
+  font-size: 32px;
+  color: black;
+}
+
+.compartir-concurso i:hover {
+  color: var(--btnGreen);
+}
+
+.second-column .duda-button {
+  width: 100%;
+  margin-top: 30px;
+}
+
+.second-column h4,
+p {
+  font-weight: bold;
+}
+
+/* ULTIMOS CONCURSOS */
+.latest-main {
+  width: 80vw;
+  margin-top: 15px;
+}
+
+/* Form Concurso */
+
+.form-concurso {
+  overflow-y: scroll;
+  height: 70vh;
+}
+
+.form-concurso h2 {
+  margin-top: 40px;
+  margin-bottom: 15px;
+}
+
+.form-concurso .form-group {
+  margin-bottom: 25px;
+}
+
+.form-concurso input {
+  width: 90%;
+}
+
+.form-concurso select {
+  width: 90%;
+  height: 20px;
+}
+
+.form-concurso .rdw-editor-wrapper {
+  width: 90%;
+}
+
+.form-concurso .editorClassName {
+  background-color: #fff;
+  min-height: 20em;
+}
+
+/* MOBILE NAV */
+
+@media only screen and (max-width: 1400px) {
+  .detalles-concurso-span {
+    font-size: 65% !important;
+  }
+}
+
+@media only screen and (max-width: 950px) {
+  .container-top {
+    flex-direction: column;
+  }
+
+  .first-column {
+    width: auto;
+  }
+
+  .second-column {
+    width: auto;
+  }
+
+  .form-concurso {
+    overflow-y: auto;
+    height: auto;
+  }
+
+  .form-concurso input {
+    width: 100%;
+  }
+
+  .form-concurso select {
+    width: 100%;
+  }
+
+  .form-concurso .rdw-editor-wrapper {
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .container-top {
+    flex-direction: column;
+  }
+
+  .first-column {
+    overflow-y: auto;
+    height: auto;
+  }
+
+  .details-container {
+    flex-direction: column;
+  }
+}

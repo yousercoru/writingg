@@ -1,23 +1,17 @@
 footer {
-  /* position:fixed; */
-  /* height: 30px; */
-  min-height: 80px;
-  /* left:0; */
+  overflow: hidden;
+  height: 10vh;
   bottom: 0;
-  /* right:0; */
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
   width: 100%;
-  /* padding: 20px; */
-  /* height: 10vh; */
-  /* background: linear-gradient(var(--bright) 85%, var(--cGreen)); */
   background-color: var(--BlueGrey);
   color: var(--primary);
   overflow: hidden;
-  border-top: 1px solid var(--cGreen);
+  border-top: 4px solid var(--cGreen);
 }
 
 .footer {
@@ -30,4 +24,23 @@ a.footer {
 
 p.footer {
   color: var(--bright);
+}
+
+.redes-sociales a:not(:first-child) {
+  margin-left: 15px;
+}
+
+.redes-sociales i {
+  font-size: 32px;
+  color: black;
+}
+
+.redes-sociales i:hover {
+  color: var(--btnGreen);
+}
+
+@media only screen and (max-width: 999px) {
+  footer {
+    height: auto;
+  }
 }

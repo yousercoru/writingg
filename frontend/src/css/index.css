@@ -7,13 +7,7 @@
 @import "./header.css";
 @import "./footer.css";
 @import "./home.css";
-/* @import './login-register.css'; */
-/* @import './tag-list.css'; */
-/* @import './note.css'; */
-/* @import './dashboard.css'; */
-/* @import './note-list.css'; */
-/* @import './dialog.css'; */
-/* @import './tags-input.css'; */
+@import "./latest-concursos.css";
 
 /* PONER los estilos comunes */
 
@@ -31,15 +25,9 @@ html {
   font-size: 100%;
 }
 
-/* body,
-#root  */
-
 body {
   font-family: var(--font-primary);
-  height: 100%;
-  /* min-height: 100%; */
-  /* background: linear-gradient(90deg, var(--lightGrey) 0%, var(--softGreen) 100%); */
-  /* background: var(--lightGrey); */
+  height: auto;
   background-image: linear-gradient(
       to right,
       rgba(245, 247, 250, 0.9),
@@ -53,20 +41,9 @@ body {
   );
   color: var(--primary);
   line-height: 1.8em;
-  /* display: flex;
-  flex-direction: column; */
-  /* overflow: hidden; */
 }
 
 main {
-  /* display: flex;
-  flex-direction: column; */
-  /* align-items: center; */
-  margin-top: 15vh;
-  margin-left: 5vw;
-  margin-right: 5vw;
-  padding: 15px;
-  /* max-width: 1200px; */
 }
 
 .gutter-horizontal {
@@ -75,18 +52,23 @@ main {
 
 h1,
 h3 {
-  /* text-transform: uppercase; */
   font-family: var(--font-primary);
   color: var(--textGreen);
+  line-height: 3rem;
 }
 
-h2,
+h2 {
+  font-family: var(--font-primary);
+  color: var(--primary);
+  line-height: 3rem;
+}
+
 h4,
 h5,
 h6 {
-  /* text-transform: uppercase; */
   font-family: var(--font-primary);
   color: var(--primary);
+  line-height: 1.5rem;
 }
 
 h1 {
@@ -125,14 +107,14 @@ a {
 }
 
 a:hover {
-  /* opacity: 0.7; */
-  /* border-bottom: 2px solid var(--secondary); */
+  color: var(--textGreen);
+}
+
+button:hover {
   color: var(--textGreen);
 }
 
 a:active {
-  /* opacity: 1; */
-  /* border-bottom: 2px solid var(--secondary); */
   text-decoration: none;
 }
 
@@ -162,30 +144,21 @@ ul > li {
 }
 
 .main-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  flex-direction: column;
+  margin-top: 7rem;
+  margin-left: 15vw;
+  margin-right: 15vw;
+  min-height: 80vh;
 }
 
-/* .CalendarDay__selected_span {
-  background: #82e0aa;
-  color: white;
-  border: 1px solid red;
+.concursos-content h1 {
+  margin-bottom: 30px;
 }
 
-.CalendarDay__selected {
-  background: red;
-  color: white;
+@media only screen and (max-width: 999px) {
+  .main-container {
+    margin-top: 2rem;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    min-height: 90vh;
+  }
 }
-
-.CalendarDay__selected:hover {
-  background: orange;
-  color: white;
-}
-
-.CalendarDay__hovered_span:hover,
-.CalendarDay__hovered_span {
-  background: brown;
-} */

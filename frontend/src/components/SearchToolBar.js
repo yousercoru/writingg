@@ -1,6 +1,7 @@
 import React, { useState, useMemo } from "react";
 import { useHistory } from "react-router-dom";
 import SelectCategorias from "./SelectCategorias";
+import "../css/search-toolbar.css";
 
 const categorias = ["Cuentos", "Ensayos", "Microrrelatos", "Novela", "Poesia"];
 
@@ -31,9 +32,10 @@ function SearchToolBar({ onSearch, defaultParams }) {
   };
 
   return (
-    <div>
-      <div>
+    <div className="search-toolbar">
+      <div className="search-toolbar-inputs">
         <input
+          className="keywords"
           name="keywords"
           placeholder="Palabras clave"
           value={params.keywords}
@@ -60,7 +62,9 @@ function SearchToolBar({ onSearch, defaultParams }) {
           onChange={onChange}
         />
       </div>
-      <button onClick={() => search()}>Buscar</button>
+      <button className="h-btn-search" onClick={() => search()}>
+        Buscar
+      </button>
     </div>
   );
 }

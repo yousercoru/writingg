@@ -12,19 +12,15 @@ import { SoyEscritor } from "./pages/SoyEscritor";
 import { AuthProvider } from "./context/auth-context";
 import { PrivateRoute } from "./components/PrivateRoute";
 import AltaConcurso from "./pages/AltaConcurso";
-import { Header } from "./components/Header";
 import Concurso from "./pages/Concurso";
 import Concursos from "./pages/Concursos";
 
-// import { Header } from "./components/Header";
-// import { Footer } from "./components/Footer";
+import { Header } from "./components/Header";
+import { Footer } from "./components/Footer";
 
 function App() {
   return (
     <BrowserRouter>
-      {/* <Header /> */}
-      {/* <SoyEscritor /> */}
-      {/* <HomeSlider /> */}
       <AuthProvider>
         <Header />
         <div className="main-container">
@@ -61,8 +57,8 @@ function App() {
             </Route>
           </Switch>
         </div>
+        <Footer />
       </AuthProvider>
-      {/* <Footer /> */}
     </BrowserRouter>
   );
 }

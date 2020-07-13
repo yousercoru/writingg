@@ -48,10 +48,14 @@ async function createConcurso(req, res, next) {
   } = concursoData;
 
   let bases_pdf;
+  let cartel;
   if (req.files.bases_pdf) {
     bases_pdf = await updloadFile(req.files.bases_pdf);
   }
-  const cartel = await updloadFile(req.files.cartel);
+
+  if (req.files.cartel) {
+    cartel = await updloadFile(req.files.cartel);
+  }
 
   const idconcursos = uuidV4();
   const concurso = {
@@ -65,8 +69,8 @@ async function createConcurso(req, res, next) {
     segundoPremio,
     tercerPremio,
     fechaPremiados,
-    cartel: cartel.url,
-    bases_pdf: bases_pdf.url,
+    cartel: cartel ? cartel.url : null,
+    bases_pdf: bases_pdf ? bases_pdf.url : null,
     categoria,
     slugNombreConcurso: slugify(nombreConcurso),
   };

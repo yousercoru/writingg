@@ -94,6 +94,7 @@ function FormConcurso({ isNew, defaultValues, setWinners }) {
     const formdata = generateFormData();
 
     const result = await createConcursos(formdata);
+    toggleModal(true);
   };
 
   const edit = async () => {
